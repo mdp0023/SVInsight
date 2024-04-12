@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='SVInsight',
-    version='',
+    version='0.1.0',
     license='MIT',
     description='SVInsight - A python package for calculating an exploratory social vulnerability index',
     author='M. Preisser, P. Passalacqua, R. P. Bixler',
