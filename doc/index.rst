@@ -10,7 +10,7 @@ SVInsight
 
 .. note::
 
-   This project is under active development and this website is currently being developed. Please pardon our progres
+   This project is under active development and this website is currently being developed. Please pardon our progress as we finish updating the documentation in the coming weeks (as of April 12th, 2024).
 
 Getting Started
 ###############

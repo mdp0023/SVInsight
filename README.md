@@ -1,1 +1,1 @@
-SVInisight: A python package for calculating an exploratory social vulnerability index (SVI)
+SVInisight: A python package for calculating an exploratory social vulnerability index (SVI). This project is currently under development and should be published in the coming weeks (as of April 12th, 2024).
