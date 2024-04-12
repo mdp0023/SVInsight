@@ -8,5 +8,7 @@ setup(
     description='SVInsight - A python package for calculating an exploratory social vulnerability index',
     author='M. Preisser, P. Passalacqua, R. P. Bixler',
     author_email='mattpreisser@gmail.com',
+    url='https://github.com/mdp0023/SVInsight/',
+    packages= find_packages(exclude=['*.tests'])
     
 )
