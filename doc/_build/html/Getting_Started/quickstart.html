@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Getting Started &#8212; SVInsight  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Background" href="../Background/background.html" />
+    <link rel="prev" title="Install" href="install.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this heading">¶</a></h1>
+<section id="quickstart">
+<h2>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this heading">¶</a></h2>
+<p>This is a quick guide to using SVInsight. In this demonstration, we show how to load and create the SVInsight object, determine an area of interest, set a boundary level (e.g., tract or block groups), download the necessary boundary and raw data, calculate input variables, and compute the social vulnerability estimate.</p>
+<p>First we load the SVInsight package, set the necessary variables, and create the SVInsight object.</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">SVInsight</span> <span class="k">as</span> <span class="nn">svi</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project_name</span> <span class="o">=</span> <span class="s1">&#39;Travis_County_SVI&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">file_path</span> <span class="o">=</span> <span class="s2">&quot;YOUR PARENT FOLDER HERE&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">api_key</span> <span class="o">=</span> <span class="s1">&#39;YOUR CENSUS API KEY HERE&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">geoids</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;48453&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project</span> <span class="o">=</span> <span class="n">svi</span><span class="p">(</span><span class="n">project_name</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">api_key</span><span class="p">,</span> <span class="n">geoids</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>These variables create the instance of a project. Each have the following purpose:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">project_name</span></code>: This is the name of your project. In this case, it’s ‘Travis_County_SVI’. The project name is used when saving files throughout the project.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">file_path</span></code>: This is the path to the parent folder where your project files will be stored. Replace “YOUR PARENT FOLDER HERE” with the actual path. Creating the SVInsight object automatically creates the necessary file structure needed for your project based on the <code class="docutils literal notranslate"><span class="pre">file_path</span></code> and <code class="docutils literal notranslate"><span class="pre">project_name</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">api_key</span></code>: This is your Census API key. Replace ‘YOUR CENSUS API KEY HERE’ with your actual API key. You can obtain an API key from the <a class="reference external" href="https://www.census.gov/data/developers/data-sets.html">Census Bureau’s developer page</a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">geoids</span></code>: This is a list of geographic identifiers for the areas you’re interested in. In this case, it’s [‘48453’], which represents Travis County, Texas. The necessary geogrpahic identifiers for your state or county of interest can be obtained from this <a class="reference external" href="https://transition.fcc.gov/oet/info/maps/census/fips/fips.txt">FCC page</a>.</p></li>
+</ul>
+<p>Each instance of SVInsight can be seen as a standalone project for a constant study area. Within each project, the user can explore different vulnerability estimates based on different years or boundaries (e.g., block group versus tract).</p>
+<p>In this quickstart, we will examine a vulnerability estimate for Travis County using 2019 data at the block group level.</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">boundary</span> <span class="o">=</span> <span class="s1">&#39;bg&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">year</span> <span class="o">=</span> <span class="mi">2019</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">config_file</span> <span class="o">=</span> <span class="s1">&#39;config_file&#39;</span>
+</pre></div>
+</div>
+<p>The simplest workflow is as follows:</p>
+<ol class="arabic simple">
+<li><p>Extract boundaries</p></li>
+<li><p>Extract Census data</p></li>
+<li><p>Configure variables</p></li>
+<li><p>Calculate vulnerability estimate</p></li>
+</ol>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">project</span><span class="o">.</span><span class="n">boundaries_data</span><span class="p">(</span><span class="n">boundary</span><span class="p">,</span> <span class="n">year</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project</span><span class="o">.</span><span class="n">census_data</span><span class="p">(</span><span class="n">boundary</span><span class="p">,</span> <span class="n">year</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project</span><span class="o">.</span><span class="n">configure_variables</span><span class="p">(</span><span class="n">config_file</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project</span><span class="o">.</span><span class="n">calculate_svi</span><span class="p">(</span><span class="n">config_file</span><span class="p">,</span> <span class="n">boundary</span><span class="p">,</span> <span class="n">year</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The output SVI .csv and .gpkg files built will be saved with the following file format:</p>
+<ul class="simple">
+<li><p>folder location: <code class="docutils literal notranslate"><span class="pre">{file_path}/{project_name}/{SVIs}/</span></code></p></li>
+<li><p>file name: <code class="docutils literal notranslate"><span class="pre">{project_name}_{year}_{boundadry}_{config_file}_svi</span></code></p></li>
+</ul>
+<p>More detailed examples of the complete functionality of SVInsight can be found under <a class="reference internal" href="../Examples/examples.html"><span class="doc">Examples</span></a>.</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">SVInsight</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Install</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#quickstart">Quickstart</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Background/background.html">Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Background/paper.html">Paper</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../User_Guide/userguide.html">User Guide</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Examples/examples.html">Examples</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="install.html" title="previous chapter">Install</a></li>
+      <li>Next: <a href="../Background/background.html" title="next chapter">Background</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2024, Matthew Preisser.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/Getting_Started/quickstart.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
