@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: SVInsight
+Version: 0.1.0
+Summary: SVInsight - A python package for calculating an exploratory social vulnerability index
+Home-page: https://github.com/mdp0023/SVInsight/
+Author: M. Preisser, P. Passalacqua, R. P. Bixler
+Author-email: mattpreisser@gmail.com
+License: MIT
+License-File: LICENSE
+Requires-Dist: census
+Requires-Dist: factor_analyzer
+Requires-Dist: geopandas
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: PyYAML
+Requires-Dist: scikit_learn
+
+See preojct webpage for details

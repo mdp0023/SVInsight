@@ -1,0 +1,12 @@
+LICENSE
+README.md
+setup.py
+SVInsight.egg-info/PKG-INFO
+SVInsight.egg-info/SOURCES.txt
+SVInsight.egg-info/dependency_links.txt
+SVInsight.egg-info/requires.txt
+SVInsight.egg-info/top_level.txt
+src/__init__.py
+src/census_variables.py
+src/svinsight.py
+tests/test_svinsight.py
