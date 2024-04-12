@@ -14,10 +14,10 @@ setup(
     long_description = 'See preojct wepage for details',
     classifiers=[],
     insatll_requires=['census',
-                        'factor_analyzer',
-                        'geopandas',
-                        'numpy',
-                        'pandas',
-                        'PyYAML',
-                        'scikit_learn']
+                    'factor_analyzer',
+                    'geopandas',
+                    'numpy',
+                    'pandas',
+                    'PyYAML',
+                    'scikit_learn']
 )
