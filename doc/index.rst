@@ -39,11 +39,20 @@ User Guide
    
 
 Examples
-##########
+########
 .. toctree::
    :maxdepth: 2
 
    Examples/examples 
+
+
+Acknowledgements
+################
+.. toctree::
+   :maxdepth: 2
+
+   Acknowledgements/acknowledgements 
+
 
 
 Indices and tables
