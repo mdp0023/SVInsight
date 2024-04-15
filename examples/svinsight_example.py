@@ -2,10 +2,12 @@ import sys
 sys.path.append('/Users/matthewpreisser/Documents/Research/Codes/SVInsight')
 
 
-from SVInsight import svi 
-import os 
+# from SVInsight import svi 
+# import os 
 
-aoi = svi.project()
+
+from SVInsight import SVInsight as svi 
+svi()
 
 
 

@@ -1188,6 +1188,3 @@ class SVInsight:
     
 
 
-# Initialize an instance of SVInsight
-def project(project_name: str, file_path: str, api_key: str, geoids: list[str]):
-    return SVInsight(project_name, file_path, api_key, geoids)
