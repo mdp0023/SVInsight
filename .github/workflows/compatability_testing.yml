@@ -26,6 +26,8 @@ jobs:
           pip install .[minimum]
         fi
     - name: Test with pytest
+      env:
+          API_KEY: ${{ secrets.API_KEY }}
       run: |
         pip install pytest
         pytest

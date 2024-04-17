@@ -118,12 +118,11 @@ def run_svi_workflow(project, boundary, year, overwrite=True):
 def project():
     return svi(project_name, file_path, api_key, geoids)
 
-
+api_key = os.getenv('CENSUS_API_KEY')
 ##############################################################################################
 # develop a test project for single county
 project_name = 'test_project_single_county' 
 file_path = os.path.dirname(os.path.realpath(__file__))
-api_key = os.getenv('CENSUS_API_KEY')
 geoids = ['48453']
 boundaries = ['bg', 'tract']
 years = [2015, 2020]
@@ -139,7 +138,6 @@ def test_single_county_project(project, boundary, year, overwrite=False):
 # develop a test project for multiple counties
 project_name = 'test_project_multiple_counties' 
 file_path = os.path.dirname(os.path.realpath(__file__))
-api_key = os.getenv('CENSUS_API_KEY')
 geoids = ['48453','21117']
 boundaries = ['bg', 'tract']
 years = [2015, 2020]
@@ -155,7 +153,6 @@ def test_multiple_county_project(project, boundary, year, overwrite=False):
 # develop a test project for multiple states
 project_name = 'test_project_multiple_states' 
 file_path = os.path.dirname(os.path.realpath(__file__))
-api_key = os.getenv('CENSUS_API_KEY')
 geoids = ['25','44']
 boundaries = ['bg', 'tract']
 years = [2015]
