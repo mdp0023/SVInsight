@@ -1,10 +1,10 @@
 import os
 from setuptools import setup, find_packages
-from SVInsight import __version__ as version
+#from SVInsight import __version__ as version
 
 setup(
     name='SVInsight',
-    version=version,
+    version='0.2.8',
     license='MIT',
     description='SVInsight - A python package for calculating an exploratory social vulnerability index',
     author='M. Preisser, P. Passalacqua, R. P. Bixler',
