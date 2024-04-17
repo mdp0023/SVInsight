@@ -25,26 +25,26 @@ config_file = 'config'
 # extract shapefile
 export = test.boundaries_data(boundary, year, overwrite=True)
 
-# extract raw census data
-test.census_data(boundary, 
-                    year, 
-                    interpolate=True,
-                    verbose=True,
-                    overwrite=True)
+# # extract raw census data
+# test.census_data(boundary, 
+#                     year, 
+#                     interpolate=True,
+#                     verbose=True,
+#                     overwrite=True)
 
-# # add variable
-# test2.add_variable(boundary,
-#                    year,
-#                    'newvar',
-#                    ['B03002_021E'])
+# # # add variable
+# # test2.add_variable(boundary,
+# #                    year,
+# #                    'newvar',
+# #                    ['B03002_021E'])
 
 
-# # print(test2.all_vars_eqs['MEDAGE']['description'])
-# # test2.var_descriptions(['MEDAGE','PPUNIT'])
+# # # print(test2.all_vars_eqs['MEDAGE']['description'])
+# # # test2.var_descriptions(['MEDAGE','PPUNIT'])
 
-# # configure run and calculate svi
-test.configure_variables(config_file)
-test.calculate_svi(config_file, boundary, year)
+# # # configure run and calculate svi
+# test.configure_variables(config_file)
+# test.calculate_svi(config_file, boundary, year)
 
 
 

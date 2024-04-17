@@ -5,6 +5,7 @@ import copy
 import shutil
 import zipfile
 import numpy as np
+import requests
 import pandas as pd
 from ftplib import FTP
 import ftputil
@@ -173,7 +174,8 @@ class SVInsight:
 
         # If shapefile already exists, pass 
         if os.path.exists(os.path.join(self.boundaries, f"{self.project_name}_{year}_{boundary}.gpkg")) and overwrite is False:
-            pass
+            
+            return gpd.read_file(os.path.join(self.boundaries, f"{self.project_name}_{year}_{boundary}.gpkg"))
         else:
 
             # create final output geodataframe
@@ -212,12 +214,21 @@ class SVInsight:
                 #     ftp.retrbinary(f"RETR {zipped_filename}", file.write)
                 # print('opened binary')
 
-                # Connect to the FTP server
-                with ftputil.FTPHost('ftp2.census.gov', 'anonymous') as ftp_host:
-                    # Change the current directory
-                    ftp_host.chdir(f'geo/tiger/GENZ{year}/shp/')
-                    # Open the remote file and write it to a local file
-                    ftp_host.download(zipped_filename, zipped_dir)
+                # Specify the URL of the file you want to download
+                url = f"https://www2.census.gov/geo/tiger/GENZ{year}/shp/{zipped_filename}"
+
+                # Send a GET request to the URL
+                response = requests.get(url, stream=True)
+
+                # Check if the request was successful
+                if response.status_code == 200:
+                    # Open a local file with the same name as the remote file
+                    with open(zipped_dir, 'wb') as file:
+                        # Write the contents of the remote file to the local file
+                        for chunk in response.iter_content(chunk_size=1024):
+                            if chunk:
+                                file.write(chunk)
+
 
                 # Unzip the file
                 shutil.unpack_archive(zipped_dir, filename_dir)
@@ -725,7 +736,7 @@ class SVInsight:
 
         # save geopackage and csv output
         output_df.to_file(os.path.join(self.svis, f"{self.project_name}_{year}_{boundary}_{config_file}_svi.gpkg"))
-        data_df.to_csv(os.path.join(self.svis, f"{self.project_name}_{year}_{boundary}_{config_file}_svi.csv"))
+        output_df.to_csv(os.path.join(self.svis, f"{self.project_name}_{year}_{boundary}_{config_file}_svi.csv"))
          
 
 
@@ -865,7 +876,7 @@ class SVInsight:
             cols_to_drop = data_df.filter(like='_y', axis=1).columns
             data_df = data_df.drop(cols_to_drop, axis=1)
 
-        if verbose is True:
+        if verbose is True and empty_cols:
              with open(empty_output_name, 'w', newline='') as file:
                 writer = csv.writer(file)
                 # Write rows to the CSV file
