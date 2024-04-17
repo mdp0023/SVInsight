@@ -10,8 +10,8 @@ First we load the SVInsight package, set the necessary variables, and create the
 
 .. doctest::
 
-    >>> import SVInsight as svi
-    >>> project_name = 'Travis_County_SVI'
+    >>> from SVInsight import SVInsight as svi
+    >>> project_name = 'YOUR PROJECT NAME HERE'
     >>> file_path = "YOUR PARENT FOLDER HERE"
     >>> api_key = 'YOUR CENSUS API KEY HERE'
     >>> geoids = ['48453']
@@ -22,7 +22,7 @@ These variables create the instance of a project. Each have the following purpos
 - ``project_name``: This is the name of your project. In this case, it's 'Travis_County_SVI'. The project name is used when saving files throughout the project.
 - ``file_path``: This is the path to the parent folder where your project files will be stored. Replace "YOUR PARENT FOLDER HERE" with the actual path. Creating the SVInsight object automatically creates the necessary file structure needed for your project based on the ``file_path`` and ``project_name``. 
 - ``api_key``: This is your Census API key. Replace 'YOUR CENSUS API KEY HERE' with your actual API key. You can obtain an API key from the `Census Bureau's developer page <https://www.census.gov/data/developers/data-sets.html>`_.
-- ``geoids``: This is a list of geographic identifiers for the areas you're interested in. In this case, it's ['48453'], which represents Travis County, Texas. The necessary geogrpahic identifiers for your state or county of interest can be obtained from this `FCC page <https://transition.fcc.gov/oet/info/maps/census/fips/fips.txt>`_.  
+- ``geoids``: This is a list of geographic identifiers for the areas you're interested in. In this case, it's ['48453'], which represents Travis County, Texas. The necessary geographic identifiers for your state or county of interest can be obtained from this `FCC page <https://transition.fcc.gov/oet/info/maps/census/fips/fips.txt>`_.  
 
 
 Each instance of SVInsight can be seen as a standalone project for a constant study area. Within each project, the user can explore different vulnerability estimates based on different years or boundaries (e.g., block group versus tract). 

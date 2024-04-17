@@ -1,121 +1,607 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Understanding Iterative Factor Analysis Results" href="understanding.html" /><link rel="prev" title="Getting Started" href="../Getting_Started/quickstart.html" />
 
-<!DOCTYPE html>
+    <!-- Generated with Sphinx 7.2.6 and Furo 2024.01.29 -->
+        <title>Background - SVInsight documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=362ab14a" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=36a5483c" />
+    
+    
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Background &#8212; SVInsight  documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Paper" href="paper.html" />
-    <link rel="prev" title="Getting Started" href="../Getting_Started/quickstart.html" />
-   
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
   
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
   
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
-
-  </head><body>
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
   
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
 
-          <div class="body" role="main">
-            
-  <section id="background">
-<h1>Background<a class="headerlink" href="#background" title="Permalink to this heading">¶</a></h1>
-<p>Background writing will go here</p>
-</section>
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
 
 
-          </div>
-          
-        </div>
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">SVInsight  documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="../index.html">SVInsight</a></h1>
-
-
-
-
-
-
-
-
-<h3>Navigation</h3>
-<ul>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">SVInsight  documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Getting_Started/install.html">Install</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Getting_Started/quickstart.html">Getting Started</a></li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Background</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="understanding.html">Understanding Iterative Factor Analysis Results</a></li>
 <li class="toctree-l1"><a class="reference internal" href="paper.html">Paper</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../User_Guide/userguide.html">User Guide</a></li>
 </ul>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../apiref/apiref.html">SVInsight</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apiref/license.html">License</a></li>
+</ul>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../Examples/examples.html">Examples</a></li>
 </ul>
-
-<div class="relations">
-<h3>Related Topics</h3>
 <ul>
-  <li><a href="../index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="../Getting_Started/quickstart.html" title="previous chapter">Getting Started</a></li>
-      <li>Next: <a href="paper.html" title="next chapter">Paper</a></li>
-  </ul></li>
+<li class="toctree-l1"><a class="reference internal" href="../Acknowledgements/acknowledgements.html">Acknowledgements</a></li>
 </ul>
+
 </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
+</div>
+
+      </div>
+      
     </div>
-</div>
-<script>document.getElementById('searchbox').style.display = "block"</script>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="background">
+<h1>Background<a class="headerlink" href="#background" title="Link to this heading">#</a></h1>
+<section id="motivation">
+<h2>Motivation<a class="headerlink" href="#motivation" title="Link to this heading">#</a></h2>
+<p>SVInsight was developed to provide an open-source tool for creating social vulnerability indices or SVIs based on user defined study areas and input variables. SVInsight uses two methodologies to create indices based on existing scholarly research: (1) a factor analysis method and (2) a rank method. This tool’s purpose is to provide researchers with the ability to quickly create exploratory estimates of vulnerability based on existing and known relationships between socio-demographic variables and a community’s sensativity (a proxy for vulnerability).</p>
+<p>While SVInsight is capable of rapidly producing tailor made estimates of relative vulnerability of a given region for researchers and/or practicitioners, it does not replace the in-depth investigation required to definitively define what makes someone more or less vulnerable. Indices created with SVInsight can be used as a starting point for understanding the complex relationship between socio-demographic variables and community characteristics including vulnerability, sensativity, and adaptive capacity by highlighting prominant geographic disparities. It is further important to note that vulnerability estimates are relative, and calculated scores should be taken in the context of the study area being examined.</p>
+<p>This package was specifically written in conjunction with past and ongoing projects at the Univeristy of Texas at Austin <a class="footnote-reference brackets" href="#id7" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a> <a class="footnote-reference brackets" href="#id8" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a> <a class="footnote-reference brackets" href="#id9" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a>. More detailed infomration regarding funding sources can be found in the <a class="reference internal" href="../Acknowledgements/acknowledgements.html"><span class="doc">Acknolwedgements section</span></a>.</p>
+</section>
+<section id="methodology">
+<h2>Methodology<a class="headerlink" href="#methodology" title="Link to this heading">#</a></h2>
+<section id="data-source">
+<h3>Data Source<a class="headerlink" href="#data-source" title="Link to this heading">#</a></h3>
+<p>All data comes from the American Community Survey 5-Year Estimates because they contain data at the Census block group and tract level. More information on data quality can be found on their <a class="reference external" href="https://www.census.gov/data/developers/data-sets/acs-5year.html">website</a>.</p>
+</section>
+<section id="iterative-factor-analysis">
+<h3>Iterative Factor Analysis<a class="headerlink" href="#iterative-factor-analysis" title="Link to this heading">#</a></h3>
+<p>This methodology is heavily influenced by the original SoVI® <a class="footnote-reference brackets" href="#id6" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> developed by Dr. Susan Cutter. By utilizing a data reduction methodology, a large subset of American Community Survey 5-Year Estimate variables can be dimensionally reduced and combined into a single index. Both principal component analyses and factor analyses are data reduction techniques that have been utilized to create vulnerability indices. A principal component analysis (PCA) reduces data by creating one or more index variables, or ‘components,’ by using a linear combination (i.e., a weighted average) from a larger set of measured variables. The purpose of a PCA is to determine the optimal number of components, the optimal choice of measured variables for each component, and the optimal weights. A factor analysis (FA) is a model of latent variables. A ‘latent variable’ cannot be directly measured with a single variable. A common example used to describe this is we cannot directly measure something like social anxiety, but we can measure whether someone has a high or low social anxiety based on a set of questions like “I am uncomfortable in large groups” or “ I get nervous talking to strangers.” We utilize a factor analysis approach because it is the data reduction methodology most often associated with creating composite indices, which is our end goal.</p>
+<p>The follow are the steps in the iterative factor analysis approach:</p>
+<ol class="arabic simple">
+<li><dl class="simple">
+<dt><strong>Scale the data</strong></dt><dd><ul class="simple">
+<li><p>We standardize the data to a range of 0-1. Since all of the variable have a different scale, this makes each variable have an equal weight going into the analysis.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Conduct Initial Factor Analysis</strong></dt><dd><ul class="simple">
+<li><p>Inputs for a factor analysis include the number of factors we are attempting to reduce the data down to, the rotation method, and the fitting method. For this first factor analysis, we set the number of factors to the number of variables under investigation (the maximum number of possible factors) in order to determine if there are any variables at the start we can eliminate for having too low of an influence. The rotation method used is varimax, or orthogonal rotation, which maximizes the sum of the variances of the squared loadings. In simpler terms, ‘loadings’ refer to the correlations between variables and factors. With varimax rotation, the resultant factors are uncorrelated with each other. The fitting method we use is minimum residual (‘minres’).</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Calculate Eigenvalues</strong></dt><dd><p>-With our initial factors, we need to determine which ones are significant and which can be removed. If we stopped here, we would have reduced X variables to X factors, (i.e., we wouldn’t have reduced anything). Our goal is to find the weakest factors to eliminate so that while we are eliminating data, we maintain the highest level of reported variance in our final factors.
+-The first step in doing this is calculating the eigenvalues, which is defined as a measure of how much of the common variance of the observed variables a factor explains. A factor with an eigenvalue greater than or equal to 1 explains more variance than a single observed variable and is therefore beneficial. This is known as the Kaiser Criterion. The number of factors whose eigenvalues is greater than 1 now becomes our new number of factors.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Recompute Factor Analysis based on Kaiser Criterion</strong></dt><dd><ul class="simple">
+<li><p>Similar to step 2, we run the factor analysis again with the new optimized number of factors.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Calculate Loading Factors</strong></dt><dd><ul class="simple">
+<li><p>The loading factor is the correlation coefficient for the variable and factor. It shows the variance explained by the variable on that particular factor. This will become the weight of the variable on that factor. Various standards exist on what makes a significant loading factor. For the sake of this research, we identify any loading factor that is greater than 0.5 or less than -0.5 is significant.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Calculate Variance Statistics</strong></dt><dd><dl class="simple">
+<dt>-The variance statistics for each factor that we are interested in tracking are the SS Loadings, Proportion Variance, Cumulative Variance, and Ratio of Variance.</dt><dd><ul class="simple">
+<li><p><em>SS Loadings:</em> The sum of the squared loadings for the factor. If a factor’s SS loading is greater than 1 it is worth keeping.</p></li>
+<li><p><em>Proportion Variance:</em> The proportion of the variance that a factor accounts for. The first factor will have the highest proportion, due to our rotation earlier, and subsequent factors will have a decreasing proportion of explained variance.</p></li>
+<li><p><em>Cumulative Variance:</em> The cumulative sum of the variance that is explained with each factor. The overall cumulative variance is how much of the original system’s variables are explained with this new reduced dimensionality. This is incredibly important because it shows us how much of the original data’s variance we are losing. If we are losing too much, then we need to reconsider how many factors we have reduced down to. If it is too close to 100% then we can theoretically reduce down more.</p></li>
+<li><p><em>Ratio of Variance:</em> Ratio of proportion of variance to cumulative variance.</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Determine Significant Variables</strong></dt><dd><p>-Any variable whose loading factor is greater than 0.5 or less than -0.5  at any point is significant and therefore needs to be included in the analysis. Any variable that is not significant in any factor can be eliminated. With the new dataset we can again re-run the factor analysis until only the variables that are significantly contributing to at least one factor are included.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Begin Iterative Loop</strong></dt><dd><ul class="simple">
+<li><p>With the newly created list of variables that have a significant contribution to at least a single factor, we can eliminate those that are not contributing and re-run the factor analysis without it. This process is repeated until every variable is significantly contributing to at least one factor.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Compose the Final Index</strong></dt><dd><p>-We first recalculate the final loadings and then for each factor, multiply the loading by the ratio of variance to scale the data. Therefore, factor 1 is rated higher than factor 2, factor 2 is rated higher than 3, and so on. From this, we can examine each factor to see which is the largest source of ‘vulnerability’ within the composite index (i.e., what is contributing the most). We create the composite index by adding each factor value together to calculate the unscaled composite index. The final composite index is minmax scaled so that the most vulnerable block group has a composite index of 1 and the least as a composite index of 0.</p>
+</dd>
+</dl>
+</li>
+</ol>
+<p>The purpose of the factor analysis and composite score index in the scope of social vulnerability is to determine which variables are most distinguishable across the study area. The variables with the highest variability are likely to influence the index the most and therefore they must be taken into context of the study area. For example, in Austin, TX a variable that is highly variant across the city is the percent of population that identifies as Hispanic. If this trait contributes to social vulnerability, then our index is working properly to identify areas of higher vulnerability. However, if we discovered that this trait does not contribute to social vulnerability, we cannot include it in this workflow because we are unintentionally weighting the index incorrectly. That is why it is <em>imperative that indices are developed through collaborations with local experts</em> to identify which variables are likely contributing to vulnerability.</p>
+</section>
+<section id="rank-method">
+<h3>Rank Method<a class="headerlink" href="#rank-method" title="Link to this heading">#</a></h3>
+<p>Another commonly employed method to estimate social vulnerability is a ranking method, which was popularized by the <a class="reference external" href="https://www.atsdr.cdc.gov/placeandhealth/svi/index.html">Center for Disease Control’s Social Vulnerability Index</a> <a class="footnote-reference brackets" href="#id10" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>5<span class="fn-bracket">]</span></a>. This method is a more simplified way to produce an index for a given area. Each variable of interest is sorted from high to low and ranked. For each location within the study area, the ranks are summed so that locations with a higher overall rank have a greater vulnerability score. In our method, the final summed ranks are also minmax scaled so that the most vulnerable block group has a composite index of 1 and the least as a composite index of 0.</p>
+</section>
+</section>
+<section id="variables">
+<h2>Variables<a class="headerlink" href="#variables" title="Link to this heading">#</a></h2>
+<p>SVInsight comes with a standard set of 27 variables which come from the original principal component analysis method, SoVI®. We omit two variables from the original list of 29 due to data availability issues for all of the years and geographic boundaries of interest (the percentage of the population living in nursing facilities, and the number of hosptials per capita). It is important to note that the CDC SVI uses a list of 16 variables that are similar to those from the SoVI® method. Determining which or how many variables to use depends completely on the study area and objectives of the researcher/practitioner and can greatly influence the estimates. Special consideration must be taken to determine the most appropriate set of variables to use.</p>
+<p>The variables, there definitions, and the American Community Survey 5-Year Estimate sources can be found below:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>QAGDDEP: Percent of population under the age of 5 or over the age of 65</dt><dd><ul>
+<li><p>[‘B01001_001E’, ‘B01001_026E’, ‘B01001_003E’, ‘B01001_020E’, ‘B01001_021E’, ‘B01001_022E’, ‘B01001_023E’, ‘B01001_024E’, ‘B01001_025E’, ‘B01001_027E’, ‘B01001_044E’, ‘B01001_045E’, ‘B01001_046E’, ‘B01001_047E’, ‘B01001_048E’, ‘B01001_049E’]</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>QFEMALE: Percent of population that is female</dt><dd><ul>
+<li><p>[‘B01001_001E’, ‘B01001_026E’]</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>MEDAGE: Median age</dt><dd><ul>
+<li><p>[‘B01002_001E’]</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>QBLACK: Percent of population that is non-Hispanic Black/African-American</dt><dd><ul>
+<li><p>[‘B03002_001E’, ‘B03002_004E’]</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>QNATIVE: Percent of population that is non-Hispanic Native American</dt><dd><ul>
+<li><p>[‘B03002_001E’, ‘B03002_005E’]</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>QASIAN: Percent of population that is non-Hispanic Asian</dt><dd><ul>
+<li><p>[‘B03002_001E’, ‘B03002_006E’]</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>QHISPC: Percent of population that is Hispanic</dt><dd><ul>
+<li><p>[‘B03002_001E’, ‘B03002_012E’]</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>QFAM: Percent of families where only one spouse is present in the household</dt><dd><ul>
+<li><p>[‘B11005_003E’, ‘B11005_005E’]</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>PPUNIT: People per unit, or average household size</dt><dd><ul>
+<li><p>[‘B25010_001E’]</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>QFHH: Percent of households with Female householder and no spouse present</dt><dd><ul>
+<li><p>[‘B11001_001E’, ‘B11001_006E’]</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>QEDLESHI: Percent of population over the age of 25 with less than a high school diploma (or equivalent)</dt><dd><ul>
+<li><p>[‘B15003_001E’, ‘B15003_002E’, ‘B15003_003E’, ‘B15003_004E’, ‘B15003_005E’, ‘B15003_006E’, ‘B15003_007E’, ‘B15003_008E’, ‘B15003_009E’, ‘B15003_010E’, ‘B15003_011E’, ‘B15003_012E’, ‘B15003_013E’, ‘B15003_014E’, ‘B15003_015E’, ‘B15003_016E’]</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>QCVLUN: Percent of civilian population over the age of 15 that is unemployed</dt><dd><ul>
+<li><p>[‘B23025_003E’, ‘B23025_005E’]</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>QRICH: Percent of households earning over $200,000 annually (inversely related to vulnerability)</dt><dd><ul>
+<li><p>[‘B19001_001E’, ‘B19001_017E’]</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>QSSBEN: Percent of houseolds with social security income</dt><dd><ul>
+<li><p>[‘B19055_001E’, ‘B19055_002E’]</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>PERCAP: Per capita income in the past 12 months (inversely related to vulnerability)</dt><dd><ul>
+<li><p>[‘B19301_001E’]</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>QRENTER: Percent of households that are renters</dt><dd><ul>
+<li><p>[‘B25003_001E’, ‘B25003_003E’]</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>QUNOCCHU: Percent of housing units that are unoccupied</dt><dd><ul>
+<li><p>[‘B25002_001E’, ‘B25002_003E’]</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>QMOHO: Percent of housing unts that are mobile homes</dt><dd><ul>
+<li><p>[‘B25024_001E’, ‘B25024_010E’]</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>MDHSEVAL: Median housing value (inversely related to vulnerability)</dt><dd><ul>
+<li><p>[‘B25077_001E’]</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>MDGRENT: Median gross rent</dt><dd><ul>
+<li><p>[‘B25064_001E’]</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>QPOVTY: Percent of population whose income in the past 12 months was below the poverty level</dt><dd><ul>
+<li><p>[‘B17021_001E’, ‘B17021_002E’]</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>QNOAUTO: Percent of households without access to a car</dt><dd><ul>
+<li><p>[‘B25044_001E’, ‘B25044_003E’, ‘B25044_010E’]</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>QNOHLTH: Percent of population without health insurance</dt><dd><ul>
+<li><p>[‘B27001_001E’, ‘B27001_005E’, ‘B27001_008E’, ‘B27001_011E’, ‘B27001_014E’, ‘B27001_017E’, ‘B27001_020E’, ‘B27001_023E’, ‘B27001_026E’, ‘B27001_029E’, ‘B27001_033E’, ‘B27001_036E’, ‘B27001_039E’, ‘B27001_042E’, ‘B27001_045E’, ‘B27001_048E’, ‘B27001_051E’, ‘B27001_054E’, ‘B27001_057E’]</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>QESL: Percent of population who speaks English “not well” or “not at all”</dt><dd><ul>
+<li><p>[‘B16004_001E’, ‘B16004_007E’, ‘B16004_008E’, ‘B16004_012E’, ‘B16004_013E’, ‘B16004_017E’, ‘B16004_018E’, ‘B16004_022E’, ‘B16004_023E’, ‘B16004_029E’, ‘B16004_030E’, ‘B16004_034E’, ‘B16004_035E’, ‘B16004_039E’, ‘B16004_040E’, ‘B16004_044E’, ‘B16004_045E’, ‘B16004_051E’, ‘B16004_052E’, ‘B16004_056E’, ‘B16004_057E’, ‘B16004_061E’, ‘B16004_062E’, ‘B16004_066E’, ‘B16004_067E’]</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>QFEMLBR: Percent of the civilian employed population over the age of 16 that is female</dt><dd><ul>
+<li><p>[‘C24010_001E’, ‘C24010_038E’]</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>QSERV: Percent of the civilian employed population that has a service occupation</dt><dd><ul>
+<li><p>[‘C24010_001E’, ‘C24010_019E’, ‘C24010_055E’]</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>QEXTRCT: Percent of the civilian employed population that has a construction and extraction occupation</dt><dd><ul>
+<li><p>[‘C24010_001E’, ‘C24010_032E’, ‘C24010_068E’]</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id6" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">1</a><span class="fn-bracket">]</span></span>
+<p>Cutter, S. L., Boruff, B. J., &amp; Shirley, W. L. (2012). Social vulnerability to environmental hazards. In Hazards vulnerability and environmental justice (pp. 143-160). Routledge.</p>
+</aside>
+<aside class="footnote brackets" id="id7" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">2</a><span class="fn-bracket">]</span></span>
+<p>Bixler, R. P., Yang, E., Richter, S. M., &amp; Coudert, M. (2021). Boundary crossing for urban community resilience: A social vulnerability and multi-hazard approach in Austin, Texas, USA. International Journal of Disaster Risk Reduction, 66, 102613.</p>
+</aside>
+<aside class="footnote brackets" id="id8" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">3</a><span class="fn-bracket">]</span></span>
+<p>Preisser, M., Passalacqua, P., Bixler, R. P., &amp; Hofmann, J. (2022). Intersecting near-real time fluvial and pluvial inundation estimates with sociodemographic vulnerability to quantify a household flood impact index. Hydrology and Earth System Sciences, 26(15), 3941-3964.</p>
+</aside>
+<aside class="footnote brackets" id="id9" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">4</a><span class="fn-bracket">]</span></span>
+<p>Preisser, M., Passalacqua, P., Bixler, R. P., &amp; Boyles, S. (2023). A network-based analysis of critical resource accessibility during floods. Frontiers in Water, 5, 1278205.</p>
+</aside>
+<aside class="footnote brackets" id="id10" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">5</a><span class="fn-bracket">]</span></span>
+<p>Flanagan, B. E., Gregory, E. W., Hallisey, E. J., Heitgerd, J. L., &amp; Lewis, B. (2011). A social vulnerability index for disaster management. Journal of homeland security and emergency management, 8(1), 0000102202154773551792.</p>
+</aside>
+</aside>
+</section>
+</section>
 
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="understanding.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Understanding Iterative Factor Analysis Results</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="../Getting_Started/quickstart.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Getting Started</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, Matthew Preisser
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Background</a><ul>
+<li><a class="reference internal" href="#motivation">Motivation</a></li>
+<li><a class="reference internal" href="#methodology">Methodology</a><ul>
+<li><a class="reference internal" href="#data-source">Data Source</a></li>
+<li><a class="reference internal" href="#iterative-factor-analysis">Iterative Factor Analysis</a></li>
+<li><a class="reference internal" href="#rank-method">Rank Method</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#variables">Variables</a></li>
+<li><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
 
-
-
-
-
-
-
+          </div>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &copy;2024, Matthew Preisser.
       
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
-      |
-      <a href="../_sources/Background/background.rst.txt"
-          rel="nofollow">Page source</a>
-    </div>
-
-    
-
-    
-  </body>
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/furo.js?v=32e29ea5"></script>
+    </body>
 </html>
