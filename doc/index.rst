@@ -10,7 +10,7 @@ SVInsight
 
 .. note::
 
-   This project is under active development and this website is currently being developed. Please pardon our progress as we finish updating the documentation in the coming weeks (as of April 12th, 2024).
+   This project is under active development and this website is currently being developed. Please pardon our progress as we finish updating the documentation in the coming weeks (as of April 16th, 2024).
 
 Getting Started
 ###############
@@ -24,9 +24,10 @@ Getting Started
 Background
 ##########
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    Background/background 
+   Background/understanding
    Background/paper
 
 
@@ -37,6 +38,14 @@ User Guide
 
    User_Guide/userguide 
    
+API Reference
+#############
+.. toctree::
+   :maxdepth: 1
+
+   apiref/apiref 
+   apiref/license
+
 
 Examples
 ########

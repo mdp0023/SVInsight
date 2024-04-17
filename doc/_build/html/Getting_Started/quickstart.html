@@ -160,10 +160,15 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Background/background.html">Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Background/understanding.html">Understanding Iterative Factor Analysis Results</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Background/paper.html">Paper</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../User_Guide/userguide.html">User Guide</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../apiref/apiref.html">SVInsight</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apiref/license.html">License</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Examples/examples.html">Examples</a></li>
@@ -211,7 +216,7 @@
 <p>This is a quick guide to using SVInsight. In this demonstration, we show how to load and create the SVInsight object, determine an area of interest, set a boundary level (e.g., tract or block groups), download the necessary boundary and raw data, calculate input variables, and compute the social vulnerability estimate.</p>
 <p>First we load the SVInsight package, set the necessary variables, and create the SVInsight object.</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">SVInsight</span> <span class="kn">import</span> <span class="n">SVInsight</span> <span class="k">as</span> <span class="n">svi</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">project_name</span> <span class="o">=</span> <span class="s1">&#39;Travis_County_SVI&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project_name</span> <span class="o">=</span> <span class="s1">&#39;YOUR PROJECT NAME HERE&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">file_path</span> <span class="o">=</span> <span class="s2">&quot;YOUR PARENT FOLDER HERE&quot;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">api_key</span> <span class="o">=</span> <span class="s1">&#39;YOUR CENSUS API KEY HERE&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">geoids</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;48453&#39;</span><span class="p">]</span>
@@ -223,7 +228,7 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">project_name</span></code>: This is the name of your project. In this case, it’s ‘Travis_County_SVI’. The project name is used when saving files throughout the project.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">file_path</span></code>: This is the path to the parent folder where your project files will be stored. Replace “YOUR PARENT FOLDER HERE” with the actual path. Creating the SVInsight object automatically creates the necessary file structure needed for your project based on the <code class="docutils literal notranslate"><span class="pre">file_path</span></code> and <code class="docutils literal notranslate"><span class="pre">project_name</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">api_key</span></code>: This is your Census API key. Replace ‘YOUR CENSUS API KEY HERE’ with your actual API key. You can obtain an API key from the <a class="reference external" href="https://www.census.gov/data/developers/data-sets.html">Census Bureau’s developer page</a>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">geoids</span></code>: This is a list of geographic identifiers for the areas you’re interested in. In this case, it’s [‘48453’], which represents Travis County, Texas. The necessary geogrpahic identifiers for your state or county of interest can be obtained from this <a class="reference external" href="https://transition.fcc.gov/oet/info/maps/census/fips/fips.txt">FCC page</a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">geoids</span></code>: This is a list of geographic identifiers for the areas you’re interested in. In this case, it’s [‘48453’], which represents Travis County, Texas. The necessary geographic identifiers for your state or county of interest can be obtained from this <a class="reference external" href="https://transition.fcc.gov/oet/info/maps/census/fips/fips.txt">FCC page</a>.</p></li>
 </ul>
 <p>Each instance of SVInsight can be seen as a standalone project for a constant study area. Within each project, the user can explore different vulnerability estimates based on different years or boundaries (e.g., block group versus tract).</p>
 <p>In this quickstart, we will examine a vulnerability estimate for Travis County using 2019 data at the block group level.</p>
