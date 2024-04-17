@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "SVInsight"
-version = "0.2.7"
+version = "0.2.8"
 requires = [
     "census>=0.8.21",
     "factor_analyzer>=0.5.1",
