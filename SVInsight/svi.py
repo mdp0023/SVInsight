@@ -3,12 +3,11 @@ import os
 import csv
 import copy
 import shutil
-import zipfile
+# import zipfile
 import numpy as np
 import requests
 import pandas as pd
-from ftplib import FTP
-import ftputil
+# from ftplib import FTP
 import geopandas as gpd
 from census import Census
 import concurrent.futures
