@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "SVInsight"
 version = "0.2.7"
-dependencies = [
+requires = [
     "census>=0.8.21",
     "factor_analyzer>=0.5.1",
     "geopandas>=0.14.2",
