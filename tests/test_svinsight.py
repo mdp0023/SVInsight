@@ -118,7 +118,7 @@ def run_svi_workflow(project, boundary, year, overwrite=True):
 def project():
     return svi(project_name, file_path, api_key, geoids)
 
-api_key = os.getenv('API_KEY')
+api_key = os.environ.get('API_KEY')
 ##############################################################################################
 # develop a test project for single county
 project_name = 'test_project_single_county' 
