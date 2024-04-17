@@ -7,6 +7,7 @@ import zipfile
 import numpy as np
 import pandas as pd
 from ftplib import FTP
+import ftputil
 import geopandas as gpd
 from census import Census
 import concurrent.futures
@@ -84,6 +85,9 @@ class SVInsight:
         Returns:
             None
         """
+        for geoid in geoids:
+            if  geoid is int:
+                raise ValueError('All GEOIDS must be string.')
         lengths = {len(geoid) for geoid in geoids}
         if len(lengths) > 1 or (list(lengths)[0] not in [2, 5]):
             raise ValueError("All GEOIDs must be of the same length, either 2 or 5.")
@@ -143,7 +147,7 @@ class SVInsight:
     ###################################################
 
     # Method to pull block groups or tract shapefiles
-    def boundaries_data(self, boundary: str = 'bg', year: int = 2019) -> gpd.GeoDataFrame:
+    def boundaries_data(self, boundary: str = 'bg', year: int = 2019, overwrite: bool = False) -> gpd.GeoDataFrame:
         """
         Pulls block group or tract data from the Census FTP site.
 
@@ -151,6 +155,8 @@ class SVInsight:
         :type boundary: str
         :param year: The year of the data. Defaults to '2019'.
         :type year: int
+        :param overwrite: whether or not to overwrite an existing geopackage if it exists. Default is False
+        :type overwrite: bool
 
         :return: The boundary data as a GeoDataFrame.
         :rtype: gpd.GeoDataFrame
@@ -160,13 +166,13 @@ class SVInsight:
         
         # Validate Variables
         self._validate_value(boundary, ['bg', 'tract'], 'boundary')
-        self._validate_value(year, [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022], 'year')
+        self._validate_value(year, [2010, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022], 'year')
         self._validate_format(boundary, str, 'boundary')
         self._validate_format(year, int, 'year')
 
 
         # If shapefile already exists, pass 
-        if os.path.exists(os.path.join(self.boundaries, f"{self.project_name}_{year}_{boundary}.gpkg")):
+        if os.path.exists(os.path.join(self.boundaries, f"{self.project_name}_{year}_{boundary}.gpkg")) and overwrite is False:
             pass
         else:
 
@@ -186,21 +192,37 @@ class SVInsight:
                 Returns:
                     geopandas.GeoDataFrame: The boundary shapefile as a GeoDataFrame.
                 """
+               
 
                 # create filenames
                 filename = f"cb_{year}_{state}_{boundary}_500k"
                 filename_dir = os.path.join(self.boundaries, filename)
                 zipped_filename = f"{filename}.zip"
                 zipped_dir = os.path.join(self.boundaries, zipped_filename)
-
                 os.makedirs(filename_dir, exist_ok=True)
-                # Open the file locally and write it to folder
-                with open(zipped_dir, "wb") as file:
-                    ftp.retrbinary(f"RETR {zipped_filename}", file.write)
+                
+                #  # initiate FTP
+                # ftp = FTP('ftp2.census.gov')
+                # ftp.login()
+                # ftp.cwd(f'geo/tiger/GENZ{year}/shp/')
+
+                # # Open the file locally and write it to folder
+                # print('opening binary')
+                # with open(zipped_dir, "wb") as file:
+                #     ftp.retrbinary(f"RETR {zipped_filename}", file.write)
+                # print('opened binary')
+
+                # Connect to the FTP server
+                with ftputil.FTPHost('ftp2.census.gov', 'anonymous') as ftp_host:
+                    # Change the current directory
+                    ftp_host.chdir(f'geo/tiger/GENZ{year}/shp/')
+                    # Open the remote file and write it to a local file
+                    ftp_host.download(zipped_filename, zipped_dir)
 
                 # Unzip the file
-                with zipfile.ZipFile(f"{zipped_dir}", 'r') as zip_ref:
-                    zip_ref.extractall(filename_dir)
+                shutil.unpack_archive(zipped_dir, filename_dir)
+                # with zipfile.ZipFile(f"{zipped_dir}", 'r') as zip_ref:
+                #     zip_ref.extractall(filename_dir)
 
                 # Read the shapefile with geopandas
                 boundary_shp = gpd.read_file(f"{filename_dir}/{filename}.shp")
@@ -212,10 +234,6 @@ class SVInsight:
 
                 return boundary_shp
 
-            # initiate FTP
-            ftp = FTP('ftp2.census.gov')
-            ftp.login()
-            ftp.cwd(f'geo/tiger/GENZ{year}/shp/')
 
             # determine if we are pulling states or subset of counties 
             if len(self.geoids[0]) == 2:
@@ -256,7 +274,7 @@ class SVInsight:
             output.to_file(os.path.join(self.boundaries, f"{self.project_name}_{year}_{boundary}.gpkg"))
 
             # Quit the FTP client
-            ftp.quit()
+            #ftp.quit()
 
             return output
     
@@ -285,7 +303,7 @@ class SVInsight:
         """
         # Validate Variables
         self._validate_value(boundary, ['bg', 'tract'], 'boundary')
-        self._validate_value(year, [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022], 'year')
+        self._validate_value(year, [2010, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022], 'year')
         self._validate_format(boundary, str, 'boundary')
         self._validate_format(year, int, 'year')
 
@@ -383,7 +401,7 @@ class SVInsight:
         
         # Validate Variables
         self._validate_value(boundary, ['bg', 'tract'], 'boundary')
-        self._validate_value(year, [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022], 'year')
+        self._validate_value(year, [2010, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022], 'year')
         
         # if name of variable already exists, raise error
         if name in self.all_vars_eqs:
@@ -521,7 +539,7 @@ class SVInsight:
         """
         # validate inputs
         self._validate_value(boundary, ['bg', 'tract'], 'boundary')
-        self._validate_value(year, [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022], 'year')
+        self._validate_value(year, [2010, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022], 'year')
 
         # open the configuration file
         with open(os.path.join(self.variables, f"{config_file}.yaml")) as stream:

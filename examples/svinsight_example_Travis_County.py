@@ -23,7 +23,7 @@ year=2018
 config_file = 'config'
 
 # extract shapefile
-export = test.boundaries_data(boundary, year)
+export = test.boundaries_data(boundary, year, overwrite=True)
 
 # extract raw census data
 test.census_data(boundary, 
