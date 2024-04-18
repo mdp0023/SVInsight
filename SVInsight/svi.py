@@ -952,28 +952,49 @@ class SVInsight:
                                             'cumsum_perc': cumsum_perc})
 
             # determine lower limit of the median interval
-            index = abs(calc['freq'].cumsum() - N/2).idxmin()
+            index = (calc['freq'].cumsum() >= N/2).idxmax()
             L1 = calc['low_range'][index+1]
+            
 
             if index == 0:
-                # not enough info, don't interpolate
+                # not enough info, median is in lowest bound, don't interpolate
                 pass
             else:
-                # determine the number of data points below the median interval
-                cumsum_before = calc['freq'].cumsum()[index-1]
-                # determine the width of the median interval
-                width = calc['high_range'][index + 1] - calc['low_range'][index + 1] + 1
-                # determine the number of data points in the median interval
-                freq_medain = calc['freq'][index + 1]
-                # rare case if new median falls in range of values with zero frequency
-                if freq_medain == 0:
-                    median = L1 + (N/2 - cumsum_before)
-                else:
-                    # calculate median
-                    median = L1 + (N/2 - cumsum_before) / freq_medain * width
+                # determine median count 
+                median_count = np.round(N/2,0)
+                # Determine number of points in range needed to get to median
+                points_needed =  median_count - calc['freq'].cumsum()[index-1]
+
+                # determine proportion (returns 0 if divide by 0)
+                p = np.divide(points_needed, calc['freq'][index], out=np.zeros_like(points_needed), where=calc['freq'].cumsum()[index]!=0)
+               
+                # # determine the width of the median interval
+                width = calc['high_range'][index] - calc['low_range'][index]
+                
+                # calculate the new value 
+                interpolated_value = p*width+calc['low_range'][index]
+
                 # fill in values of data frame
-                data_df.loc[fips, var] = median
+                data_df.loc[fips, var] = interpolated_value
                 interpolated_output.append([f'{fips}', var, 'Interpolated'])
+
+
+                # # determine the number of data points below the median interval
+                # cumsum_before = calc['freq'].cumsum()[index-1]
+                # # determine the width of the median interval
+                # width = calc['high_range'][index + 1] - calc['low_range'][index + 1] + 1
+                # # determine the number of data points in the median interval
+                # freq_medain = calc['freq'][index + 1]
+                # # rare case if new median falls in range of values with zero frequency
+                # if freq_medain == 0:
+                #     median = L1 + (N/2 - cumsum_before)
+                # else:
+                #     # calculate median
+                #     median = L1 + (N/2 - cumsum_before) / freq_medain * width
+                # print(L1, N, cumsum_before, freq_medain, width, median)
+                # # fill in values of data frame
+                # data_df.loc[fips, var] = median
+                # interpolated_output.append([f'{fips}', var, 'Interpolated'])
 
 
         return data_df

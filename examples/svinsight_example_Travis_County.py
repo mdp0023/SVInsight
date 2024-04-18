@@ -1,4 +1,5 @@
 import sys
+import os
 sys.path.append('/Users/matthewpreisser/Documents/Research/Codes/SVInsight')
 
 
@@ -8,7 +9,8 @@ from SVInsight import SVInsight as svi
 # set variables
 project_name = 'Travis_County'
 file_path = "/Users/matthewpreisser/Documents/Research/Codes/SVInsight"
-api_key = 'e2e25e1d5badb404a2c0ec61d1ea867f68ee4ecc'
+#api_key = 'e2e25e1d5badb404a2c0ec61d1ea867f68ee4ecc'
+api_key = os.environ.get('API_KEY')
 geoids = ['48453']
 
 # create instance
@@ -23,14 +25,14 @@ year=2018
 config_file = 'config'
 
 # extract shapefile
-export = test.boundaries_data(boundary, year, overwrite=True)
+export = test.boundaries_data(boundary, year, overwrite=False)
 
 # # extract raw census data
-# test.census_data(boundary, 
-#                     year, 
-#                     interpolate=True,
-#                     verbose=True,
-#                     overwrite=True)
+test.census_data(boundary, 
+                    year, 
+                    interpolate=True,
+                    verbose=True,
+                    overwrite=True)
 
 # # # add variable
 # # test2.add_variable(boundary,
@@ -42,9 +44,9 @@ export = test.boundaries_data(boundary, year, overwrite=True)
 # # # print(test2.all_vars_eqs['MEDAGE']['description'])
 # # # test2.var_descriptions(['MEDAGE','PPUNIT'])
 
-# # # configure run and calculate svi
-# test.configure_variables(config_file)
-# test.calculate_svi(config_file, boundary, year)
+# # configure run and calculate svi
+test.configure_variables(config_file)
+test.calculate_svi(config_file, boundary, year)
 
 
 
