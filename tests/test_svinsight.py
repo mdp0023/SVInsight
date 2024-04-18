@@ -1,6 +1,6 @@
 
 import sys
-sys.path.append('/Users/matthewpreisser/Documents/Research/Codes/SVInsight')
+#sys.path.append('/Users/matthewpreisser/Documents/Research/Codes/SVInsight')
 
 # import package
 from SVInsight import SVInsight as svi 
@@ -49,7 +49,7 @@ def test_svi_geoids_correct():
 
 
 # create a generic test architecture
-def run_svi_workflow(project, boundary, year, overwrite=True):
+def run_svi_workflow(project, boundary, year, overwrite=True, varchange=False):
     # test project instance
     assert project
     # test folder instances
@@ -78,11 +78,20 @@ def run_svi_workflow(project, boundary, year, overwrite=True):
     assert os.path.isfile(output_file1)
     assert os.path.isfile(output_file2)
 
-    # check configure
-    try:
-        project.configure_variables(f"{config}_{year}_{boundary}")
-    except Exception:
-        assert False, "configure_variables execution failed"
+    if varchange is True:
+        # change variables to calculate an economic index
+         # check configure
+        try:
+            project.configure_variables(f"{config}_{year}_{boundary}", include=['MDHSEVAL','PERCAP','QRICH'])
+        except Exception:
+            assert False, "configure_variables execution failed"
+
+    else:
+        # check configure
+        try:
+            project.configure_variables(f"{config}_{year}_{boundary}")
+        except Exception:
+            assert False, "configure_variables execution failed"
 
     # check if output files exist
     output_file3 = os.path.join(project.variables, f"{config}_{year}_{boundary}.yaml")
@@ -119,47 +128,63 @@ def project():
     return svi(project_name, file_path, api_key, geoids)
 
 api_key = os.environ.get('API_KEY')
+
+# ##############################################################################################
+# # develop a test project for single county
+# project_name = 'test_project_single_county' 
+# file_path = os.path.dirname(os.path.realpath(__file__))
+# geoids = ['48453']
+# boundaries = ['bg', 'tract']
+# years = [2015, 2020]
+# config='config'
+
+# @pytest.mark.parametrize("boundary, year", [(b, y) for b in boundaries for y in years])
+# def test_single_county_project(project, boundary, year, overwrite=False):
+#     """test creating and running a single county project for different years and boundaries"""
+#     run_svi_workflow(project, boundary, year, overwrite=overwrite)
+# ##############################################################################################
+ 
+# ##############################################################################################
+# # develop a test project for multiple counties
+# project_name = 'test_project_multiple_counties' 
+# file_path = os.path.dirname(os.path.realpath(__file__))
+# geoids = ['48453','21117']
+# boundaries = ['bg', 'tract']
+# years = [2015, 2020]
+# config='config'
+
+# @pytest.mark.parametrize("boundary, year", [(b, y) for b in boundaries for y in years])
+# def test_multiple_county_project(project, boundary, year, overwrite=False):
+#     """test creating and running a multiple counties project for different years and boundaries"""
+#     run_svi_workflow(project, boundary, year, overwrite=overwrite)
+# ##############################################################################################
+
+# ##############################################################################################
+# # develop a test project for multiple states
+# project_name = 'test_project_multiple_states' 
+# file_path = os.path.dirname(os.path.realpath(__file__))
+# geoids = ['25','44']
+# boundaries = ['bg', 'tract']
+# years = [2015]
+# config='config'
+
+# @pytest.mark.parametrize("boundary, year", [(b, y) for b in boundaries for y in years])
+# def test_multiple_states_project(project, boundary, year, overwrite=False):
+#     """test creating and running a multiple states project for different years and boundaries"""
+#     run_svi_workflow(project, boundary, year, overwrite=overwrite)
+# ##############################################################################################
+
 ##############################################################################################
-# develop a test project for single county
-project_name = 'test_project_single_county' 
+# develop a test project for single county, economic index
+project_name = 'test_project_economic_index' 
 file_path = os.path.dirname(os.path.realpath(__file__))
 geoids = ['48453']
-boundaries = ['bg', 'tract']
-years = [2015, 2020]
+boundaries = ['bg']
+years = [2017]
 config='config'
 
 @pytest.mark.parametrize("boundary, year", [(b, y) for b in boundaries for y in years])
-def test_single_county_project(project, boundary, year, overwrite=False):
-    """test creating and running a single county project for different years and boundaries"""
-    run_svi_workflow(project, boundary, year, overwrite=overwrite)
-##############################################################################################
- 
-##############################################################################################
-# develop a test project for multiple counties
-project_name = 'test_project_multiple_counties' 
-file_path = os.path.dirname(os.path.realpath(__file__))
-geoids = ['48453','21117']
-boundaries = ['bg', 'tract']
-years = [2015, 2020]
-config='config'
-
-@pytest.mark.parametrize("boundary, year", [(b, y) for b in boundaries for y in years])
-def test_multiple_county_project(project, boundary, year, overwrite=False):
-    """test creating and running a multiple counties project for different years and boundaries"""
-    run_svi_workflow(project, boundary, year, overwrite=overwrite)
-##############################################################################################
-
-##############################################################################################
-# develop a test project for multiple states
-project_name = 'test_project_multiple_states' 
-file_path = os.path.dirname(os.path.realpath(__file__))
-geoids = ['25','44']
-boundaries = ['bg', 'tract']
-years = [2015]
-config='config'
-
-@pytest.mark.parametrize("boundary, year", [(b, y) for b in boundaries for y in years])
-def test_multiple_states_project(project, boundary, year, overwrite=False):
+def test_single_county_economic_project(project, boundary, year, overwrite=True):
     """test creating and running a multiple states project for different years and boundaries"""
-    run_svi_workflow(project, boundary, year, overwrite=overwrite)
+    run_svi_workflow(project, boundary, year, overwrite=overwrite, varchange=True)
 ##############################################################################################

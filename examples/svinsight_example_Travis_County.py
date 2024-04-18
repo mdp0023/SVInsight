@@ -32,7 +32,7 @@ test.census_data(boundary,
                     year, 
                     interpolate=True,
                     verbose=True,
-                    overwrite=True)
+                    overwrite=False)
 
 # # # add variable
 # # test2.add_variable(boundary,

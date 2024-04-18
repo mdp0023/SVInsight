@@ -657,6 +657,8 @@ class SVInsight:
         sig_components, include, df_ratio_var, df_variances = _calc_variance(fa, n_factors, loading_factors, facs, df_variances)
 
         num_refactors+=1
+
+        fa_refactor_df = fa_df[include].copy()
         # 4. Begin refactor loop with initial 'include' array
         while len(include) != len(fa_df.columns):
             fa_refactor_df = fa_df[include].copy()

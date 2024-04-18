@@ -1,0 +1,22 @@
+- PERCAP
+- QRICH
+- MDHSEVAL
+---
+MDHSEVAL:
+  den:
+  - 1
+  description: Median housing value
+  num:
+  - B25077_001E
+PERCAP:
+  den:
+  - 1
+  description: Per capita income in the past 12 months
+  num:
+  - B19301_001E
+QRICH:
+  den:
+  - B19001_001E
+  description: Percent of households earning over $200,000 annually
+  num:
+  - B19001_017E
