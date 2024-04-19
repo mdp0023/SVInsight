@@ -39,13 +39,7 @@ This shows the four main variance statistics associated with a factor analysis f
 - Cumulative Variance: The cumulative sum of the variance that is explained with each factor. The overall cumulative variance is how much of the original system’s variables are explained with this new reduced dimensionality. **This is important because it shows us how much of the original data’s variance we are losing.** If we are losing too much, then we need to reconsider how many factors we have reduced down to. If it is too close to 100% then we can theoretically reduce down more.
 - Ratio Variance: Ratio of proportion of variance to cumulative variance.
 
-For most studies, especially exploratory analyses, it is acceptable to have a cumulative variance as low as 60%, and sometimes as lowas 50% [1]_ [2]_ [3]_ . 
-
-.. figure:: ../Background/all_refac_.pdf
-   :alt: Table of all factor variance statistics for 2017 Travis County, Texas Block Group SVI estimate
-
-*Table 3: Iterative factor variance statistics for 2017 Travis County, Texas Block Group SVI estimate*
-
+For most studies, especially exploratory analyses, it is acceptable to have a cumulative variance as low as 60%, and sometimes as low as 50% [1]_ [2]_ [3]_ . 
 
 
 Final Variances

@@ -1,6 +1,6 @@
 import sys
 import os
-sys.path.append('/Users/matthewpreisser/Documents/Research/Codes/SVInsight')
+sys.path.insert(0, '/Users/matthewpreisser/Documents/Research/Codes/SVInsight')
 
 
 # import package
@@ -21,7 +21,7 @@ test = svi(project_name = project_name,
 
 # set the boundary and year variables
 boundary='bg'
-year=2018
+year=2017
 config_file = 'config'
 
 # extract shapefile
@@ -45,7 +45,7 @@ test.census_data(boundary,
 # # # test2.var_descriptions(['MEDAGE','PPUNIT'])
 
 # # configure run and calculate svi
-test.configure_variables(config_file)
+test.configure_variables(config_file, include=['MDHSEVAL','PERCAP','QRICH'])
 test.calculate_svi(config_file, boundary, year)
 
 

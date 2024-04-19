@@ -1,6 +1,6 @@
 
 import sys
-#sys.path.append('/Users/matthewpreisser/Documents/Research/Codes/SVInsight')
+sys.path.insert(0, '/Users/matthewpreisser/Documents/Research/Codes/SVInsight')
 
 # import package
 from SVInsight import SVInsight as svi 

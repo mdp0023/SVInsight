@@ -650,7 +650,6 @@ class SVInsight:
         # 1. Scale data
         scaler = MinMaxScaler()
         fa_df = pd.DataFrame(data=scaler.fit_transform(fa_df), columns=fa_df.columns, index=fa_df.index)
-        
         # 2. Conduct Factor Analysis and calculate initial loading factors
         fa, n_factors, loading_factors, facs = _initalize_fa(fa_df)
         # 3. Calculate initial variances
@@ -734,6 +733,21 @@ class SVInsight:
         output_df['RM_SVI_Rank'] = rank_df['sum_rank'].rank()
         output_df['RM_SVI_Percentile'] = rank_df['sum_rank'].rank(ascending=False, pct=True)
         
+
+        # Order check
+        # Determine if the slopes of the two ranks have opposite signs
+        output_df = output_df.sort_values('FA_SVI_Rank')
+        list1 = output_df['FA_SVI_Rank'].tolist()
+        list2 = output_df['RM_SVI_Rank'].tolist()
+        slope1, _ = np.polyfit(range(len(list1)), list1, 1)
+        slope2, _ = np.polyfit(range(len(list2)), list2, 1)
+        # Check if the slopes have different signs
+        if np.sign(slope1) != np.sign(slope2):
+            output_df['FA_SVI_Scaled'] = output_df['FA_SVI_Scaled'].max() - output_df['FA_SVI_Scaled']
+            output_df['FA_SVI_Rank'] = output_df['FA_SVI_Rank'].max() - output_df['FA_SVI_Rank']
+            output_df['FA_SVI_Percentile'] = output_df['FA_SVI_Percentile'].max() - output_df['FA_SVI_Percentile']
+        else:
+            pass
 
         # save geopackage and csv output
         output_df.to_file(os.path.join(self.svis, f"{self.project_name}_{year}_{boundary}_{config_file}_svi.gpkg"))
@@ -906,13 +920,25 @@ class SVInsight:
             pandas.DataFrame: The updated data_df with interpolated values.
 
         """
-        # Filter out the data that we want
+        # Select rows we are interested in 
         neighbor_data = holes_df.filter(items=neighbors, axis=0)
+        # select columns we are interested in 
         neighbor_data = neighbor_data.filter(like=filter_like, axis=1)
+        
+        # order from decreasing to increasing
+        # Extract the numeric part of the column names and convert to int
+        def extract_number(col_name):
+            return int(col_name.split('_')[1][:-1])
+        # Sort the columns based on the numeric part
+        sorted_columns = sorted(neighbor_data.columns, key=extract_number)
+        # Reorder the DataFrame
+        neighbor_data = neighbor_data[sorted_columns]
+
         # sum data
         sum_neighbor_data = neighbor_data.sum()
         # determine total number of sample points
         N = sum_neighbor_data[drop]
+        
         # can now drop this value from dataframe
         sum_neighbor_data.drop(drop, inplace=True)
         
@@ -955,7 +981,7 @@ class SVInsight:
 
             # determine lower limit of the median interval
             index = (calc['freq'].cumsum() >= N/2).idxmax()
-            L1 = calc['low_range'][index+1]
+            #L1 = calc['low_range'][index+1]
             
 
             if index == 0:
@@ -978,6 +1004,9 @@ class SVInsight:
 
                 # fill in values of data frame
                 data_df.loc[fips, var] = interpolated_value
+                if fips == 484530006011:
+                    print(interpolated_value)
+                    
                 interpolated_output.append([f'{fips}', var, 'Interpolated'])
 
 
