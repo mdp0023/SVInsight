@@ -398,11 +398,38 @@ are saved in an Excel file for documentation purposes.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="SVInsight.svi.SVInsight.plot_svi">
 <span class="sig-name descname"><span class="pre">plot_svi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plot_option</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geopackages</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SVInsight.svi.SVInsight.plot_svi" title="Link to this definition">#</a></dt>
-<dd><p>Method to plot SVI and SVI comparisons
-Option 1: Single plot
-Option 2: Two side by side plots
-Option 3: Comparison plots
-geopackage: [year, boundary, config, variable]</p>
+<dd><p>Simple plotting method to quickly map an SVI variable or compare two SVIs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>plot_option</strong> (<em>int</em>) – Which plot method to use: Either 1 (single SVI map), 2 (two side by side maps), or 3 (full comparison figure).</p></li>
+<li><p><strong>geopackages</strong> (<em>list</em>) – The required information for plotting, must be format: [year, boundary, config, variable]. Nested list if plot_option 2.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>matplotlib figure object</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – If the boundary type is invalid or the year is not between 2010 and 2022,</p>
+</dd>
+</dl>
+<p>This method quickly creates an example SVI plot either by itself or in a comparative format. The plot options and their required information can be found below.</p>
+<p><strong>Plot Option 1: Single Plot</strong></p>
+<p>A single figure of a single SVI estimate. The geopackage parameter must be in the format [year, boundary, config, variable] where:</p>
+<ul class="simple">
+<li><p>Year: SVI estimate year (int)</p></li>
+<li><p>Boundary: Boundary of interest (‘bg’ or ‘tract’, str)</p></li>
+<li><p>Config: Which config file was used to create the SVI estimate (str)</p></li>
+<li><p>Variable: Which SVI variable to plot (i.e., the attributes of the SVI geopackages created, str).</p></li>
+</ul>
+<p><strong>Plot Option 2: Simple Comparative Plot</strong></p>
+<p>A simple two by one figure to visually compare two differnet SVI estimates. These estimates can be from the same or different geopackages. The geopackages parameter should be a nested list of the same variables as described in plot option 1: [[year, boundary, config, variable],[year, boundary, config, variable]].</p>
+<p><strong>Plot Option 1: Complete Comparative Plot</strong></p>
+<p>A more detailed plotting option, that will produce a comparison plot and calculate a linear regression. Because the difference map and linear regression require the same set of input geoids (i.e., the same locations in the geopackage), it is currently required that the variables come from the same geopackage but compare different rank methodologies. The geopackages input should be formated as follows: [year, boundary, config]. If a variable option is passed it is ignored. The additional plots show the following information:</p>
+<ul class="simple">
+<li><p>Difference plot: Shows the The FA_SVI_Rank minus the RM_SVI_Rank to highlight areas where the factor analysis method is under (negative) and over (positive) predicting SVI rank when compared to the rank method.</p></li>
+<li><p>Linear Regression: Shows linear correlation betweeen factor analysis and rank method SVI estimates and automatically computes an r-squared value with p-value, 95% confidence interval, and 95% prediction interval.</p></li>
+</ul>
 </dd></dl>
 
 <dl class="py method">

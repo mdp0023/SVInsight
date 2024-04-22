@@ -780,10 +780,10 @@ class SVInsight:
 
         A single figure of a single SVI estimate. The geopackage parameter must be in the format [year, boundary, config, variable] where:
 
-        -Year: SVI estimate year (int)
-        -Boundary: Boundary of interest ('bg' or 'tract', str)
-        -Config: Which config file was used to create the SVI estimate (str)
-        -Variable: Which SVI variable to plot (i.e., the attributes of the SVI geopackages created, str). 
+        - Year: SVI estimate year (int)
+        - Boundary: Boundary of interest ('bg' or 'tract', str)
+        - Config: Which config file was used to create the SVI estimate (str)
+        - Variable: Which SVI variable to plot (i.e., the attributes of the SVI geopackages created, str). 
 
         **Plot Option 2: Simple Comparative Plot**
 
@@ -794,9 +794,7 @@ class SVInsight:
         A more detailed plotting option, that will produce a comparison plot and calculate a linear regression. Because the difference map and linear regression require the same set of input geoids (i.e., the same locations in the geopackage), it is currently required that the variables come from the same geopackage but compare different rank methodologies. The geopackages input should be formated as follows: [year, boundary, config]. If a variable option is passed it is ignored. The additional plots show the following information:
 
         - Difference plot: Shows the The FA_SVI_Rank minus the RM_SVI_Rank to highlight areas where the factor analysis method is under (negative) and over (positive) predicting SVI rank when compared to the rank method. 
-        -Linear Regression: Shows linear correlation betweeen factor analysis and rank method SVI estimates and automatically computes an r-squared value with p-value, 95% confidence interval, and 95% prediction interval.
-        
-        
+        - Linear Regression: Shows linear correlation betweeen factor analysis and rank method SVI estimates and automatically computes an r-squared value with p-value, 95% confidence interval, and 95% prediction interval.
         
         """
         # ADD CHECKS TO VARIABLE INPUTS
