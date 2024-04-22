@@ -2,21 +2,240 @@
 - QRICH
 - MDHSEVAL
 ---
+MDGRENT:
+  den:
+  - 1
+  description: Median gross rent
+  num:
+  - B25064_001E
 MDHSEVAL:
   den:
   - 1
   description: Median housing value
   num:
   - B25077_001E
+MEDAGE:
+  den:
+  - 1
+  description: Median age
+  num:
+  - B01002_001E
 PERCAP:
   den:
   - 1
   description: Per capita income in the past 12 months
   num:
   - B19301_001E
+PPUNIT:
+  den:
+  - 1
+  description: People per unit, or average household size
+  num:
+  - B25010_001E
+QAGEDEP:
+  den:
+  - B01001_001E
+  description: Percent of population under the age of 5 or over the age of 65
+  num:
+  - B01001_026E
+  - B01001_003E
+  - B01001_020E
+  - B01001_021E
+  - B01001_022E
+  - B01001_023E
+  - B01001_024E
+  - B01001_025E
+  - B01001_027E
+  - B01001_044E
+  - B01001_045E
+  - B01001_046E
+  - B01001_047E
+  - B01001_048E
+  - B01001_049E
+QASIAN:
+  den:
+  - B03002_001E
+  description: Percent of population that is non-Hispanic Asian
+  num:
+  - B03002_006E
+QBLACK:
+  den:
+  - B03002_001E
+  description: Percent of population that is non-Hispanic Black/African-American
+  num:
+  - B03002_004E
+QCVLUN:
+  den:
+  - B23025_003E
+  description: Percent of civilian population over the age of 15 that is unemployed
+  num:
+  - B23025_005E
+QEDLESHI:
+  den:
+  - B15003_001E
+  description: Percent of population over the age of 25 with less than a high school
+    diploma (or equivalent)
+  num:
+  - B15003_002E
+  - B15003_003E
+  - B15003_004E
+  - B15003_005E
+  - B15003_006E
+  - B15003_007E
+  - B15003_008E
+  - B15003_009E
+  - B15003_010E
+  - B15003_011E
+  - B15003_012E
+  - B15003_013E
+  - B15003_014E
+  - B15003_015E
+  - B15003_016E
+QESL:
+  den:
+  - B16004_001E
+  description: 'Percent of population who speaks English "not well" or "not at all" '
+  num:
+  - B16004_007E
+  - B16004_008E
+  - B16004_012E
+  - B16004_013E
+  - B16004_017E
+  - B16004_018E
+  - B16004_022E
+  - B16004_023E
+  - B16004_029E
+  - B16004_030E
+  - B16004_034E
+  - B16004_035E
+  - B16004_039E
+  - B16004_040E
+  - B16004_044E
+  - B16004_045E
+  - B16004_051E
+  - B16004_052E
+  - B16004_056E
+  - B16004_057E
+  - B16004_061E
+  - B16004_062E
+  - B16004_066E
+  - B16004_067E
+QEXTRCT:
+  den:
+  - C24010_001E
+  description: Percent of the civilian employed population that has a construction
+    and extraction occupation
+  num:
+  - C24010_032E
+  - C24010_068E
+QFAM:
+  den:
+  - B11005_003E
+  description: Percent of families where only one spouse is present in the household
+  num:
+  - B11005_005E
+QFEMALE:
+  den:
+  - B01001_001E
+  description: Percent of population that is female
+  num:
+  - B01001_026E
+QFEMLBR:
+  den:
+  - C24010_001E
+  description: Percent of the civilian employed population over the age of 16 that
+    is female
+  num:
+  - C24010_038E
+QFHH:
+  den:
+  - B11001_001E
+  description: Percent of households with Female householder and no spouse present
+  num:
+  - B11001_006E
+QHISPC:
+  den:
+  - B03002_001E
+  description: Percent of population that is Hispanic
+  num:
+  - B03002_012E
+QMOHO:
+  den:
+  - B25024_001E
+  description: Percent of housing unts that are mobile homes
+  num:
+  - B25024_010E
+QNATIVE:
+  den:
+  - B03002_001E
+  description: Percent of population that is non-Hispanic Native American
+  num:
+  - B03002_005E
+QNOAUTO:
+  den:
+  - B25044_001E
+  description: Percent of households without access to a car
+  num:
+  - B25044_003E
+  - B25044_010E
+QNOHLTH:
+  den:
+  - B27001_001E
+  description: Percent of population without health insurance
+  num:
+  - B27001_005E
+  - B27001_008E
+  - B27001_011E
+  - B27001_014E
+  - B27001_017E
+  - B27001_020E
+  - B27001_023E
+  - B27001_026E
+  - B27001_029E
+  - B27001_033E
+  - B27001_036E
+  - B27001_039E
+  - B27001_042E
+  - B27001_045E
+  - B27001_048E
+  - B27001_051E
+  - B27001_054E
+  - B27001_057E
+QPOVTY:
+  den:
+  - B17021_001E
+  description: Percent of population whose income in the past 12 months was below
+    the poverty level
+  num:
+  - B17021_002E
+QRENTER:
+  den:
+  - B25003_001E
+  description: Percent of households that are renters
+  num:
+  - B25003_003E
 QRICH:
   den:
   - B19001_001E
   description: Percent of households earning over $200,000 annually
   num:
   - B19001_017E
+QSERV:
+  den:
+  - C24010_001E
+  description: Percent of the civilian employed population that has a service occupation
+  num:
+  - C24010_019E
+  - C24010_055E
+QSSBEN:
+  den:
+  - B19055_001E
+  description: Percent of houseolds with social security income
+  num:
+  - B19055_002E
+QUNOCCHU:
+  den:
+  - B25002_001E
+  description: Percent of housing units that are unoccupied
+  num:
+  - B25002_003E

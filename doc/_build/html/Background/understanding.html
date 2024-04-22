@@ -214,12 +214,12 @@
 <p>One of the outputs of the SVI workflow is an excel file containing documentation describing the characteristics of the index. This file can be found in the Documentation project folder and has the following naming convention:</p>
 <ul class="simple">
 <li><p>folder location: <code class="docutils literal notranslate"><span class="pre">{file_path}/{project_name}/{Documentation}/</span></code></p></li>
-<li><p>file name: <code class="docutils literal notranslate"><span class="pre">{project_name}_{year}_{boundadry}_{config_file}.xlsx</span></code></p></li>
+<li><p>file name: <code class="docutils literal notranslate"><span class="pre">{project_name}_{year}_{boundary}_{config_file}.xlsx</span></code></p></li>
 </ul>
 <p>Each tab of the excel sheet contains pertinent information regrading the iterative factor analysis SVI. The below subsections discusses what information is stored in each sheet and shows examples from an SVI run using the standard set of 27 variables (see <a class="reference internal" href="background.html"><span class="doc">background</span></a> for more information) for Travis County, Texas in 2017 at the block group level.</p>
 <section id="significant-components">
 <h2>Significant Components<a class="headerlink" href="#significant-components" title="Link to this heading">#</a></h2>
-<p>This sheet shows what components are significantly contributing to each factor from the final factor analysis. The number of iterations can be determined based on the name of each factor. For example, in this run <em>‘F2’</em> means that this went through three rounds of factor analysis (zero-based numbering rules). As can be seen, there are 5 factors in the final index. Information on which variables contribute to which factor is useful in determining “themes” for the factors (e.g., wealth theme, social characteristics theme, etc.). In this example, one could identify the first factor as Social Status, and the second factor as Economic Status. These are for description only and will be unique based on the study area and year being analyzed. They may or may not be easily definiable into distinct themes, but do show what variables are correlated within a study area.</p>
+<p>This sheet shows what components are significantly contributing to each factor from the final factor analysis. The number of iterations can be determined based on the name of each factor. For example, in this run <em>‘F2’</em> means that this went through three rounds of factor analysis (zero-based numbering rules). As can be seen, there are 5 factors in the final index. Information on which variables contribute to which factor is useful in determining “themes” for the factors (e.g., wealth theme, social characteristics theme, etc.). In this example, one could identify the first factor as Social Status, and the second factor as Economic Status. These are for description only and will be unique based on the study area and year being analyzed. They may or may not be easily definable into distinct themes, but do show what variables are correlated within a study area.</p>
 <figure class="align-default">
 <img alt="Table of significant components for 2017 Travis County, Texas Block Group SVI estimate" src="../_images/sig_comp_.pdf" />
 </figure>
@@ -227,7 +227,7 @@
 </section>
 <section id="loading-factors">
 <h2>Loading Factors<a class="headerlink" href="#loading-factors" title="Link to this heading">#</a></h2>
-<p>Based on the variables within the final index, each has a loading factor associated with it for each factor. This information is critical in determining the weights for each variable for each factor when calculating the final index. For every boundary in the study area and for every factor, the variable is multipled by the loading factor and summed within each factor. This is how the factor scores are determined.</p>
+<p>Based on the variables within the final index, each has a loading factor associated with it for each factor. This information is critical in determining the weights for each variable for each factor when calculating the final index. For every boundary in the study area and for every factor, the variable is multiplied by the loading factor and summed within each factor. This is how the factor scores are determined.</p>
 <figure class="align-default">
 <img alt="Table of loading factors for 2017 Travis County, Texas Block Group SVI estimate" src="../_images/loading_fac_.pdf" />
 </figure>
@@ -237,14 +237,14 @@
 <h2>All Refactor Variances<a class="headerlink" href="#all-refactor-variances" title="Link to this heading">#</a></h2>
 <p>This shows the four main variance statistics associated with a factor analysis for each iteration.
 - SS Loadings: The sum of the squared loadings for the factor. If a factor’s SS loading is greater than 1 it is worth keeping.
-- Proportion Variance: The proportion of the variance that a factor accounts for. The first factor will have the highest proportion, due to our rotation earlier, and subsequent factors will have a decreasing proportion of explained variance. <strong>When calculating the final index, each factor is multipled by its proportion of variance to weight the variables.</strong>
+- Proportion Variance: The proportion of the variance that a factor accounts for. The first factor will have the highest proportion, due to our rotation earlier, and subsequent factors will have a decreasing proportion of explained variance. <strong>When calculating the final index, each factor is multiplied by its proportion of variance to weight the variables.</strong>
 - Cumulative Variance: The cumulative sum of the variance that is explained with each factor. The overall cumulative variance is how much of the original system’s variables are explained with this new reduced dimensionality. <strong>This is important because it shows us how much of the original data’s variance we are losing.</strong> If we are losing too much, then we need to reconsider how many factors we have reduced down to. If it is too close to 100% then we can theoretically reduce down more.
 - Ratio Variance: Ratio of proportion of variance to cumulative variance.</p>
 <p>For most studies, especially exploratory analyses, it is acceptable to have a cumulative variance as low as 60%, and sometimes as low as 50% <a class="footnote-reference brackets" href="#id4" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> <a class="footnote-reference brackets" href="#id5" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a> <a class="footnote-reference brackets" href="#id6" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a> .</p>
 </section>
 <section id="final-variances">
 <h2>Final Variances<a class="headerlink" href="#final-variances" title="Link to this heading">#</a></h2>
-<p>An abreviated version of All Refactor Variances, showing only the final table for the final iteration.</p>
+<p>An abbreviated version of All Refactor Variances, showing only the final table for the final iteration.</p>
 <figure class="align-default">
 <img alt="Table of Final factor analysis variance statistics for 2017 Travis County, Texas Block Group SVI estimate" src="../_images/final_fac_.pdf" />
 </figure>

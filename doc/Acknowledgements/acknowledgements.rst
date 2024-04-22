@@ -1,7 +1,7 @@
 Acknowledgements
 ================
 
-This work has been supported by the following grants:
+This work has been incorporated into numerous projects that have been supported by the following grants:
 
 + National Science Foundation Graduate Research Fellowship (grant no. DGE-1610403)
 + Future Investigators in NASA Earth and Space Science and Technology (NASA FINESST, grant no. 21-EARTH21-0264)

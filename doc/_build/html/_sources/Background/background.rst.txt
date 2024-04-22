@@ -3,12 +3,12 @@ Background
 
 Motivation
 ----------
-SVInsight was developed to provide an open-source tool for creating social vulnerability indices or SVIs based on user defined study areas and input variables. SVInsight uses two methodologies to create indices based on existing scholarly research: (1) a factor analysis method and (2) a rank method. This tool's purpose is to provide researchers with the ability to quickly create exploratory estimates of vulnerability based on existing and known relationships between socio-demographic variables and a community's sensativity (a proxy for vulnerability). 
+SVInsight was developed to provide an open-source tool for creating social vulnerability indices or SVIs based on user defined study areas and input variables. SVInsight uses two methodologies to create indices based on existing scholarly research: (1) a factor analysis method and (2) a rank method. This tool's purpose is to provide researchers with the ability to quickly create exploratory estimates of vulnerability based on existing and known relationships between socio-demographic variables and a community's sensitivity (a proxy for vulnerability). 
 
 
-While SVInsight is capable of rapidly producing tailor made estimates of relative vulnerability of a given region for researchers and/or practicitioners, it does not replace the in-depth investigation required to definitively define what makes someone more or less vulnerable. Indices created with SVInsight can be used as a starting point for understanding the complex relationship between socio-demographic variables and community characteristics including vulnerability, sensativity, and adaptive capacity by highlighting prominant geographic disparities. It is further important to note that vulnerability estimates are relative, and calculated scores should be taken in the context of the study area being examined.
+While SVInsight is capable of rapidly producing tailor made estimates of relative vulnerability of a given region for researchers and/or practitioners, it does not replace the in-depth investigation required to definitively define what makes someone more or less vulnerable. Indices created with SVInsight can be used as a starting point for understanding the complex relationship between socio-demographic variables and community characteristics including vulnerability, sensitivity, and adaptive capacity by highlighting prominent geographic disparities. It is further important to note that vulnerability estimates are relative, and calculated scores should be taken in the context of the study area being examined.
 
-This package was specifically written in conjunction with past and ongoing projects at the Univeristy of Texas at Austin [2]_ [3]_ [4]_. More detailed infomration regarding funding sources can be found in the :doc:`Acknolwedgements section <../Acknowledgements/acknowledgements>`.
+This package was specifically written in conjunction with past and ongoing projects at the University of Texas at Austin [2]_ [3]_ [4]_. More detailed information regarding funding sources can be found in the :doc:`Acknowledgements section <../Acknowledgements/acknowledgements>`.
 
 
 Methodology
@@ -67,10 +67,11 @@ Rank Method
 Another commonly employed method to estimate social vulnerability is a ranking method, which was popularized by the `Center for Disease Control's Social Vulnerability Index <https://www.atsdr.cdc.gov/placeandhealth/svi/index.html>`_ [5]_. This method is a more simplified way to produce an index for a given area. Each variable of interest is sorted from high to low and ranked. For each location within the study area, the ranks are summed so that locations with a higher overall rank have a greater vulnerability score. In our method, the final summed ranks are also minmax scaled so that the most vulnerable block group has a composite index of 1 and the least as a composite index of 0.
 
 
+.. _variables:
 
 Variables
 ---------
-SVInsight comes with a standard set of 27 variables which come from the original principal component analysis method, SoVI®. We omit two variables from the original list of 29 due to data availability issues for all of the years and geographic boundaries of interest (the percentage of the population living in nursing facilities, and the number of hosptials per capita). It is important to note that the CDC SVI uses a list of 16 variables that are similar to those from the SoVI® method. Determining which or how many variables to use depends completely on the study area and objectives of the researcher/practitioner and can greatly influence the estimates. Special consideration must be taken to determine the most appropriate set of variables to use.
+SVInsight comes with a standard set of 27 variables which come from the original principal component analysis method, SoVI®. We omit two variables from the original list of 29 due to data availability issues for all of the years and geographic boundaries of interest (the percentage of the population living in nursing facilities, and the number of hospitals per capita). It is important to note that the CDC SVI uses a list of 16 variables that are similar to those from the SoVI® method. Determining which or how many variables to use depends completely on the study area and objectives of the researcher/practitioner and can greatly influence the estimates. Special consideration must be taken to determine the most appropriate set of variables to use.
 
 The variables, there definitions, and the American Community Survey 5-Year Estimate sources can be found below:
 
@@ -114,7 +115,7 @@ The variables, there definitions, and the American Community Survey 5-Year Estim
 + QRICH: Percent of households earning over $200,000 annually (inversely related to vulnerability)
     - ['B19001_001E', 'B19001_017E']
 
-+ QSSBEN: Percent of houseolds with social security income
++ QSSBEN: Percent of households with social security income
     - ['B19055_001E', 'B19055_002E']
 
 + PERCAP: Per capita income in the past 12 months (inversely related to vulnerability)
@@ -126,7 +127,7 @@ The variables, there definitions, and the American Community Survey 5-Year Estim
 + QUNOCCHU: Percent of housing units that are unoccupied
     - ['B25002_001E', 'B25002_003E']
 
-+ QMOHO: Percent of housing unts that are mobile homes
++ QMOHO: Percent of housing units that are mobile homes
     - ['B25024_001E', 'B25024_010E']
 
 + MDHSEVAL: Median housing value (inversely related to vulnerability)

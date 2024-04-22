@@ -213,9 +213,9 @@
 <h1>Background<a class="headerlink" href="#background" title="Link to this heading">#</a></h1>
 <section id="motivation">
 <h2>Motivation<a class="headerlink" href="#motivation" title="Link to this heading">#</a></h2>
-<p>SVInsight was developed to provide an open-source tool for creating social vulnerability indices or SVIs based on user defined study areas and input variables. SVInsight uses two methodologies to create indices based on existing scholarly research: (1) a factor analysis method and (2) a rank method. This tool’s purpose is to provide researchers with the ability to quickly create exploratory estimates of vulnerability based on existing and known relationships between socio-demographic variables and a community’s sensativity (a proxy for vulnerability).</p>
-<p>While SVInsight is capable of rapidly producing tailor made estimates of relative vulnerability of a given region for researchers and/or practicitioners, it does not replace the in-depth investigation required to definitively define what makes someone more or less vulnerable. Indices created with SVInsight can be used as a starting point for understanding the complex relationship between socio-demographic variables and community characteristics including vulnerability, sensativity, and adaptive capacity by highlighting prominant geographic disparities. It is further important to note that vulnerability estimates are relative, and calculated scores should be taken in the context of the study area being examined.</p>
-<p>This package was specifically written in conjunction with past and ongoing projects at the Univeristy of Texas at Austin <a class="footnote-reference brackets" href="#id7" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a> <a class="footnote-reference brackets" href="#id8" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a> <a class="footnote-reference brackets" href="#id9" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a>. More detailed infomration regarding funding sources can be found in the <a class="reference internal" href="../Acknowledgements/acknowledgements.html"><span class="doc">Acknolwedgements section</span></a>.</p>
+<p>SVInsight was developed to provide an open-source tool for creating social vulnerability indices or SVIs based on user defined study areas and input variables. SVInsight uses two methodologies to create indices based on existing scholarly research: (1) a factor analysis method and (2) a rank method. This tool’s purpose is to provide researchers with the ability to quickly create exploratory estimates of vulnerability based on existing and known relationships between socio-demographic variables and a community’s sensitivity (a proxy for vulnerability).</p>
+<p>While SVInsight is capable of rapidly producing tailor made estimates of relative vulnerability of a given region for researchers and/or practitioners, it does not replace the in-depth investigation required to definitively define what makes someone more or less vulnerable. Indices created with SVInsight can be used as a starting point for understanding the complex relationship between socio-demographic variables and community characteristics including vulnerability, sensitivity, and adaptive capacity by highlighting prominent geographic disparities. It is further important to note that vulnerability estimates are relative, and calculated scores should be taken in the context of the study area being examined.</p>
+<p>This package was specifically written in conjunction with past and ongoing projects at the University of Texas at Austin <a class="footnote-reference brackets" href="#id8" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a> <a class="footnote-reference brackets" href="#id9" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a> <a class="footnote-reference brackets" href="#id10" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a>. More detailed information regarding funding sources can be found in the <a class="reference internal" href="../Acknowledgements/acknowledgements.html"><span class="doc">Acknowledgements section</span></a>.</p>
 </section>
 <section id="methodology">
 <h2>Methodology<a class="headerlink" href="#methodology" title="Link to this heading">#</a></h2>
@@ -225,7 +225,7 @@
 </section>
 <section id="iterative-factor-analysis">
 <h3>Iterative Factor Analysis<a class="headerlink" href="#iterative-factor-analysis" title="Link to this heading">#</a></h3>
-<p>This methodology is heavily influenced by the original SoVI® <a class="footnote-reference brackets" href="#id6" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> developed by Dr. Susan Cutter. By utilizing a data reduction methodology, a large subset of American Community Survey 5-Year Estimate variables can be dimensionally reduced and combined into a single index. Both principal component analyses and factor analyses are data reduction techniques that have been utilized to create vulnerability indices. A principal component analysis (PCA) reduces data by creating one or more index variables, or ‘components,’ by using a linear combination (i.e., a weighted average) from a larger set of measured variables. The purpose of a PCA is to determine the optimal number of components, the optimal choice of measured variables for each component, and the optimal weights. A factor analysis (FA) is a model of latent variables. A ‘latent variable’ cannot be directly measured with a single variable. A common example used to describe this is we cannot directly measure something like social anxiety, but we can measure whether someone has a high or low social anxiety based on a set of questions like “I am uncomfortable in large groups” or “ I get nervous talking to strangers.” We utilize a factor analysis approach because it is the data reduction methodology most often associated with creating composite indices, which is our end goal.</p>
+<p>This methodology is heavily influenced by the original SoVI® <a class="footnote-reference brackets" href="#id7" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> developed by Dr. Susan Cutter. By utilizing a data reduction methodology, a large subset of American Community Survey 5-Year Estimate variables can be dimensionally reduced and combined into a single index. Both principal component analyses and factor analyses are data reduction techniques that have been utilized to create vulnerability indices. A principal component analysis (PCA) reduces data by creating one or more index variables, or ‘components,’ by using a linear combination (i.e., a weighted average) from a larger set of measured variables. The purpose of a PCA is to determine the optimal number of components, the optimal choice of measured variables for each component, and the optimal weights. A factor analysis (FA) is a model of latent variables. A ‘latent variable’ cannot be directly measured with a single variable. A common example used to describe this is we cannot directly measure something like social anxiety, but we can measure whether someone has a high or low social anxiety based on a set of questions like “I am uncomfortable in large groups” or “ I get nervous talking to strangers.” We utilize a factor analysis approach because it is the data reduction methodology most often associated with creating composite indices, which is our end goal.</p>
 <p>The follow are the steps in the iterative factor analysis approach:</p>
 <ol class="arabic simple">
 <li><dl class="simple">
@@ -297,12 +297,12 @@
 </section>
 <section id="rank-method">
 <h3>Rank Method<a class="headerlink" href="#rank-method" title="Link to this heading">#</a></h3>
-<p>Another commonly employed method to estimate social vulnerability is a ranking method, which was popularized by the <a class="reference external" href="https://www.atsdr.cdc.gov/placeandhealth/svi/index.html">Center for Disease Control’s Social Vulnerability Index</a> <a class="footnote-reference brackets" href="#id10" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>5<span class="fn-bracket">]</span></a>. This method is a more simplified way to produce an index for a given area. Each variable of interest is sorted from high to low and ranked. For each location within the study area, the ranks are summed so that locations with a higher overall rank have a greater vulnerability score. In our method, the final summed ranks are also minmax scaled so that the most vulnerable block group has a composite index of 1 and the least as a composite index of 0.</p>
+<p>Another commonly employed method to estimate social vulnerability is a ranking method, which was popularized by the <a class="reference external" href="https://www.atsdr.cdc.gov/placeandhealth/svi/index.html">Center for Disease Control’s Social Vulnerability Index</a> <a class="footnote-reference brackets" href="#id11" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>5<span class="fn-bracket">]</span></a>. This method is a more simplified way to produce an index for a given area. Each variable of interest is sorted from high to low and ranked. For each location within the study area, the ranks are summed so that locations with a higher overall rank have a greater vulnerability score. In our method, the final summed ranks are also minmax scaled so that the most vulnerable block group has a composite index of 1 and the least as a composite index of 0.</p>
 </section>
 </section>
 <section id="variables">
-<h2>Variables<a class="headerlink" href="#variables" title="Link to this heading">#</a></h2>
-<p>SVInsight comes with a standard set of 27 variables which come from the original principal component analysis method, SoVI®. We omit two variables from the original list of 29 due to data availability issues for all of the years and geographic boundaries of interest (the percentage of the population living in nursing facilities, and the number of hosptials per capita). It is important to note that the CDC SVI uses a list of 16 variables that are similar to those from the SoVI® method. Determining which or how many variables to use depends completely on the study area and objectives of the researcher/practitioner and can greatly influence the estimates. Special consideration must be taken to determine the most appropriate set of variables to use.</p>
+<span id="id6"></span><h2>Variables<a class="headerlink" href="#variables" title="Link to this heading">#</a></h2>
+<p>SVInsight comes with a standard set of 27 variables which come from the original principal component analysis method, SoVI®. We omit two variables from the original list of 29 due to data availability issues for all of the years and geographic boundaries of interest (the percentage of the population living in nursing facilities, and the number of hospitals per capita). It is important to note that the CDC SVI uses a list of 16 variables that are similar to those from the SoVI® method. Determining which or how many variables to use depends completely on the study area and objectives of the researcher/practitioner and can greatly influence the estimates. Special consideration must be taken to determine the most appropriate set of variables to use.</p>
 <p>The variables, there definitions, and the American Community Survey 5-Year Estimate sources can be found below:</p>
 <ul class="simple">
 <li><dl class="simple">
@@ -397,7 +397,7 @@
 </dl>
 </li>
 <li><dl class="simple">
-<dt>QSSBEN: Percent of houseolds with social security income</dt><dd><ul>
+<dt>QSSBEN: Percent of households with social security income</dt><dd><ul>
 <li><p>[‘B19055_001E’, ‘B19055_002E’]</p></li>
 </ul>
 </dd>
@@ -425,7 +425,7 @@
 </dl>
 </li>
 <li><dl class="simple">
-<dt>QMOHO: Percent of housing unts that are mobile homes</dt><dd><ul>
+<dt>QMOHO: Percent of housing units that are mobile homes</dt><dd><ul>
 <li><p>[‘B25024_001E’, ‘B25024_010E’]</p></li>
 </ul>
 </dd>
@@ -499,23 +499,23 @@
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
 <aside class="footnote-list brackets">
-<aside class="footnote brackets" id="id6" role="note">
+<aside class="footnote brackets" id="id7" role="note">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">1</a><span class="fn-bracket">]</span></span>
 <p>Cutter, S. L., Boruff, B. J., &amp; Shirley, W. L. (2012). Social vulnerability to environmental hazards. In Hazards vulnerability and environmental justice (pp. 143-160). Routledge.</p>
 </aside>
-<aside class="footnote brackets" id="id7" role="note">
+<aside class="footnote brackets" id="id8" role="note">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">2</a><span class="fn-bracket">]</span></span>
 <p>Bixler, R. P., Yang, E., Richter, S. M., &amp; Coudert, M. (2021). Boundary crossing for urban community resilience: A social vulnerability and multi-hazard approach in Austin, Texas, USA. International Journal of Disaster Risk Reduction, 66, 102613.</p>
 </aside>
-<aside class="footnote brackets" id="id8" role="note">
+<aside class="footnote brackets" id="id9" role="note">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">3</a><span class="fn-bracket">]</span></span>
 <p>Preisser, M., Passalacqua, P., Bixler, R. P., &amp; Hofmann, J. (2022). Intersecting near-real time fluvial and pluvial inundation estimates with sociodemographic vulnerability to quantify a household flood impact index. Hydrology and Earth System Sciences, 26(15), 3941-3964.</p>
 </aside>
-<aside class="footnote brackets" id="id9" role="note">
+<aside class="footnote brackets" id="id10" role="note">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">4</a><span class="fn-bracket">]</span></span>
 <p>Preisser, M., Passalacqua, P., Bixler, R. P., &amp; Boyles, S. (2023). A network-based analysis of critical resource accessibility during floods. Frontiers in Water, 5, 1278205.</p>
 </aside>
-<aside class="footnote brackets" id="id10" role="note">
+<aside class="footnote brackets" id="id11" role="note">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">5</a><span class="fn-bracket">]</span></span>
 <p>Flanagan, B. E., Gregory, E. W., Hallisey, E. J., Heitgerd, J. L., &amp; Lewis, B. (2011). A social vulnerability index for disaster management. Journal of homeland security and emergency management, 8(1), 0000102202154773551792.</p>
 </aside>

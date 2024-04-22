@@ -32,6 +32,9 @@ extensions = ['sphinx.ext.doctest',
               'sphinx.ext.autodoc'
                 ]
 
+spelling_lang='en_US'
+spelling_show_suggestions=True
+
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 

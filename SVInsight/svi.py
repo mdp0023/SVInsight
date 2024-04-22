@@ -444,7 +444,7 @@ class SVInsight:
             pass
         else:
             # Pull Census data
-            data_df = self._census_pull(self.geoids, boundary, missing_vars, self.api_key, year,pop_filter=None)
+            data_df = self._census_pull(self.geoids, boundary, missing_vars, self.api_key, year, pop_filter=self.low_pop_filter)
             # Fill missing columns
             data_df = self._fill_empty(data_df, boundary, self.geoids, self.api_key, year, verbose=False)  
 
@@ -791,7 +791,7 @@ class SVInsight:
 
         **Plot Option 1: Complete Comparative Plot**
 
-        A more detailed plotting option, that will produce a comparison plot and calculate a linear regression. Because the difference map and linear regression require the same set of input geoids (i.e., the same locations in the geopackage), it is currently required that the variables come from the same geopackage but compare different rank methodologies. The geopackages input should be formated as follows: [year, boundary, config]. If a variable option is passed it is ignored. The additional plots show the following information:
+        A more detailed plotting option, that will produce a difference plot and calculate a linear regression. Because the difference map and linear regression require the same set of input geoids (i.e., the same locations in the geopackage), it is currently required that the variables come from the same geopackage, and its intended purpose is to therefore compare the differences between the Factor Analysis and Rank Method methodologies that have the same configuration. The geopackages input should be formated as follows: [year, boundary, config]. If a variable option is passed it is ignored. The additional plots show the following information:
 
         - Difference plot: Shows the The FA_SVI_Rank minus the RM_SVI_Rank to highlight areas where the factor analysis method is under (negative) and over (positive) predicting SVI rank when compared to the rank method. 
         - Linear Regression: Shows linear correlation betweeen factor analysis and rank method SVI estimates and automatically computes an r-squared value with p-value, 95% confidence interval, and 95% prediction interval.
@@ -1597,12 +1597,12 @@ class SVInsight:
         if plot_option == 1:
             cbar = fig.colorbar(mpl.cm.ScalarMappable(norm=norm, cmap=cmap),
                             cax=ax, orientation='horizontal',
-                            label="SVI Percentile")
+                            label="Percentile")
             cbar.ax.set_xticklabels(labels)
         else:
             cbar = fig.colorbar(mpl.cm.ScalarMappable(norm=norm, cmap=cmap),
                             cax=ax, orientation='vertical',
-                            label="SVI Percentile")
+                            label="Percentile")
             cbar.ax.set_yticklabels(labels)
 
 

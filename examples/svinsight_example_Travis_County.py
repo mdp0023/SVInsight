@@ -42,21 +42,27 @@ test.census_data(boundary,
 # #                    ['B03002_021E'])
 
 
-# # # print(test2.all_vars_eqs['MEDAGE']['description'])
-# # # test2.var_descriptions(['MEDAGE','PPUNIT'])
+# print(test.all_vars_eqs['MEDAGE'])
+# test.var_descriptions(['MEDAGE','PPUNIT'])
 
-# # # configure run and calculate svi
-# test.configure_variables(config_file, include=['MDHSEVAL','PERCAP','QRICH'])
-# test.calculate_svi(config_file, boundary, year)
+# # configure run and calculate svi
+test.configure_variables(config_file)
+test.calculate_svi(config_file, boundary, 2017)
+test.calculate_svi(config_file, boundary, 2018)
 
 # plot svi single
-# geopackages = [year, boundary, config_file, 'FA_SVI_Percentile']
+geopackages = [year, boundary, config_file, 'FA_SVI_Percentile']
 
-# figure = test.plot_svi(plot_option=1,
-#                        geopackages=geopackages)
+figure = test.plot_svi(plot_option=1,
+                       geopackages=geopackages)
 
-# plot svi double
-#geopackages = [[2018, boundary, config_file, 'FA_SVI_Rank'], [2018, boundary, config_file, 'RM_SVI_Rank']]
+#plot svi double
+geopackages = [[2017, boundary, config_file, 'FA_SVI_Percentile'], [2018, boundary, config_file, 'FA_SVI_Percentile']]
+figure = test.plot_svi(plot_option=2,
+                       geopackages=geopackages)
+
+
+# plot svi complete
 geopackages = [2018, boundary, config_file]
 figure = test.plot_svi(plot_option=3,
                        geopackages=geopackages)
