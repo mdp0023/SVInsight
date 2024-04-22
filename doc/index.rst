@@ -55,6 +55,14 @@ Examples
    Examples/examples 
 
 
+Issues, Questions, and Contributions
+####################################
+.. toctree::
+   :maxdepth: 2
+
+   Contributions/contributions 
+
+
 Acknowledgements
 ################
 .. toctree::
@@ -64,9 +72,9 @@ Acknowledgements
 
 
 
-Indices and tables
-==================
+.. Indices and tables
+   ==================
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   * :ref:`genindex`
+   * :ref:`modindex`
+   * :ref:`search`

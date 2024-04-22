@@ -789,30 +789,22 @@ class SVInsight:
 
         A simple two by one figure to visually compare two differnet SVI estimates. These estimates can be from the same or different geopackages. The geopackages parameter should be a nested list of the same variables as described in plot option 1: [[year, boundary, config, variable],[year, boundary, config, variable]].
 
-        **Plot Option 1: Complete Comparative Plot**
+        **Plot Option 3: Complete Comparative Plot**
 
-        A more detailed plotting option, that will produce a difference plot and calculate a linear regression. Because the difference map and linear regression require the same set of input geoids (i.e., the same locations in the geopackage), it is currently required that the variables come from the same geopackage, and its intended purpose is to therefore compare the differences between the Factor Analysis and Rank Method methodologies that have the same configuration. The geopackages input should be formated as follows: [year, boundary, config]. If a variable option is passed it is ignored. The additional plots show the following information:
+        A more detailed plotting option, that will produce a difference plot and calculate a linear regression. Because the difference map and linear regression require the same set of input geoids (i.e., the same locations in the geopackage), it is currently required that the variables come from the same geopackage, and its intended purpose is to therefore compare the differences between the Factor Analysis and Rank Method methodologies that have the same configuration. The geopackages input should be formated as follows: [year, boundary, config]. The additional plots show the following information:
 
         - Difference plot: Shows the The FA_SVI_Rank minus the RM_SVI_Rank to highlight areas where the factor analysis method is under (negative) and over (positive) predicting SVI rank when compared to the rank method. 
         - Linear Regression: Shows linear correlation betweeen factor analysis and rank method SVI estimates and automatically computes an r-squared value with p-value, 95% confidence interval, and 95% prediction interval.
         
         """
-        # ADD CHECKS TO VARIABLE INPUTS
-        # PLOT OPTION IS 1, 2, or 3
-        # GEOPACKAGES IS APPROPRIATE LENGTH
-            # IF PLOT OPTION 1: len==4
-            # IF PLOT OPTION 2 or 3: len==2
-            # check if inputs lead to existing svi variable 
-
-
         # Special Use Boundaries Legened Element
         legend_elements = [Patch(facecolor='black', edgecolor='black',
                                 label='No Data Available')]
         
-        
         # Single geopackage plot
         if plot_option == 1:
-            # Create the figure
+            if len(geopackages) != 4:
+                raise ValueError("geopackages must have length 4 for plot_option 1")
             fig, (ax1, ax2) = plt.subplots(2, 1, 
                             figsize=(6, 6), 
                             gridspec_kw={'height_ratios': [9, 1]})
@@ -841,6 +833,11 @@ class SVInsight:
             
         # Double geopackage plot    
         elif plot_option == 2:
+            if len(geopackages) != 2:
+                raise ValueError("For plot option 2, geopackages must have exactly 2 elements.")
+            for gp in geopackages:
+                if len(gp) != 4:
+                    raise ValueError("Each element in geopackages must have a length of 4.")
             # Create Figure
             fig, (ax1, ax2, ax3) = plt.subplots(1,3, 
                                     figsize=(12,6),
@@ -879,6 +876,8 @@ class SVInsight:
             
                    
         elif plot_option == 3:
+            if len(geopackages) != 3:
+                raise ValueError("For plot option 3, geopackages must have exactly 3 elements.")
            # Create Figure
             fig, axes = plt.subplots(2,3, 
                                     figsize=(10,8),
