@@ -5,6 +5,7 @@ sys.path.insert(0, '/Users/matthewpreisser/Documents/Research/Codes/SVInsight')
 
 # import package
 from SVInsight import SVInsight as svi 
+import matplotlib.pyplot as plt
 
 # set variables
 project_name = 'Travis_County'
@@ -44,11 +45,23 @@ test.census_data(boundary,
 # # # print(test2.all_vars_eqs['MEDAGE']['description'])
 # # # test2.var_descriptions(['MEDAGE','PPUNIT'])
 
-# # configure run and calculate svi
-test.configure_variables(config_file, include=['MDHSEVAL','PERCAP','QRICH'])
-test.calculate_svi(config_file, boundary, year)
+# # # configure run and calculate svi
+# test.configure_variables(config_file, include=['MDHSEVAL','PERCAP','QRICH'])
+# test.calculate_svi(config_file, boundary, year)
+
+# plot svi single
+# geopackages = [year, boundary, config_file, 'FA_SVI_Percentile']
+
+# figure = test.plot_svi(plot_option=1,
+#                        geopackages=geopackages)
+
+# plot svi double
+#geopackages = [[2018, boundary, config_file, 'FA_SVI_Rank'], [2018, boundary, config_file, 'RM_SVI_Rank']]
+geopackages = [2018, boundary, config_file]
+figure = test.plot_svi(plot_option=3,
+                       geopackages=geopackages)
 
 
 
 
-
+plt.show()

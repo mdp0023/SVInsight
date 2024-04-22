@@ -11,10 +11,15 @@ import pandas as pd
 import geopandas as gpd
 from census import Census
 import concurrent.futures
+import matplotlib.pyplot as plt
+from matplotlib.patches import Patch
+import matplotlib as mpl
 from concurrent.futures import ThreadPoolExecutor
 from sklearn.preprocessing import MinMaxScaler
 from factor_analyzer import FactorAnalyzer
 import yaml
+from scipy.stats import pearsonr
+import scipy.stats as stats
 
 from .census_variables import setup_census_variables
 
@@ -754,6 +759,291 @@ class SVInsight:
         output_df.to_csv(os.path.join(self.svis, f"{self.project_name}_{year}_{boundary}_{config_file}_svi.csv"))
          
 
+    # Method to create various plots
+    def plot_svi(self, plot_option: int, geopackages: list):
+        """
+        Simple plotting method to quickly map an SVI variable or compare two SVIs.
+
+        :param plot_option: Which plot method to use: Either 1 (single SVI map), 2 (two side by side maps), or 3 (full comparison figure).
+        :type plot_option: int
+        :param geopackages: The required information for plotting, must be format: [year, boundary, config, variable]. Nested list if plot_option 2.
+        :type geopackages: list
+
+
+        :returns: matplotlib figure object
+        :raises ValueError: If the boundary type is invalid or the year is not between 2010 and 2022,
+
+        
+        This method quickly creates an example SVI plot either by itself or in a comparative format. The plot options and their required information can be found below.
+
+        **Plot Option 1: Single Plot**
+
+        A single figure of a single SVI estimate. The geopackage parameter must be in the format [year, boundary, config, variable] where:
+
+        -Year: SVI estimate year (int)
+        -Boundary: Boundary of interest ('bg' or 'tract', str)
+        -Config: Which config file was used to create the SVI estimate (str)
+        -Variable: Which SVI variable to plot (i.e., the attributes of the SVI geopackages created, str). 
+
+        **Plot Option 2: Simple Comparative Plot**
+
+        A simple two by one figure to visually compare two differnet SVI estimates. These estimates can be from the same or different geopackages. The geopackages parameter should be a nested list of the same variables as described in plot option 1: [[year, boundary, config, variable],[year, boundary, config, variable]].
+
+        **Plot Option 1: Complete Comparative Plot**
+
+        A more detailed plotting option, that will produce a comparison plot and calculate a linear regression. Because the difference map and linear regression require the same set of input geoids (i.e., the same locations in the geopackage), it is currently required that the variables come from the same geopackage but compare different rank methodologies. The geopackages input should be formated as follows: [year, boundary, config]. If a variable option is passed it is ignored. The additional plots show the following information:
+
+        - Difference plot: Shows the The FA_SVI_Rank minus the RM_SVI_Rank to highlight areas where the factor analysis method is under (negative) and over (positive) predicting SVI rank when compared to the rank method. 
+        -Linear Regression: Shows linear correlation betweeen factor analysis and rank method SVI estimates and automatically computes an r-squared value with p-value, 95% confidence interval, and 95% prediction interval.
+        
+        
+        
+        """
+        # ADD CHECKS TO VARIABLE INPUTS
+        # PLOT OPTION IS 1, 2, or 3
+        # GEOPACKAGES IS APPROPRIATE LENGTH
+            # IF PLOT OPTION 1: len==4
+            # IF PLOT OPTION 2 or 3: len==2
+            # check if inputs lead to existing svi variable 
+
+
+        # Special Use Boundaries Legened Element
+        legend_elements = [Patch(facecolor='black', edgecolor='black',
+                                label='No Data Available')]
+        
+        
+        # Single geopackage plot
+        if plot_option == 1:
+            # Create the figure
+            fig, (ax1, ax2) = plt.subplots(2, 1, 
+                            figsize=(6, 6), 
+                            gridspec_kw={'height_ratios': [9, 1]})
+            
+            # extract variables
+            year=geopackages[0]
+            boundary=geopackages[1]
+            config_file=geopackages[2]
+            var = geopackages[3]
+
+            # set titles
+            ax1.set_title(f'{self.project_name}_{year}_{boundary}_{config_file}:\n{var}')
+            ax1.legend(handles=legend_elements, loc='lower left')
+
+            # read geopackage of data
+            gdf=gpd.read_file(f"{self.svis}/{self.project_name}_{year}_{boundary}_{config_file}_svi.gpkg")
+            # read geopackage of background
+            background = gpd.read_file(f"{self.boundaries}/{self.project_name}_{year}_{boundary}.gpkg")
+
+            # plot the figure
+            self._plot_single(ax1, background, gdf, var)
+            
+            # plot cbar
+            self._plot_cmap(fig,ax2,plot_option)
+  
+            
+        # Double geopackage plot    
+        elif plot_option == 2:
+            # Create Figure
+            fig, (ax1, ax2, ax3) = plt.subplots(1,3, 
+                                    figsize=(12,6),
+                                    gridspec_kw={'width_ratios':[9,1,9]})
+            axes = [ax1, ax3]
+            
+            # shift center axis over, move y labels to right
+            pos = ax2.get_position()
+            pos.x0 -= 0.01875  
+            pos.x1 -= 0.01875  
+            ax2.set_position(pos)
+            ax3.yaxis.tick_right()
+            ax3.yaxis.set_label_position("right")
+            
+            for idx, geopackage in enumerate(geopackages):
+                # extract variables
+                year=geopackage[0]
+                boundary=geopackage[1]
+                config_file=geopackage[2]
+                var = geopackage[3]
+
+                #set titles
+                axes[idx].set_title(f'{self.project_name}_{year}_{boundary}_{config_file}:\n{var}')
+                axes[idx].legend(handles=legend_elements, loc='lower left')
+
+                # read geopackage of data
+                gdf=gpd.read_file(f"{self.svis}/{self.project_name}_{year}_{boundary}_{config_file}_svi.gpkg")
+                # read geopackage of background
+                background = gpd.read_file(f"{self.boundaries}/{self.project_name}_{year}_{boundary}.gpkg")
+            
+                # plot the figure
+                self._plot_single(axes[idx], background, gdf, var)
+                
+            # plot cbar
+            self._plot_cmap(fig,ax2,plot_option)
+            
+                   
+        elif plot_option == 3:
+           # Create Figure
+            fig, axes = plt.subplots(2,3, 
+                                    figsize=(10,8),
+                                    gridspec_kw={'width_ratios':[9,1,9]})
+            ax1, ax2, ax3, ax4, ax5, ax6 = axes.flatten()
+
+            # shift center axis over, move y labels to right
+            pos = ax2.get_position()
+            pos.x0 -= 0.03
+            pos.x1 -= 0.03  
+            ax2.set_position(pos)
+            ax3.yaxis.tick_right()
+            ax3.yaxis.set_label_position("right")
+
+            pos = ax5.get_position()
+            pos.x0 -= 0.03  
+            pos.x1 -= 0.03 
+            ax5.set_position(pos)
+            ax6.yaxis.tick_right()
+            ax6.yaxis.set_label_position("right")
+            
+            axes = [ax1, ax3]
+
+            gdfs = []
+            vars=[]
+            f_names=[]
+
+            variables = ['FA_SVI_Rank', 'RM_SVI_Rank']
+            for idx, var in enumerate(variables):
+                # extract variables
+                year=geopackages[0]
+                boundary=geopackages[1]
+                config_file=geopackages[2]
+
+                #set titles
+                axes[idx].set_title(f'{self.project_name}_{year}_{boundary}_{config_file}:\n{var}')
+                axes[idx].legend(handles=legend_elements, loc='lower left')
+
+                # read geopackage of data
+                gdf=gpd.read_file(f"{self.svis}/{self.project_name}_{year}_{boundary}_{config_file}_svi.gpkg")
+                # read geopackage of background
+                background = gpd.read_file(f"{self.boundaries}/{self.project_name}_{year}_{boundary}.gpkg")
+                gdfs.append(gdf)
+                vars.append(var)
+                f_names.append(f'{self.project_name}_{year}_{boundary}_{config_file}')
+                # plot the figure
+                self._plot_single(axes[idx], background, gdf, var)
+                
+            # plot cbar for SVI
+            self._plot_cmap(fig,ax2,plot_option)
+
+            # merge to remove any different locations
+            merged_gdf = gdfs[0].merge(gdfs[1], left_index=True, right_index=True,suffixes=('_left', '_right'))
+            # Create difference
+            merged_gdf['difference'] = merged_gdf[f"{vars[0]}_left"] - merged_gdf[f"{vars[1]}_right"]
+
+            # # Custom color ramp for map of differences
+            cmap = mpl.cm.Spectral_r
+            bounds = np.linspace(0, 1, 10+1)
+            np.delete(bounds, 0)
+            bins = []
+            for bound in bounds:
+                bins.append(merged_gdf['difference'].quantile(bound))
+            norm = mpl.colors.BoundaryNorm(bounds, cmap.N)
+
+            # # plot difference
+            ax4.set_title('Difference (L - R)')
+            merged_gdf = gpd.GeoDataFrame(merged_gdf, geometry='geometry_left')
+            self._plot_single(ax4, background, merged_gdf, 'difference', cmap='Spectral_r')
+            ax4.legend(handles=legend_elements, loc='lower left')
+
+            cbar = fig.colorbar(mpl.cm.ScalarMappable(norm=norm, cmap=cmap),
+                                cax=ax5, orientation='vertical',
+                                label="Under/Over Prediction")
+            yticklabels = [str(round(float(label), 2)) for label in bins]
+            cbar.ax.set_yticklabels(yticklabels)
+
+
+            # determine correlation
+            pearson_r, p_value = pearsonr(merged_gdf[f"{vars[0]}_left"], merged_gdf[f"{vars[1]}_right"])
+
+            # calculate regression
+            x = merged_gdf[f"{vars[0]}_left"].values
+            y = merged_gdf[f"{vars[1]}_right"].values
+
+            slope, intercept = np.polyfit(x, y, 1)  # linear model adjustment
+
+            y_model = np.polyval([slope, intercept], x)   # modeling...
+
+            x_mean = np.mean(x)
+            y_mean = np.mean(y)
+            n = x.size                        # number of samples
+            m = 2                             # number of parameters
+            dof = n - m                       # degrees of freedom
+            t = stats.t.ppf(0.975, dof)       # Students statistic of interval confidence
+            residual = y - y_model
+            std_error = (np.sum(residual**2) / dof)**.5   # Standard deviation of the error
+
+            # calculating the r2
+            numerator = np.sum((x - x_mean)*(y - y_mean))
+            denominator = (np.sum((x - x_mean)**2) * np.sum((y - y_mean)**2))**.5
+            correlation_coef = numerator / denominator
+            r2 = correlation_coef**2
+
+            # mean squared error
+            MSE = 1/n * np.sum((y - y_model)**2)
+
+            # to plot the adjusted model
+            x_line = np.linspace(np.min(x), np.max(x), 100)
+            y_line = np.polyval([slope, intercept], x_line)
+
+            # confidence interval
+            ci = t * std_error * (1/n + (x_line - x_mean)**2 / np.sum((x - x_mean)**2))**.5
+            # predicting interval
+            pi = t * std_error * (1 + 1/n + (x_line - x_mean) **2 / np.sum((x - x_mean)**2))**.5
+
+            # plot scatter points
+            ax6.plot(x, y, 'o', color='royalblue')
+            # plot regression line
+            ax6.plot(x_line, y_line, color='royalblue')
+            # prediction interval
+            ax6.fill_between(x_line, 
+                            y_line + pi, 
+                            y_line - pi,
+                            color='lightcyan', 
+                            label='95% prediction interval')
+            # confidence interval
+            ax6.fill_between(x_line, 
+                            y_line + ci, 
+                            y_line - ci,
+                            color='skyblue', 
+                            label='95% confidence interval')
+                # set axis labels and limits
+            ax6.set_xlabel('Left plot')
+            ax6.set_ylabel('Right plot')
+            ax6.set_xlim([0, max(x)])
+            ax6.set_ylim([0, max(y)])
+
+            # rounding round appropriate values
+            a = str(np.round(intercept))
+            b = str(np.round(slope, 2))
+            r2s = str(np.round(r2, 2))
+            # p = str(np.round(p_value,2))
+            MSEs = str(np.round(MSE))
+
+            # plot text
+            textstr = '\n'.join((f'y = {a} + {b}x',
+                                f'$r^2$ = {r2s}',
+                                f'p-value = {p_value:.03g}'))
+            # patch properties
+            props = dict(boxstyle='square', facecolor='lightgray', alpha=0.80)
+            # text box in upper left in axes coords
+            ax6.text(0.025, 0.975,
+                    textstr,
+                    transform=ax6.transAxes,
+                    fontsize=8,
+                    verticalalignment='top',
+                    bbox=props)
+            legend = ax6.legend(fontsize=8, loc=4, facecolor='lightgray')
+            legend.get_frame().set_alpha(0.90)
+            legend.get_frame().set_edgecolor("black")
+
+        return fig
 
 
 
@@ -1273,5 +1563,50 @@ class SVInsight:
             
         return data_df
     
+    def _plot_single(self,ax,background,gdf, var, cmap=None):
+        "Produce single SVI plot"
+        # plot background
+        background.plot(ax=ax, color='black')
+        
+        # Add gridlines
+        ax.grid(True, which='major', color='grey', linewidth=0.25)
+
+        if cmap is None:
+            # select proper color ramp
+            if gdf[var].max() > 1:
+                cmap = 'coolwarm_r'
+            else:
+                cmap = 'coolwarm'
+
+        else:
+            cmap=cmap
+
+        # plot the figure
+        gdf.plot(ax=ax,
+                    column=var,
+                    cmap=cmap,
+                    scheme='quantiles',
+                    k=10,
+                    edgecolor='black',
+                    linewidth=0.5)
+        
+    def _plot_cmap(self, fig, ax, plot_option):
+        """Plot SVI cmap"""
+        cmap = mpl.cm.coolwarm
+        bounds = np.linspace(0, 1, 10+1)
+        norm = mpl.colors.BoundaryNorm(bounds, cmap.N)
+        labels = ['0','10','20','30','40','50','60','70','80','90','100']
+        if plot_option == 1:
+            cbar = fig.colorbar(mpl.cm.ScalarMappable(norm=norm, cmap=cmap),
+                            cax=ax, orientation='horizontal',
+                            label="SVI Percentile")
+            cbar.ax.set_xticklabels(labels)
+        else:
+            cbar = fig.colorbar(mpl.cm.ScalarMappable(norm=norm, cmap=cmap),
+                            cax=ax, orientation='vertical',
+                            label="SVI Percentile")
+            cbar.ax.set_yticklabels(labels)
+
+
 
 
