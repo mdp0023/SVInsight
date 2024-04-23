@@ -166,12 +166,12 @@ class SVInsight:
         :return: The boundary data as a GeoDataFrame.
         :rtype: gpd.GeoDataFrame
 
-        :raises ValueError: If the boundary type is invalid, the year is not between 2010 and 2022, or geoids not properly formatted.
+        :raises ValueError: If the boundary type is invalid, the year is not between 2013 and 2021, or geoids not properly formatted.
         """
         
         # Validate Variables
         self._validate_value(boundary, ['bg', 'tract'], 'boundary')
-        self._validate_value(year, [2010, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022], 'year')
+        self._validate_value(year, [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021], 'year')
         self._validate_format(boundary, str, 'boundary')
         self._validate_format(year, int, 'year')
 
@@ -191,7 +191,7 @@ class SVInsight:
                 Downloads a shapefile from a remote FTP server, extracts it, and returns the boundary shapefile as a GeoDataFrame.
 
                 Args:
-                    year (int): The year of the shapefile.
+                    year (int): The year of the shapefile. Valid options are from 2011 to 2021.
                     state (str): The state abbreviation.
                     boundary (str): The boundary type. Must be 'bg' or 'tract'
 
@@ -219,8 +219,11 @@ class SVInsight:
                 # print('opened binary')
 
                 # Specify the URL of the file you want to download
-                url = f"https://www2.census.gov/geo/tiger/GENZ{year}/shp/{zipped_filename}"
-
+                if year >= 2014:
+                    url = f"https://www2.census.gov/geo/tiger/GENZ{year}/shp/{zipped_filename}"
+                elif year == 2013:
+                    url = f"https://www2.census.gov/geo/tiger/GENZ{year}/{zipped_filename}"
+               
                 # Send a GET request to the URL
                 response = requests.get(url, stream=True)
 
@@ -232,7 +235,6 @@ class SVInsight:
                         for chunk in response.iter_content(chunk_size=1024):
                             if chunk:
                                 file.write(chunk)
-
 
                 # Unzip the file
                 shutil.unpack_archive(zipped_dir, filename_dir)
@@ -301,16 +303,16 @@ class SVInsight:
 
         :param boundary: The boundary type to retrieve data for. Valid options are 'bg' (block group) and 'tract' (census tract).
         :type boundary: str
-        :param year: The year of the Census data to retrieve. Valid options are from 2010 to 2022.
+        :param year: The year of the Census data to retrieve. Valid options are from 2011 to 2021.
         :type year: int
-        :param interpolate: Whether to interpolate missing data. Defaults to True.
+        :param interpolate: Whether to interpolate missing data. Defaults to True. If year is before 2014, ignored and not-interpolated.
         :type interpolate: bool, optional
         :param verbose: Whether to display verbose output. Defaults to False.
         :type verbose: bool, optional
         :param overwrite: Whether to overwrite existing data. Defaults to False.
         :type overwrite: bool, optional
 
-        :raises ValueError: If the boundary type is invalid or the year is not between 2010 and 2022.
+        :raises ValueError: If the boundary type is invalid or the year is not between 2013 and 2021.
         :raises FileNotFoundError: If the shapefile for the specified boundary and year does not exist.
 
         :return: None
@@ -318,7 +320,7 @@ class SVInsight:
         """
         # Validate Variables
         self._validate_value(boundary, ['bg', 'tract'], 'boundary')
-        self._validate_value(year, [2010, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022], 'year')
+        self._validate_value(year, [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021], 'year')
         self._validate_format(boundary, str, 'boundary')
         self._validate_format(year, int, 'year')
 
@@ -407,7 +409,7 @@ class SVInsight:
         :type description: str, optional
         
         :raises ValueError: If the variable name already exists.
-        :raises ValueError: If the boundary type is invalid or the year is not between 2010 and 2022.
+        :raises ValueError: If the boundary type is invalid or the year is not between 2013 and 2021.
         :raises FileNotFoundError: If the raw data file doesn't exist. Run the census_data method first.
         
         :return: None
@@ -416,7 +418,7 @@ class SVInsight:
         
         # Validate Variables
         self._validate_value(boundary, ['bg', 'tract'], 'boundary')
-        self._validate_value(year, [2010, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022], 'year')
+        self._validate_value(year, [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021], 'year')
         
         # if name of variable already exists, raise error
         if name in self.all_vars_eqs:
@@ -528,7 +530,7 @@ class SVInsight:
         :type year: int
 
         :returns: None
-        :raises ValueError: If the boundary type is invalid or the year is not between 2010 and 2022,
+        :raises ValueError: If the boundary type is invalid or the year is not between 2013 and 2021,
 
         This method reads a configuration file in YAML format, loads the raw data as a dataframe,
         calculates the SVI using two different methods, and saves the results to output files.
@@ -554,7 +556,7 @@ class SVInsight:
         """
         # validate inputs
         self._validate_value(boundary, ['bg', 'tract'], 'boundary')
-        self._validate_value(year, [2010, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022], 'year')
+        self._validate_value(year, [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021], 'year')
 
         # open the configuration file
         with open(os.path.join(self.variables, f"{config_file}.yaml")) as stream:
@@ -771,7 +773,7 @@ class SVInsight:
 
 
         :returns: matplotlib figure object
-        :raises ValueError: If the boundary type is invalid or the year is not between 2010 and 2022,
+        :raises ValueError: If the boundary type is invalid or the year is not between 2013 and 2021,
 
         
         This method quickly creates an example SVI plot either by itself or in a comparative format. The plot options and their required information can be found below.
@@ -1291,8 +1293,6 @@ class SVInsight:
 
                 # fill in values of data frame
                 data_df.loc[fips, var] = interpolated_value
-                if fips == 484530006011:
-                    print(interpolated_value)
                     
                 interpolated_output.append([f'{fips}', var, 'Interpolated'])
 
@@ -1534,6 +1534,8 @@ class SVInsight:
             pandas.DataFrame: The DataFrame with missing values filled.
 
         """
+        if year <= 2014:
+            interpolate = False
         # create output data file to save interpolated results
         interpolated_output=[]
 

@@ -352,7 +352,7 @@ are saved in an Excel file for documentation purposes.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>boundary</strong> (<em>str</em>) – The boundary type to retrieve data for. Valid options are ‘bg’ (block group) and ‘tract’ (census tract).</p></li>
 <li><p><strong>year</strong> (<em>int</em>) – The year of the Census data to retrieve. Valid options are from 2010 to 2022.</p></li>
-<li><p><strong>interpolate</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to interpolate missing data. Defaults to True.</p></li>
+<li><p><strong>interpolate</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to interpolate missing data. Defaults to True. If year is before 2014, ignored and not-interpolated.</p></li>
 <li><p><strong>verbose</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to display verbose output. Defaults to False.</p></li>
 <li><p><strong>overwrite</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to overwrite existing data. Defaults to False.</p></li>
 </ul>
@@ -427,8 +427,8 @@ are saved in an Excel file for documentation purposes.</p>
 </ul>
 <p><strong>Plot Option 2: Simple Comparative Plot</strong></p>
 <p>A simple two by one figure to visually compare two differnet SVI estimates. These estimates can be from the same or different geopackages. The geopackages parameter should be a nested list of the same variables as described in plot option 1: [[year, boundary, config, variable],[year, boundary, config, variable]].</p>
-<p><strong>Plot Option 1: Complete Comparative Plot</strong></p>
-<p>A more detailed plotting option, that will produce a difference plot and calculate a linear regression. Because the difference map and linear regression require the same set of input geoids (i.e., the same locations in the geopackage), it is currently required that the variables come from the same geopackage, and its intended purpose is to therefore compare the differences between the Factor Analysis and Rank Method methodologies that have the same configuration. The geopackages input should be formated as follows: [year, boundary, config]. If a variable option is passed it is ignored. The additional plots show the following information:</p>
+<p><strong>Plot Option 3: Complete Comparative Plot</strong></p>
+<p>A more detailed plotting option, that will produce a difference plot and calculate a linear regression. Because the difference map and linear regression require the same set of input geoids (i.e., the same locations in the geopackage), it is currently required that the variables come from the same geopackage, and its intended purpose is to therefore compare the differences between the Factor Analysis and Rank Method methodologies that have the same configuration. The geopackages input should be formated as follows: [year, boundary, config]. The additional plots show the following information:</p>
 <ul class="simple">
 <li><p>Difference plot: Shows the The FA_SVI_Rank minus the RM_SVI_Rank to highlight areas where the factor analysis method is under (negative) and over (positive) predicting SVI rank when compared to the rank method.</p></li>
 <li><p>Linear Regression: Shows linear correlation betweeen factor analysis and rank method SVI estimates and automatically computes an r-squared value with p-value, 95% confidence interval, and 95% prediction interval.</p></li>
