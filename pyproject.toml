@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "SVInsight"
-version = "0.2.9"
+version = "0.3.0"
 dependencies = [
     "census",
     "factor_analyzer",
@@ -16,21 +16,32 @@ dependencies = [
     "openpyxl",
     "matplotlib"
 ]
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 authors = [
   {name = "Matthew Preisser", email = "mattpreisser@gmail.com"},
+  {name = "Paola Passalacqua"},
+  {name = "R. Patrick Bixler"}
+
 ]
 description = "Create social vulnerabilty index"
 readme = "README.rst"
 license = {file = "LICENSE.txt"}
-keywords = ["SVI"]
+keywords = ["SVI",
+            "Social-Vulnerability",
+            "Hazards",
+            "Census",
+            "Demographics"]
 classifiers = [
-  "Development Status :: 3 - Alpha",
-  "Programming Language :: Python"
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12"
+
 ]
 
 [project.urls]
-Homepage = "https://example.com"
-Documentation = "https://readthedocs.org"
+Homepage = "https://github.com/mdp0023/SVInsight"
+Documentation = "https://mdp0023.github.io/SVInsight/"
 
 
