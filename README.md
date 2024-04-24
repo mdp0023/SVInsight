@@ -20,9 +20,6 @@ To quickly install the package, use `pip` to install via PyPI:
     
     pip install SVInsight
 
-SVInsight will be avialable via conda-forge in the near future.
-
-
 SVInsight can then be imported into python:
 
     >>> from SVInsight import SVInsight as svi

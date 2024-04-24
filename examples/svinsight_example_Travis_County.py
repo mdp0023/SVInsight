@@ -49,21 +49,21 @@ test.configure_variables(config_file)
 test.calculate_svi(config_file, boundary, 2017)
 
 
-# MULTI YEARS
-for year in years:
-    # extract shapefile
-    export = test.boundaries_data(boundary, year, overwrite=False)
+# # MULTI YEARS
+# for year in years:
+#     # extract shapefile
+#     export = test.boundaries_data(boundary, year, overwrite=False)
 
-    # # extract raw census data
-    test.census_data(boundary, year, interpolate=True,verbose=True,overwrite=False)
+#     # # extract raw census data
+#     test.census_data(boundary, year, interpolate=True,verbose=True,overwrite=False)
 
-    # # configure run and calculate svi
-    config_file='SVI'
-    test.configure_variables(config_file)
-    test.calculate_svi(config_file, boundary, year)
-    geopackages = [year, boundary, config_file, 'FA_SVI_Percentile']
-    figure = test.plot_svi(plot_option=1, geopackages=geopackages)
-    figure.savefig(f"{os.getcwd()}/Travis_County/Figures/{year}_{boundary}_{config_file}_FA_SVI_Percentile.png", dpi=300)
+#     # # configure run and calculate svi
+#     config_file='SVI'
+#     test.configure_variables(config_file)
+#     test.calculate_svi(config_file, boundary, year)
+#     geopackages = [year, boundary, config_file, 'FA_SVI_Percentile']
+#     figure = test.plot_svi(plot_option=1, geopackages=geopackages)
+#     figure.savefig(f"{os.getcwd()}/Travis_County/Figures/{year}_{boundary}_{config_file}_FA_SVI_Percentile.png", dpi=300)
 
 
 ######## Plotting ########
@@ -73,10 +73,10 @@ for year in years:
 # figure = test.plot_svi(plot_option=1,
 #                        geopackages=geopackages)
 
-# #plot svi double
-# geopackages = [[2017, boundary, config_file, 'FA_SVI_Percentile'], [2018, boundary, config_file, 'FA_SVI_Percentile']]
-# figure = test.plot_svi(plot_option=2,
-#                        geopackages=geopackages)
+#plot svi double
+geopackages = [[2017, boundary, config_file, 'FA_SVI_Percentile'], [2017, boundary, config_file, 'RM_SVI_Percentile']]
+figure = test.plot_svi(plot_option=2,
+                       geopackages=geopackages)
 
 
 # # plot svi complete
