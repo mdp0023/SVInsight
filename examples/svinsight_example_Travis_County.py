@@ -10,7 +10,6 @@ import matplotlib.pyplot as plt
 # set variables
 project_name = 'Travis_County'
 file_path = "/Users/matthewpreisser/Documents/Research/Codes/SVInsight"
-#api_key = 'e2e25e1d5badb404a2c0ec61d1ea867f68ee4ecc'
 api_key = os.environ.get('API_KEY')
 geoids = ['48453']
 

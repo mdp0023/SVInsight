@@ -265,7 +265,7 @@
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><strong>ValueError</strong> – If the variable name already exists.</p></li>
-<li><p><strong>ValueError</strong> – If the boundary type is invalid or the year is not between 2010 and 2022.</p></li>
+<li><p><strong>ValueError</strong> – If the boundary type is invalid or the year is not between 2013 and 2021.</p></li>
 <li><p><strong>FileNotFoundError</strong> – If the raw data file doesn’t exist. Run the census_data method first.</p></li>
 </ul>
 </dd>
@@ -297,7 +297,7 @@
 <dd class="field-odd"><p>gpd.GeoDataFrame</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>ValueError</strong> – If the boundary type is invalid, the year is not between 2010 and 2022, or geoids not properly formatted.</p>
+<dd class="field-even"><p><strong>ValueError</strong> – If the boundary type is invalid, the year is not between 2013 and 2021, or geoids not properly formatted.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -318,7 +318,7 @@
 <dd class="field-even"><p>None</p>
 </dd>
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ValueError</strong> – If the boundary type is invalid or the year is not between 2010 and 2022,</p>
+<dd class="field-odd"><p><strong>ValueError</strong> – If the boundary type is invalid or the year is not between 2013 and 2021,</p>
 </dd>
 </dl>
 <p>This method reads a configuration file in YAML format, loads the raw data as a dataframe,
@@ -351,7 +351,7 @@ are saved in an Excel file for documentation purposes.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>boundary</strong> (<em>str</em>) – The boundary type to retrieve data for. Valid options are ‘bg’ (block group) and ‘tract’ (census tract).</p></li>
-<li><p><strong>year</strong> (<em>int</em>) – The year of the Census data to retrieve. Valid options are from 2010 to 2022.</p></li>
+<li><p><strong>year</strong> (<em>int</em>) – The year of the Census data to retrieve. Valid options are from 2011 to 2021.</p></li>
 <li><p><strong>interpolate</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to interpolate missing data. Defaults to True. If year is before 2014, ignored and not-interpolated.</p></li>
 <li><p><strong>verbose</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to display verbose output. Defaults to False.</p></li>
 <li><p><strong>overwrite</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to overwrite existing data. Defaults to False.</p></li>
@@ -359,7 +359,7 @@ are saved in an Excel file for documentation purposes.</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
-<li><p><strong>ValueError</strong> – If the boundary type is invalid or the year is not between 2010 and 2022.</p></li>
+<li><p><strong>ValueError</strong> – If the boundary type is invalid or the year is not between 2013 and 2021.</p></li>
 <li><p><strong>FileNotFoundError</strong> – If the shapefile for the specified boundary and year does not exist.</p></li>
 </ul>
 </dd>
@@ -413,7 +413,7 @@ are saved in an Excel file for documentation purposes.</p>
 <dd class="field-even"><p>matplotlib figure object</p>
 </dd>
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ValueError</strong> – If the boundary type is invalid or the year is not between 2010 and 2022,</p>
+<dd class="field-odd"><p><strong>ValueError</strong> – If the boundary type is invalid or the year is not between 2013 and 2021,</p>
 </dd>
 </dl>
 <p>This method quickly creates an example SVI plot either by itself or in a comparative format. The plot options and their required information can be found below.</p>

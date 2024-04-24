@@ -6,11 +6,17 @@
 SVInsight
 =========
 
-**SVInsight** is a python package for calculating an exploratory social vulnerability index. This package calculates SVI using two methods: (1) an iterative factor analysis method and (2) a rank method, both of which have been heavily utilized in scholarly research. This package automates the creation and comparions of indices using U.S. American Community Survey 5-Year Data (ACS5) at the block group or tract level.
+**SVInsight** is a python package for calculating an exploratory social vulnerability index. This package calculates SVI using two methods: (1) an iterative factor analysis method and (2) a rank method, both of which have been heavily utilized in scholarly research. This package automates the creation and comparisons of indices using U.S. American Community Survey 5-Year Data (ACS5) at the block group or tract level. Users can customize which social, demographic, and economic variables are included in their own custom indices.
 
-.. note::
+This package is a tool to efficiently calculate an exploratory estimate of social vulnerability for a given region. Social vulnerability is an incredibly complex and constantly evolving concept, and researchers, practitioners, and users of this software should always consult relevant peer-reviewed literature and local experts to validate findings.
 
-   This project is under active development and this website is currently being developed. Please pardon our progress as we finish updating the documentation in the coming weeks (as of April 16th, 2024).
+
+.. figure:: all_time_steps.gif
+   :align: center
+   :alt: Gif of time-series for SVI estimates in Travis County, Texas
+
+   Travis County SVI estimates from 2013 to 2021
+
 
 Getting Started
 ###############

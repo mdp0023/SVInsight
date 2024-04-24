@@ -4,18 +4,19 @@ Install
 Installation via *pip*
 ----------------------
 
-This package will be pip installable soon:
+
+To *pip*-install this package use the following command:
 
 .. code-block:: console
 
    $ pip install SVInsight
 
+
+
+
 Installation via *conda*
 ------------------------
 
-This package will be conda installable soon:
+This package will be available from conda-forge soon.
 
 
-.. code-block:: console
-
-   $ conda install SVInsight
