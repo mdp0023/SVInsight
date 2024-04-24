@@ -1,6 +1,6 @@
 # SVInsight: Social Vulnerability Index Creation 
 ![pages-build-deployment](https://github.com/mdp0023/SVInsight/actions/workflows/pages/pages-build-deployment/badge.svg)
-![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pydorado)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/svinsight)
 [![PyPI version](https://badge.fury.io/py/svinsight.svg)](https://badge.fury.io/py/svinsight)
 
 
