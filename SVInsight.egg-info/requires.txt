@@ -1,9 +1,0 @@
-census
-factor_analyzer
-geopandas
-numpy
-pandas
-PyYAML
-scikit_learn
-openpyxl
-matplotlib
