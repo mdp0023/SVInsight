@@ -20,7 +20,7 @@ authors:
     orcid: 0000-0002-4763-7231
     equal-contrib: true # (This is how you can denote equal contributions between multiple authors)
     affiliation: 1
-    - name: R. Patrick Bixler
+  - name: R. Patrick Bixler
     orcid: 0000-0003-0515-0967
     equal-contrib: true # (This is how you can denote equal contributions between multiple authors)
     affiliation: 2
