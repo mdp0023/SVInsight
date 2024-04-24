@@ -1,7 +1,10 @@
 ---
-title: 'SVInsight: A Python package for galactic dynamics'
+title: 'SVInsight: A Python Package for calculating Social Vulnerability Indices'
 tags:
   - Python
+  - Vulnerability
+  - Census
+  - Demographics
   - Social Vulnerability Index
   - Census
   - SVI
@@ -27,87 +30,49 @@ affiliations:
  - name: LBJ School of Public Affairs
    index: 2
 
-date: 13 August 2017
+date: 24 Arpil 2024
 bibliography: paper.bib
 
 ---
 
 # Summary
 
-The forces on stars, galaxies, and dark matter under external gravitational
-fields lead to the dynamical evolution of structures in the universe. The orbits
-of these bodies are therefore key to understanding the formation, history, and
-future state of galaxies. The field of "galactic dynamics," which aims to model
-the gravitating components of galaxies to study their structure and evolution,
-is now well-established, commonly taught, and frequently used in astronomy.
-Aside from toy problems and demonstrations, the majority of problems require
-efficient numerical tools, many of which require the same base code (e.g., for
-performing numerical orbit integration).
+A community's exposure to environmental hazards, their sensitivity to such events, and their ability to respond (adaptive capacity) are influenced by their social, political, cultural, economic, and demographic information [@Smit_2006; @Cutter_2010; @Fatemi_2017]. Understanding the interconnected relationships among exposure, sensitivity, and adaptive capacity is important to estimate the degree to which stakeholders can mitigate environmental hazards [@Smit_2006]. Social Vulnerability Indices, or SVIs, are built on social and demographic data to serve as proxies for these interconnected variables. Numerous SVIs exist including SoVI trademark&reg; from The University of South Carolina's Hazards Vulnerability & Resilience Institute [@Cutter_2003], the Center for Disease Control [@Flanagan_2011], and the United Nations Development Program [@UNDP_2010]. In this paper, we present an open-source Python package, *SVInsight*, which provides an accessible workflow to calculate various exploratory social vulnerability indices that are specific to a given study area.
+
 
 # Statement of need
+Generic social vulnerabilities for large regions can be lacking in their ability to identify at risk populations [@Tate_2012; Nelson_2015; @Tellman_2020]. Furthermore, vulnerability indices are not created equally, and users, researchers, and developers should clearly state the objectives and structure of their index in order to accurately present their findings [@Bakkensen_2016], which may not be possible if they were not involved in creating the index. *SVInsight* is an accessible and open-source tool to quickly calculate SVIs for a user defined region using either custom or a research supported pre-set list of social and demographic variables. *SVInsight* calculates SVIs built on data from the Census Bureau's 5-Year American Community Survey using the two leading methods for calculating such metrics: a composite score using a data reduction methodology [@Cutter_2003] and a ranking method [@Flanagan_2011]. The work done leading up to the creation of the *SVInsight* Python package was and continues to be a part of numerous vulnerability and hazard related research efforts [Bixler_2021a; Preisser_2022; Preisser_2023].
 
-`Gala` is an Astropy-affiliated Python package for galactic dynamics. Python
-enables wrapping low-level languages (e.g., C) for speed without losing
-flexibility or ease-of-use in the user-interface. The API for `Gala` was
-designed to provide a class-based and user-friendly interface to fast (C or
-Cython-optimized) implementations of common operations such as gravitational
-potential and force evaluation, orbit integration, dynamical transformations,
-and chaos indicators for nonlinear dynamics. `Gala` also relies heavily on and
-interfaces well with the implementations of physical units and astronomical
-coordinate systems in the `Astropy` package [@astropy] (`astropy.units` and
-`astropy.coordinates`).
 
-`Gala` was designed to be used by both astronomical researchers and by
-students in courses on gravitational dynamics or astronomy. It has already been
-used in a number of scientific publications [@Pearson:2017] and has also been
-used in graduate courses on Galactic dynamics to, e.g., provide interactive
-visualizations of textbook material [@Binney:2008]. The combination of speed,
-design, and support for Astropy functionality in `Gala` will enable exciting
-scientific explorations of forthcoming data releases from the *Gaia* mission
-[@gaia] by students and experts alike.
+# Background 
 
-# Mathematics
 
-Single dollars ($) are required for inline mathematics e.g. $f(x) = e^{\pi/x}$
 
-Double dollars make self-standing equations:
 
-$$\Theta(x) = \left\{\begin{array}{l}
-0\textrm{ if } x < 0\cr
-1\textrm{ else}
-\end{array}\right.$$
+# Functionality and Ease of Use 
 
-You can also use plain \LaTeX for equations
-\begin{equation}\label{eq:fourier}
-\hat f(\omega) = \int_{-\infty}^{\infty} f(x) e^{i\omega x} dx
-\end{equation}
-and refer to \autoref{eq:fourier} from text.
+*SVInsight* automates the entire SVI creation process. The entire workflow can be completed in only 5 lines code:
 
-# Citations
+  - `project = svi(project_name, file_path, api_key, geoids)`: Initializes an SVI project and creates the necessary file structure for all of the intermediary files that might be of interest to users 
+  - `project.boundaries_data(boundary, year)`: Extracts the appropriate Census geographic boundaries for the project area
+  - `project.census_data(boundary, year)`: Extracts the raw Census data and fills missing holes as needed
+  - `project.configure_variables(config_file)`: Configures the specific SVI run
+  - `project.calculate_svi(config_file, boundary, year)`: Calculates both SVI estimates (Factor Analysis and Rank Methods)
 
-Citations to entries in paper.bib should be in
-[rMarkdown](http://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html)
-format.
 
-If you want to cite a software repository URL (e.g. something on GitHub without a preferred
-citation) then you can do it with the example BibTeX entry below for @fidgit.
 
-For a quick reference, the following citation commands can be used:
-- `@author:2001`  ->  "Author et al. (2001)"
-- `[@author:2001]` -> "(Author et al., 2001)"
-- `[@author1:2001; @author2:2001]` -> "(Author1 et al., 2001; Author2 et al., 2002)"
 
 # Figures
 
 Figures can be included like this:
-![Caption for example figure.\label{fig:example}](figure.png)
+![Caption for example figure.\label{fig:example}](figure.png){ width=80% }
 and referenced from text using \autoref{fig:example}.
 
 Figure sizes can be customized by adding an optional second parameter:
 ![Caption for example figure.](figure.png){ width=20% }
 
 # Acknowledgements
-
+This work was supported in part by the National Science Foundation Graduate Research Fellowship (grant no. DGE-1610403), Future Investigators in NASA Earth and Space Science and Technology (NASA FINESST, grant no. 21-EARTH21-0264), Planet Texas 2050, a research grand challenge at the University of Texas at Austin, and the U.S. Department of Energy, Office of Science, Biological and Environmental Research Program’s South-East Texas Urban Integrated Field Laboratory under Award Number DE-SC0023216.
 
 
 # References
