@@ -9,8 +9,7 @@ description = "Create social vulnerabilty index"
 readme = "long_desc.md"
 author = "Matthew Preisser, Paola Passalacqua, R. Patrick Bixler"
 author_email = "mattpreisser@gmail.com"
-license = "MIT"
-license_file = "LICENSE.txt"
+license = { file = "LICENSE.txt" }
 url = "https://github.com/mdp0023/SVInsight"
 
 [options]
