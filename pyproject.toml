@@ -24,8 +24,7 @@ authors = [
 
 ]
 description = "Create social vulnerabilty index"
-readme = "README.md"
-long_description = "For more information, please visit https://github.com/mdp0023/SVInsight"
+readme = "long_desc.md"
 license = {file = "LICENSE.txt"}
 keywords = ["SVI",
             "Social-Vulnerability",
