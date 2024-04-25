@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "SVInsight"
-version = "0.3.1"
+version = "0.3.2"
 dependencies = [
     "census",
     "factor_analyzer",
@@ -25,6 +25,7 @@ authors = [
 ]
 description = "Create social vulnerabilty index"
 readme = "README.md"
+long_description = "For more information, please visit https://github.com/mdp0023/SVInsight"
 license = {file = "LICENSE.txt"}
 keywords = ["SVI",
             "Social-Vulnerability",

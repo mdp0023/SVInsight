@@ -8,7 +8,7 @@ with open('README.md', 'r') as f:
 
 setup(
     name='SVInsight',
-    version='0.3.1',
+    version='0.3.2',
     license='MIT',
     description='SVInsight - A python package for calculating an exploratory social vulnerability index',
     author='M. Preisser, P. Passalacqua, R. P. Bixler',

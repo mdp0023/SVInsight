@@ -1,8 +1,7 @@
 # SVInsight: Social Vulnerability Index Creation 
 ![pages-build-deployment](https://github.com/mdp0023/SVInsight/actions/workflows/pages/pages-build-deployment/badge.svg)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/svinsight)
-[![PyPI version](https://badge.fury.io/py/svinsight.svg)](https://badge.fury.io/py/svinsight)
-
+![PyPI](https://img.shields.io/pypi/v/svinsight)
 
 *SVInsight* is a python package for calculating an exploratory social vulnerability index. This package calculates SVI using two methods: (1) an iterative factor analysis method and (2) a rank method, both of which have been heavily utilized in scholarly research. This package automates the creation and comparisons of indices using U.S. American Community Survey 5-Year Data (ACS5) at the block group or tract level. Users can customize which social, demographic, and economic variables are included in their own custom indices.
 
