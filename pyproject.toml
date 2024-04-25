@@ -28,7 +28,7 @@ install_requires = [
 ]
 
 [tool.setuptools]
-package-dir = {"" = "SVInsight"}
+packages = ["SVInsight"]
 
 [options.extras_require]
 docs = ["sphinx"]
