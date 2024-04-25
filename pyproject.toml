@@ -26,6 +26,9 @@ authors = [
 description = "Create social vulnerabilty index"
 readme = "long_desc.md"
 license = {file = "LICENSE.txt"}
+packages = [
+    { include = "SVInsight" }
+]
 keywords = ["SVI",
             "Social-Vulnerability",
             "Hazards",
