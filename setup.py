@@ -12,7 +12,6 @@ setup(
     url='https://github.com/mdp0023/SVInsight/',
     packages= find_packages(exclude=['*.tests']),
     package_data = {'' : ['*.txt', '*.npz']},
-    long_description = 'See preojct webpage for details',
     classifiers=[],
     install_requires=['census',
                     'factor_analyzer',
