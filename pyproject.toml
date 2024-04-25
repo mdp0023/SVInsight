@@ -24,7 +24,7 @@ authors = [
 
 ]
 description = "Create social vulnerabilty index"
-readme = "README.rst"
+readme = "README.md"
 license = {file = "LICENSE.txt"}
 keywords = ["SVI",
             "Social-Vulnerability",
