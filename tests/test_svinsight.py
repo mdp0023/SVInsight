@@ -14,11 +14,8 @@ file_path=os.getcwd()
 api_key='test_api_key'
 geoids=['48453']
 
-
 def test_svi():
     """Test that project can be created"""
-    print('printing')
-    print(project_name)
     assert svi(project_name, file_path, api_key, geoids)
 
 def test_svi_project_name():
