@@ -48,6 +48,8 @@ jobs:
         path: dist/
     - name: Publish distribution 📦 to PyPI
       uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        api_key: ${{ secrets.PYPI_API_TOKEN }}
 
   github-release:
     name: >-

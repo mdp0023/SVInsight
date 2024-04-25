@@ -1,3 +1,5 @@
+name: draft_pdf
+
 on: [push]
 
 jobs:
