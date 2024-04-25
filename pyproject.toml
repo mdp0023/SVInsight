@@ -26,6 +26,8 @@ install_requires = [
     "openpyxl",
     "matplotlib"
 ]
+
+[tool.setuptools]
 package-dir = {"" = "SVInsight/SVInsight"}
 
 [options.extras_require]
