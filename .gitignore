@@ -2,6 +2,12 @@
 .vscode
 .env
 
+# don't track outputs of test file
+tests/test_project_economic_index
+tests/test_project_multiple_counties
+tests/test_project_multiple_states
+tests/test_project_single_county
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
