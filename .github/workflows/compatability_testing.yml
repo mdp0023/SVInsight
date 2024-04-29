@@ -26,6 +26,7 @@ jobs:
         else
           pip install .[minimum]
         fi
+      shell: bash
     - name: Test with pytest
       env:
           API_KEY: ${{ secrets.API_KEY }}
