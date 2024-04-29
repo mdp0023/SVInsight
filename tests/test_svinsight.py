@@ -1,5 +1,6 @@
 
 import sys
+import os
 
 # Get the directory that contains this file
 this_directory = os.path.dirname(os.path.abspath(__file__))
