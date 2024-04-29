@@ -29,7 +29,7 @@ The first step to the project is importing :obj:`SVInsight` and setting the proj
 
 .. doctest::
 
-   >>> from SVInsight import SVInsight as svi 
+   >>> from svinsight import SVInsight as svi 
    >>> project_name = 'Travis_County'
    >>> file_path = "/User/Documents"
    >>> api_key = os.environ.get('API_KEY')

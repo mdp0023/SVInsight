@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Papers" href="paper.html" /><link rel="prev" title="Background" href="background.html" />
 
-    <!-- Generated with Sphinx 7.2.6 and Furo 2024.01.29 -->
+    <!-- Generated with Sphinx 7.3.7 and Furo 2024.01.29 -->
         <title>Understanding Iterative Factor Analysis Results - SVInsight documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=362ab14a" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=135e06be" />
@@ -171,7 +171,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../apiref/license.html">License</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../Examples/examples.html">Examples</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Examples/examples.html">Examples</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Examples</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Examples/SVInsight_example_SETx.html">SVInsight Example: Southeast Texas</a></li>
+</ul>
+</li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Contributions/contributions.html">Issues, Questions, and Contributions</a></li>
@@ -213,7 +216,7 @@
         </div>
         <article role="main">
           <section id="understanding-iterative-factor-analysis-results">
-<h1>Understanding Iterative Factor Analysis Results<a class="headerlink" href="#understanding-iterative-factor-analysis-results" title="Link to this heading">#</a></h1>
+<h1>Understanding Iterative Factor Analysis Results<a class="headerlink" href="#understanding-iterative-factor-analysis-results" title="Link to this heading">¶</a></h1>
 <p>One of the outputs of the SVI workflow is an excel file containing documentation describing the characteristics of the index. This file can be found in the Documentation project folder and has the following naming convention:</p>
 <ul class="simple">
 <li><p>folder location: <code class="docutils literal notranslate"><span class="pre">{file_path}/{project_name}/{Documentation}/</span></code></p></li>
@@ -221,23 +224,23 @@
 </ul>
 <p>Each tab of the excel sheet contains pertinent information regrading the iterative factor analysis SVI. The below subsections discusses what information is stored in each sheet and shows examples from an SVI run using the standard set of 27 variables (see <a class="reference internal" href="background.html"><span class="doc">background</span></a> for more information) for Travis County, Texas in 2017 at the block group level.</p>
 <section id="significant-components">
-<h2>Significant Components<a class="headerlink" href="#significant-components" title="Link to this heading">#</a></h2>
+<h2>Significant Components<a class="headerlink" href="#significant-components" title="Link to this heading">¶</a></h2>
 <p>This sheet shows what components are significantly contributing to each factor from the final factor analysis. The number of iterations can be determined based on the name of each factor. For example, in this run <em>‘F2’</em> means that this went through three rounds of factor analysis (zero-based numbering rules). As can be seen, there are 5 factors in the final index. Information on which variables contribute to which factor is useful in determining “themes” for the factors (e.g., wealth theme, social characteristics theme, etc.). In this example, one could identify the first factor as Social Status, and the second factor as Economic Status. These are for description only and will be unique based on the study area and year being analyzed. They may or may not be easily definable into distinct themes, but do show what variables are correlated within a study area.</p>
 <figure class="align-default">
-<img alt="Table of significant components for 2017 Travis County, Texas Block Group SVI estimate" src="../_images/sig_comp_.pdf" />
+<img alt="Table of significant components for 2017 Travis County, Texas Block Group SVI estimate" src="../_images/sig_comp_.png" />
 </figure>
 <p><em>Table 1: Significant components for 2017 Travis County, Texas Block Group SVI estimate</em></p>
 </section>
 <section id="loading-factors">
-<h2>Loading Factors<a class="headerlink" href="#loading-factors" title="Link to this heading">#</a></h2>
+<h2>Loading Factors<a class="headerlink" href="#loading-factors" title="Link to this heading">¶</a></h2>
 <p>Based on the variables within the final index, each has a loading factor associated with it for each factor. This information is critical in determining the weights for each variable for each factor when calculating the final index. For every boundary in the study area and for every factor, the variable is multiplied by the loading factor and summed within each factor. This is how the factor scores are determined.</p>
 <figure class="align-default">
-<img alt="Table of loading factors for 2017 Travis County, Texas Block Group SVI estimate" src="../_images/loading_fac_.pdf" />
+<img alt="Table of loading factors for 2017 Travis County, Texas Block Group SVI estimate" src="../_images/loading_fac_.png" />
 </figure>
 <p><em>Table 2: Loading factors for 2017 Travis County, Texas Block Group SVI estimate</em></p>
 </section>
 <section id="all-refactor-variances">
-<h2>All Refactor Variances<a class="headerlink" href="#all-refactor-variances" title="Link to this heading">#</a></h2>
+<h2>All Refactor Variances<a class="headerlink" href="#all-refactor-variances" title="Link to this heading">¶</a></h2>
 <p>This shows the four main variance statistics associated with a factor analysis for each iteration.
 - SS Loadings: The sum of the squared loadings for the factor. If a factor’s SS loading is greater than 1 it is worth keeping.
 - Proportion Variance: The proportion of the variance that a factor accounts for. The first factor will have the highest proportion, due to our rotation earlier, and subsequent factors will have a decreasing proportion of explained variance. <strong>When calculating the final index, each factor is multiplied by its proportion of variance to weight the variables.</strong>
@@ -246,19 +249,19 @@
 <p>For most studies, especially exploratory analyses, it is acceptable to have a cumulative variance as low as 60%, and sometimes as low as 50% <a class="footnote-reference brackets" href="#id4" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> <a class="footnote-reference brackets" href="#id5" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a> <a class="footnote-reference brackets" href="#id6" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a> .</p>
 </section>
 <section id="final-variances">
-<h2>Final Variances<a class="headerlink" href="#final-variances" title="Link to this heading">#</a></h2>
+<h2>Final Variances<a class="headerlink" href="#final-variances" title="Link to this heading">¶</a></h2>
 <p>An abbreviated version of All Refactor Variances, showing only the final table for the final iteration.</p>
 <figure class="align-default">
-<img alt="Table of Final factor analysis variance statistics for 2017 Travis County, Texas Block Group SVI estimate" src="../_images/final_fac_.pdf" />
+<img alt="Table of Final factor analysis variance statistics for 2017 Travis County, Texas Block Group SVI estimate" src="../_images/final_fac_.png" />
 </figure>
 <p><em>Table 4: Final factor analysis variance statistics for 2017 Travis County, Texas Block Group SVI estimate</em></p>
 </section>
 <section id="included-and-excluded">
-<h2>Included and Excluded<a class="headerlink" href="#included-and-excluded" title="Link to this heading">#</a></h2>
+<h2>Included and Excluded<a class="headerlink" href="#included-and-excluded" title="Link to this heading">¶</a></h2>
 <p>contains the lists of what variables make the final index and which variables are excluded due to not significantly contributing to a any factors. This can be useful for double checking that the index is including variables you would likely expect to find given your study area.</p>
 </section>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">¶</a></h2>
 <aside class="footnote-list brackets">
 <aside class="footnote brackets" id="id4" role="note">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
@@ -350,8 +353,9 @@
     </aside>
   </div>
 </div><script src="../_static/documentation_options.js?v=5929fcd5"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=32e29ea5"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     </body>
 </html>

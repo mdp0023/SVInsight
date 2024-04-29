@@ -1,8 +1,18 @@
 import sys
 import os
-sys.path.append('/Users/matthewpreisser/Documents/Research/Codes/SVInsight')
 
+# Get the directory that contains this file
+this_directory = os.path.dirname(os.path.abspath(__file__))
 
+# one level up 
+dir1 = os.path.dirname(this_directory)
+# two levels up 
+dir2 = os.path.dirname(os.path.dirname(this_directory))
+
+# Add the root directory to sys.path
+sys.path.insert(0, this_directory)
+sys.path.insert(0, dir1)
+sys.path.insert(0, dir2)
 # import package
 from SVInsight import SVInsight as svi 
 
@@ -31,7 +41,7 @@ test.census_data(boundary,
                     year, 
                     interpolate=True,
                     verbose=True,
-                    overwrite=True)
+                    overwrite=False)
 
 # # add variable
 # test2.add_variable(boundary,

@@ -13,7 +13,7 @@ Significant Components
 ----------------------
 This sheet shows what components are significantly contributing to each factor from the final factor analysis. The number of iterations can be determined based on the name of each factor. For example, in this run *'F2'* means that this went through three rounds of factor analysis (zero-based numbering rules). As can be seen, there are 5 factors in the final index. Information on which variables contribute to which factor is useful in determining "themes" for the factors (e.g., wealth theme, social characteristics theme, etc.). In this example, one could identify the first factor as Social Status, and the second factor as Economic Status. These are for description only and will be unique based on the study area and year being analyzed. They may or may not be easily definable into distinct themes, but do show what variables are correlated within a study area. 
 
-.. figure:: ../Background/sig_comp_.pdf
+.. figure:: ../Background/sig_comp_.png
    :alt: Table of significant components for 2017 Travis County, Texas Block Group SVI estimate
 
 *Table 1: Significant components for 2017 Travis County, Texas Block Group SVI estimate*
@@ -24,7 +24,7 @@ Loading Factors
 ---------------
 Based on the variables within the final index, each has a loading factor associated with it for each factor. This information is critical in determining the weights for each variable for each factor when calculating the final index. For every boundary in the study area and for every factor, the variable is multiplied by the loading factor and summed within each factor. This is how the factor scores are determined. 
 
-.. figure:: ../Background/loading_fac_.pdf
+.. figure:: ../Background/loading_fac_.png
    :alt: Table of loading factors for 2017 Travis County, Texas Block Group SVI estimate
 
 *Table 2: Loading factors for 2017 Travis County, Texas Block Group SVI estimate*
@@ -46,7 +46,7 @@ Final Variances
 ---------------
 An abbreviated version of All Refactor Variances, showing only the final table for the final iteration.
 
-.. figure:: ../Background/final_fac_.pdf
+.. figure:: ../Background/final_fac_.png
    :alt: Table of Final factor analysis variance statistics for 2017 Travis County, Texas Block Group SVI estimate
 
 *Table 4: Final factor analysis variance statistics for 2017 Travis County, Texas Block Group SVI estimate*

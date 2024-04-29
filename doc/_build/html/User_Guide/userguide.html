@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="SVInsight" href="../apiref/apiref.html" /><link rel="prev" title="Papers" href="../Background/paper.html" />
 
-    <!-- Generated with Sphinx 7.2.6 and Furo 2024.01.29 -->
+    <!-- Generated with Sphinx 7.3.7 and Furo 2024.01.29 -->
         <title>User Guide - SVInsight documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=362ab14a" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=135e06be" />
@@ -171,7 +171,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../apiref/license.html">License</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../Examples/examples.html">Examples</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Examples/examples.html">Examples</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Examples</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Examples/SVInsight_example_SETx.html">SVInsight Example: Southeast Texas</a></li>
+</ul>
+</li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Contributions/contributions.html">Issues, Questions, and Contributions</a></li>
@@ -213,23 +216,23 @@
         </div>
         <article role="main">
           <section id="user-guide">
-<h1>User Guide<a class="headerlink" href="#user-guide" title="Link to this heading">#</a></h1>
+<h1>User Guide<a class="headerlink" href="#user-guide" title="Link to this heading">¶</a></h1>
 <section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
 <p>The basic workflow of <cite>SVInsight</cite> works as follows:</p>
 <ol class="arabic simple">
-<li><p>Initialize the project class (<a class="reference internal" href="../apiref/apiref.html#SVInsight.svi.SVInsight" title="SVInsight.svi.SVInsight"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SVInsight</span></code></a>) with your project name, folder path, Census API key, and your study area.</p></li>
+<li><p>Initialize the project class (<code class="xref py py-obj docutils literal notranslate"><span class="pre">SVInsight</span></code>) with your project name, folder path, Census API key, and your study area.</p></li>
 <li><p>Define the initial project configuration variables with a boundary (tract or block groups) and year.</p></li>
-<li><p>Extract the necessary boundary geopackage using <a class="reference internal" href="../apiref/apiref.html#SVInsight.svi.SVInsight.boundaries_data" title="SVInsight.svi.SVInsight.boundaries_data"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SVInsight.boundaries_data()</span></code></a>.</p></li>
-<li><p>Extract the raw census data and fill in holes in the data using <a class="reference internal" href="../apiref/apiref.html#SVInsight.svi.SVInsight.census_data" title="SVInsight.svi.SVInsight.census_data"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SVInsight.census_data()</span></code></a>.</p></li>
-<li><p>Configure the run and calculate the SVI using <a class="reference internal" href="../apiref/apiref.html#SVInsight.svi.SVInsight.configure_variables" title="SVInsight.svi.SVInsight.configure_variables"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SVInsight.configure_variables()</span></code></a> and <a class="reference internal" href="../apiref/apiref.html#SVInsight.svi.SVInsight.calculate_svi" title="SVInsight.svi.SVInsight.calculate_svi"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SVInsight.calculate_svi()</span></code></a>.</p></li>
+<li><p>Extract the necessary boundary geopackage using <code class="xref py py-meth docutils literal notranslate"><span class="pre">SVInsight.boundaries_data()</span></code>.</p></li>
+<li><p>Extract the raw census data and fill in holes in the data using <code class="xref py py-meth docutils literal notranslate"><span class="pre">SVInsight.census_data()</span></code>.</p></li>
+<li><p>Configure the run and calculate the SVI using <code class="xref py py-meth docutils literal notranslate"><span class="pre">SVInsight.configure_variables()</span></code> and <code class="xref py py-meth docutils literal notranslate"><span class="pre">SVInsight.calculate_svi()</span></code>.</p></li>
 </ol>
 <p>Below you will find the detailed user guide that walks through each of these steps, with additional options for project customization. <cite>SVInsight</cite> is supposed to be a flexible and exploratory estimator of various social vulnerability indices, and is therefore highly customizable within the framework of Factor Analysis and Rank Method methodologies. The User Guide below walks through the methods available for calculating SVIs. For a larger discussion on the Factor Analysis and Rank Method methodologies, please refer to the <a class="reference internal" href="../Background/background.html"><span class="doc">Background</span></a> and  <a class="reference internal" href="../Background/understanding.html"><span class="doc">Understanding Iterative Factor Analysis Results</span></a> pages.</p>
 </section>
 <section id="initializing-the-project">
-<h2>1. Initializing the Project<a class="headerlink" href="#initializing-the-project" title="Link to this heading">#</a></h2>
-<p>The first step to the project is importing <a class="reference internal" href="../apiref/apiref.html#SVInsight.svi.SVInsight" title="SVInsight.svi.SVInsight"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SVInsight</span></code></a> and setting the project <cite>params.</cite> Each instance of the class can be seen as a standalone project for the input geoids, where users can configure different runs based on years, boundaries, and variables of interest. In this User Guide we are using Travis_County, Texas as a working example.</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">SVInsight</span> <span class="kn">import</span> <span class="n">SVInsight</span> <span class="k">as</span> <span class="n">svi</span>
+<h2>1. Initializing the Project<a class="headerlink" href="#initializing-the-project" title="Link to this heading">¶</a></h2>
+<p>The first step to the project is importing <code class="xref py py-obj docutils literal notranslate"><span class="pre">SVInsight</span></code> and setting the project <cite>params.</cite> Each instance of the class can be seen as a standalone project for the input geoids, where users can configure different runs based on years, boundaries, and variables of interest. In this User Guide we are using Travis_County, Texas as a working example.</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">svinsight</span> <span class="kn">import</span> <span class="n">SVInsight</span> <span class="k">as</span> <span class="n">svi</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">project_name</span> <span class="o">=</span> <span class="s1">&#39;Travis_County&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">file_path</span> <span class="o">=</span> <span class="s2">&quot;/User/Documents&quot;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;API_KEY&#39;</span><span class="p">)</span>
@@ -254,7 +257,7 @@
 </ul>
 </section>
 <section id="defining-the-initial-project-configuration-variables">
-<h2>2. Defining the Initial Project Configuration Variables<a class="headerlink" href="#defining-the-initial-project-configuration-variables" title="Link to this heading">#</a></h2>
+<h2>2. Defining the Initial Project Configuration Variables<a class="headerlink" href="#defining-the-initial-project-configuration-variables" title="Link to this heading">¶</a></h2>
 <p>The initial project configuration variables allows us to pull the appropriate boundary information. The boundary can be either <cite>bg</cite> or <cite>tract</cite> for block group or tract. Block groups and tracts are the two highest spatial resolutions that the US Census releases American Community Survey 5-Year estimates for. While block groups have a higher spatial resolution, they come with greater uncertainty in their estimates compared to tracts. More information can be found on the <a class="reference external" href="https://www.census.gov/data/developers/data-sets/acs-5year.html">Census website</a>.</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">boundary</span><span class="o">=</span><span class="s1">&#39;bg&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">year</span><span class="o">=</span><span class="mi">2017</span>
@@ -264,39 +267,39 @@
 <figure class="align-default" id="id1">
 <a class="reference internal image-reference" href="../_images/census_divisions.jpeg"><img alt="Map showing the Census Divisions" src="../_images/census_divisions.jpeg" style="width: 580.0px; height: 578.0px;" /></a>
 <figcaption>
-<p><span class="caption-text">Visual representation of the different Census boundaries.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+<p><span class="caption-text">Visual representation of the different Census boundaries.</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="extracting-the-boundary">
-<h2>3. Extracting the Boundary<a class="headerlink" href="#extracting-the-boundary" title="Link to this heading">#</a></h2>
-<p>With the boundary and year set, we can extract the necessary raw census data. In the <a class="reference internal" href="../apiref/apiref.html#SVInsight.svi.SVInsight.boundaries_data" title="SVInsight.svi.SVInsight.boundaries_data"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SVInsight.boundaries_data()</span></code></a> method, there is a parameter <code class="docutils literal notranslate"><span class="pre">overwrite</span></code> which can be set to True or False. When True, if an existing geopackage for the given boundary and year is already found in the folder it will be overwritten. this method returns a geopandas dataframe. Furthermore, because Census boundaries include areas that may not have permanent populations (i.e., military installations, airports, national parks, etc.), a filter is automatically applied such that boundaries with less than a population of 75 are excluded from the analysis.</p>
+<h2>3. Extracting the Boundary<a class="headerlink" href="#extracting-the-boundary" title="Link to this heading">¶</a></h2>
+<p>With the boundary and year set, we can extract the necessary raw census data. In the <code class="xref py py-meth docutils literal notranslate"><span class="pre">SVInsight.boundaries_data()</span></code> method, there is a parameter <code class="docutils literal notranslate"><span class="pre">overwrite</span></code> which can be set to True or False. When True, if an existing geopackage for the given boundary and year is already found in the folder it will be overwritten. this method returns a geopandas dataframe. Furthermore, because Census boundaries include areas that may not have permanent populations (i.e., military installations, airports, national parks, etc.), a filter is automatically applied such that boundaries with less than a population of 75 are excluded from the analysis.</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">areas</span> <span class="o">=</span> <span class="n">proj</span><span class="o">.</span><span class="n">boundaries_data</span><span class="p">(</span><span class="n">boundary</span><span class="p">,</span> <span class="n">year</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
 <section id="extract-raw-data-and-filling-holes">
-<h2>4. Extract Raw Data and Filling Holes<a class="headerlink" href="#extract-raw-data-and-filling-holes" title="Link to this heading">#</a></h2>
-<p>The next step is to extract the raw census data using the <a class="reference internal" href="../apiref/apiref.html#SVInsight.svi.SVInsight.census_data" title="SVInsight.svi.SVInsight.census_data"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SVInsight.census_data()</span></code></a> method. <a class="reference internal" href="../apiref/apiref.html#SVInsight.svi.SVInsight" title="SVInsight.svi.SVInsight"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SVInsight</span></code></a> starts has a default set of 27 social and economic variables of interest, which are detailed in the <a class="reference internal" href="../Background/background.html#variables"><span class="std std-ref">Variables</span></a> section. This method specifically pulls the raw data, and the variables themselves are calculated later. In this example, we are continuing to us the same boundary and year as the boundaries we just extracted, in order to produce a geopackaged version of raw data. Furthermore we have two additional parameters: <code class="docutils literal notranslate"><span class="pre">interpolate</span></code> and <code class="docutils literal notranslate"><span class="pre">verbose</span></code>.</p>
+<h2>4. Extract Raw Data and Filling Holes<a class="headerlink" href="#extract-raw-data-and-filling-holes" title="Link to this heading">¶</a></h2>
+<p>The next step is to extract the raw census data using the <code class="xref py py-meth docutils literal notranslate"><span class="pre">SVInsight.census_data()</span></code> method. <code class="xref py py-obj docutils literal notranslate"><span class="pre">SVInsight</span></code> starts has a default set of 27 social and economic variables of interest, which are detailed in the <a class="reference internal" href="../Background/background.html#variables"><span class="std std-ref">Variables</span></a> section. This method specifically pulls the raw data, and the variables themselves are calculated later. In this example, we are continuing to us the same boundary and year as the boundaries we just extracted, in order to produce a geopackaged version of raw data. Furthermore we have two additional parameters: <code class="docutils literal notranslate"><span class="pre">interpolate</span></code> and <code class="docutils literal notranslate"><span class="pre">verbose</span></code>. <strong>It is important to note</strong> that the Census API will sometimes time out, and if Census data isn’t being pulled, waiting a few seconds/minutes and re-running usually solves the problem.</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">areas</span> <span class="o">=</span> <span class="n">proj</span><span class="o">.</span><span class="n">census_data</span><span class="p">(</span><span class="n">boundary</span><span class="p">,</span> <span class="n">year</span><span class="p">,</span> <span class="n">interpolate</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">interpolate</span></code> (bool): Census data, especially at the block group level, might have missing data points. Missing data can occur if there are not enough sample points in a given time period to accurately calculate the variable. In these instances, the holes must be filled to accurately calculate the SVIs. <a class="reference internal" href="../apiref/apiref.html#SVInsight.svi.SVInsight" title="SVInsight.svi.SVInsight"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SVInsight</span></code></a> can accomplish this two different ways, either with or without <strong>interpolation</strong>. When interpolation is True, missing values are determined by recalculating the median based on the detailed tables (e.g., the breakdown table of response ranges for a given variable) from the adjacent boundaries. Because interpolating isn’t exact, any boundary that has less than 40 neighboring data points are not interpolated. For areas that are not interpolated, or if interpolation is set to False, holes are filled by taking the next available boundary value. For example, if a block group is missing a value it is replaced with the tract value, and if a tract value is missing it is filled with the county value.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">interpolate</span></code> (bool): Census data, especially at the block group level, might have missing data points. Missing data can occur if there are not enough sample points in a given time period to accurately calculate the variable. In these instances, the holes must be filled to accurately calculate the SVIs. <code class="xref py py-obj docutils literal notranslate"><span class="pre">SVInsight</span></code> can accomplish this two different ways, either with or without <strong>interpolation</strong>. When interpolation is True, missing values are determined by recalculating the median based on the detailed tables (e.g., the breakdown table of response ranges for a given variable) from the adjacent boundaries. Because interpolating isn’t exact, any boundary that has less than 40 neighboring data points are not interpolated. For areas that are not interpolated, or if interpolation is set to False, holes are filled by taking the next available boundary value. For example, if a block group is missing a value it is replaced with the tract value, and if a tract value is missing it is filled with the county value.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">verbose</span></code> (bool): When set to True, two additional csv values are saved in the Data folder that highlight which locations had holes that needed to be filled and the methodology in which it is filled (_missing_values.csv). If there happens to be an entire column that is missing information, the next highest available boundary is used to fill the entire variable (_missing_columns.csv).</p></li>
 </ul>
-<p>Similar to the <a class="reference internal" href="../apiref/apiref.html#SVInsight.svi.SVInsight.boundaries_data" title="SVInsight.svi.SVInsight.boundaries_data"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SVInsight.boundaries_data()</span></code></a> method, there is an overwrite parameter as well.</p>
+<p>Similar to the <code class="xref py py-meth docutils literal notranslate"><span class="pre">SVInsight.boundaries_data()</span></code> method, there is an overwrite parameter as well.</p>
 </section>
 <section id="configuring-and-calculating-svi">
-<h2>5. Configuring and Calculating SVI<a class="headerlink" href="#configuring-and-calculating-svi" title="Link to this heading">#</a></h2>
-<p>Finally, the <a class="reference internal" href="../apiref/apiref.html#SVInsight.svi.SVInsight.configure_variables" title="SVInsight.svi.SVInsight.configure_variables"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SVInsight.configure_variables()</span></code></a> and <a class="reference internal" href="../apiref/apiref.html#SVInsight.svi.SVInsight.calculate_svi" title="SVInsight.svi.SVInsight.calculate_svi"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SVInsight.calculate_svi()</span></code></a> methods are used to configure and run the SVI calculation.</p>
+<h2>5. Configuring and Calculating SVI<a class="headerlink" href="#configuring-and-calculating-svi" title="Link to this heading">¶</a></h2>
+<p>Finally, the <code class="xref py py-meth docutils literal notranslate"><span class="pre">SVInsight.configure_variables()</span></code> and <code class="xref py py-meth docutils literal notranslate"><span class="pre">SVInsight.calculate_svi()</span></code> methods are used to configure and run the SVI calculation.</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">proj</span><span class="o">.</span><span class="n">configure_variables</span><span class="p">(</span><span class="n">config_file</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">include</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">inverse_vars</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;PERCAP&#39;</span><span class="p">,</span> <span class="s1">&#39;QRICH&#39;</span><span class="p">,</span> <span class="s1">&#39;MDHSEVAL&#39;</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">proj</span><span class="o">.</span><span class="n">calculate_svi</span><span class="p">(</span><span class="n">config_file</span><span class="p">,</span> <span class="n">boundary</span><span class="p">,</span> <span class="n">year</span><span class="p">)</span>
 </pre></div>
 </div>
 <section id="configure-variables">
-<h3>Configure Variables<a class="headerlink" href="#configure-variables" title="Link to this heading">#</a></h3>
-<p>This method prepares the information that will be included in the SVI calculation. This method is useful if you are interested in creating multiple different scenarios of SVI. For example, in some runs you may be interested in all 27 variables, while in others you may only want to include economic related variables. By creating a configuration file for each type of run, each SVI will be saved with the config_name associated with it for easier access and comparison. There are four main parameters of the <a class="reference internal" href="../apiref/apiref.html#SVInsight.svi.SVInsight.configure_variables" title="SVInsight.svi.SVInsight.configure_variables"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SVInsight.configure_variables()</span></code></a> method:</p>
+<h3>Configure Variables<a class="headerlink" href="#configure-variables" title="Link to this heading">¶</a></h3>
+<p>This method prepares the information that will be included in the SVI calculation. This method is useful if you are interested in creating multiple different scenarios of SVI. For example, in some runs you may be interested in all 27 variables, while in others you may only want to include economic related variables. By creating a configuration file for each type of run, each SVI will be saved with the config_name associated with it for easier access and comparison. There are four main parameters of the <code class="xref py py-meth docutils literal notranslate"><span class="pre">SVInsight.configure_variables()</span></code> method:</p>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">config_file</span></code> (str): The name given to the configuration file</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">exclude</span></code> (list): In order to remove a variable from the original list of 27, this parameter accepts a list of variables the user would like to exclude from the configuration.</p></li>
@@ -305,7 +308,7 @@
 </ol>
 </section>
 <section id="calculate-svi">
-<h3>Calculate  SVI<a class="headerlink" href="#calculate-svi" title="Link to this heading">#</a></h3>
+<h3>Calculate  SVI<a class="headerlink" href="#calculate-svi" title="Link to this heading">¶</a></h3>
 <p>With the configuration file set, the final SVI can be calculated. The output geopackage and CSV files will have each variable that is within the configuration file as well as the following SVI variables:</p>
 <ul class="simple">
 <li><p>FA_SVI_Unscaled: The factor analysis method SVI estimate that is unscaled</p></li>
@@ -319,16 +322,16 @@
 </section>
 </section>
 <section id="examine-variables">
-<h2>6. Examine Variables<a class="headerlink" href="#examine-variables" title="Link to this heading">#</a></h2>
-<p>An additional method to investigate variables is the <a class="reference internal" href="../apiref/apiref.html#SVInsight.svi.SVInsight.var_descriptions" title="SVInsight.svi.SVInsight.var_descriptions"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SVInsight.var_descriptions()</span></code></a> method. Given a list of variables, the description can be printed. Similarly, users can access the variables based on the instance of the project to see the long description as well as the raw census variables that make up the numerator and denominator of the variable. Both methods below will print similar information.</p>
+<h2>6. Examine Variables<a class="headerlink" href="#examine-variables" title="Link to this heading">¶</a></h2>
+<p>An additional method to investigate variables is the <code class="xref py py-meth docutils literal notranslate"><span class="pre">SVInsight.var_descriptions()</span></code> method. Given a list of variables, the description can be printed. Similarly, users can access the variables based on the instance of the project to see the long description as well as the raw census variables that make up the numerator and denominator of the variable. Both methods below will print similar information.</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">all_vars_eqs</span><span class="p">[</span><span class="s1">&#39;MEDAGE&#39;</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">proj</span><span class="o">.</span><span class="n">var_descriptions</span><span class="p">([</span><span class="s1">&#39;MEDAGE&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </section>
 <section id="customizing-variables">
-<h2>7. Customizing Variables<a class="headerlink" href="#customizing-variables" title="Link to this heading">#</a></h2>
-<p>Users can also define their own variables using the <a class="reference internal" href="../apiref/apiref.html#SVInsight.svi.SVInsight.var_descriptions" title="SVInsight.svi.SVInsight.var_descriptions"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SVInsight.var_descriptions()</span></code></a> method. If a user is interested in defining an additional variable this would need to be run before the configuration file is produced, which would automatically include the new variable in the calculated SVI (unless placed on the excluded list).</p>
+<h2>7. Customizing Variables<a class="headerlink" href="#customizing-variables" title="Link to this heading">¶</a></h2>
+<p>Users can also define their own variables using the <code class="xref py py-meth docutils literal notranslate"><span class="pre">SVInsight.var_descriptions()</span></code> method. If a user is interested in defining an additional variable this would need to be run before the configuration file is produced, which would automatically include the new variable in the calculated SVI (unless placed on the excluded list).</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">proj</span><span class="o">.</span><span class="n">add_variable</span><span class="p">(</span><span class="n">boundary</span><span class="p">,</span> <span class="n">year</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="n">den</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">description</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -341,10 +344,10 @@
 </ul>
 </section>
 <section id="plotting">
-<h2>8. Plotting<a class="headerlink" href="#plotting" title="Link to this heading">#</a></h2>
-<p>There is also a simple plotting method, <a class="reference internal" href="../apiref/apiref.html#SVInsight.svi.SVInsight.plot_svi" title="SVInsight.svi.SVInsight.plot_svi"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SVInsight.plot_svi()</span></code></a>, to quickly plot a few example plots. There are three options for plotting:</p>
+<h2>8. Plotting<a class="headerlink" href="#plotting" title="Link to this heading">¶</a></h2>
+<p>There is also a simple plotting method, <code class="xref py py-meth docutils literal notranslate"><span class="pre">SVInsight.plot_svi()</span></code>, to quickly plot a few example plots. There are three options for plotting:</p>
 <section id="plot-option-1-single-percentile">
-<h3>Plot option 1: Single percentile<a class="headerlink" href="#plot-option-1-single-percentile" title="Link to this heading">#</a></h3>
+<h3>Plot option 1: Single percentile<a class="headerlink" href="#plot-option-1-single-percentile" title="Link to this heading">¶</a></h3>
 <p>With plot_option equal to 1, a single SVI will be plotted based on a given year, boundary, configuration file, and variable name. While the variable name can be any existing variable within the geopackage, it will automatically default to plotting as a percentile because of the relative nature of the SVI calculation and it is <strong>most appropriate to analyze calculated SVIs in terms of their rank/percentile.</strong></p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">geopackages</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2017</span><span class="p">,</span> <span class="n">boundary</span><span class="p">,</span> <span class="n">config_file</span><span class="p">,</span> <span class="s1">&#39;FA_SVI_Percentile&#39;</span><span class="p">]</span>
@@ -355,12 +358,12 @@
 <figure class="align-default" id="id2">
 <a class="reference internal image-reference" href="../_images/single_plot.png"><img alt="Map showing SVI for 2017 Travis County" src="../_images/single_plot.png" style="width: 450.0px; height: 450.0px;" /></a>
 <figcaption>
-<p><span class="caption-text">2017 Block Group Social Vulnerability Estimate for Travis County using Factor Analysis method</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+<p><span class="caption-text">2017 Block Group Social Vulnerability Estimate for Travis County using Factor Analysis method</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="plot-option-2-double-percentile">
-<h3>Plot option 2: Double percentile<a class="headerlink" href="#plot-option-2-double-percentile" title="Link to this heading">#</a></h3>
+<h3>Plot option 2: Double percentile<a class="headerlink" href="#plot-option-2-double-percentile" title="Link to this heading">¶</a></h3>
 <p>With plot_option equal to 2, two different SVIs can be plotted next to each other for a visual comparison. These could be from the same geopackage comparing the factor analysis and rank methods, or two different configurations, two different boundaries, etc. The geopackages input should be a nested list in the same format as plot_option 1.</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">geopackages</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">2017</span><span class="p">,</span> <span class="n">boundary</span><span class="p">,</span> <span class="n">config_file</span><span class="p">,</span> <span class="s1">&#39;FA_SVI_Percentile&#39;</span><span class="p">],</span> <span class="p">[</span><span class="mi">2018</span><span class="p">,</span> <span class="n">boundary</span><span class="p">,</span> <span class="n">config_file</span><span class="p">,</span> <span class="s1">&#39;FA_SVI_Percentile&#39;</span><span class="p">]]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">figure</span> <span class="o">=</span> <span class="n">proj</span><span class="o">.</span><span class="n">plot_svi</span><span class="p">(</span><span class="n">plot_option</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">geopackages</span><span class="p">)</span>
@@ -370,12 +373,12 @@
 <figure class="align-default" id="id3">
 <a class="reference internal image-reference" href="../_images/double_plot.png"><img alt="Map showing SVI for 2017 and 2018 Travis County" src="../_images/double_plot.png" style="width: 900.0px; height: 450.0px;" /></a>
 <figcaption>
-<p><span class="caption-text">2017 and 2018 Block Group Social Vulnerability Estimate for Travis County using Factor Analysis method</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
+<p><span class="caption-text">2017 and 2018 Block Group Social Vulnerability Estimate for Travis County using Factor Analysis method</span><a class="headerlink" href="#id3" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="plot-option-3-full-comparison">
-<h3>Plot option 3: Full comparison<a class="headerlink" href="#plot-option-3-full-comparison" title="Link to this heading">#</a></h3>
+<h3>Plot option 3: Full comparison<a class="headerlink" href="#plot-option-3-full-comparison" title="Link to this heading">¶</a></h3>
 <p>When plot_option is equal to 3, a more detailed comparison is calculated that will produce a difference plot and calculate a linear regression. Because the difference map and linear regression require the same set of input geoids (i.e., the same locations in the geopackage), it is currently required that the variables come from the same geopackage, and its intended purpose is to therefore compare the differences between the Factor Analysis and Rank Method methodologies that have the same configuration. The geopackages input should be formatted as follows: [year, boundary, config]. If a variable option is passed it is ignored. The additional plots show the following information:</p>
 <ul class="simple">
 <li><p>Difference plot: Shows the The FA_SVI_Rank minus the RM_SVI_Rank to highlight areas where the factor analysis method is under (negative) and over (positive) predicting SVI rank when compared to the rank method.</p></li>
@@ -389,7 +392,7 @@
 <figure class="align-default" id="id4">
 <a class="reference internal image-reference" href="../_images/complete_plot.png"><img alt="Map showing SVI comparison for 2018 Travis County (factor analysis method versus rank method)" src="../_images/complete_plot.png" style="width: 750.0px; height: 600.0px;" /></a>
 <figcaption>
-<p><span class="caption-text">Comparison between factor analysis and rank methods: 2018 Block Group Social Vulnerability Estimate for Travis County</span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
+<p><span class="caption-text">Comparison between factor analysis and rank methods: 2018 Block Group Social Vulnerability Estimate for Travis County</span><a class="headerlink" href="#id4" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
@@ -482,8 +485,9 @@
     </aside>
   </div>
 </div><script src="../_static/documentation_options.js?v=5929fcd5"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=32e29ea5"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     </body>
 </html>

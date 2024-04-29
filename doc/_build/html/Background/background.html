@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Understanding Iterative Factor Analysis Results" href="understanding.html" /><link rel="prev" title="Getting Started" href="../Getting_Started/quickstart.html" />
 
-    <!-- Generated with Sphinx 7.2.6 and Furo 2024.01.29 -->
+    <!-- Generated with Sphinx 7.3.7 and Furo 2024.01.29 -->
         <title>Background - SVInsight documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=362ab14a" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=135e06be" />
@@ -171,7 +171,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../apiref/license.html">License</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../Examples/examples.html">Examples</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Examples/examples.html">Examples</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Examples</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Examples/SVInsight_example_SETx.html">SVInsight Example: Southeast Texas</a></li>
+</ul>
+</li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Contributions/contributions.html">Issues, Questions, and Contributions</a></li>
@@ -213,21 +216,21 @@
         </div>
         <article role="main">
           <section id="background">
-<h1>Background<a class="headerlink" href="#background" title="Link to this heading">#</a></h1>
+<h1>Background<a class="headerlink" href="#background" title="Link to this heading">¶</a></h1>
 <section id="motivation">
-<h2>Motivation<a class="headerlink" href="#motivation" title="Link to this heading">#</a></h2>
+<h2>Motivation<a class="headerlink" href="#motivation" title="Link to this heading">¶</a></h2>
 <p>SVInsight was developed to provide an open-source tool for creating social vulnerability indices or SVIs based on user defined study areas and input variables. SVInsight uses two methodologies to create indices based on existing scholarly research: (1) a factor analysis method and (2) a rank method. This tool’s purpose is to provide researchers with the ability to quickly create exploratory estimates of vulnerability based on existing and known relationships between socio-demographic variables and a community’s sensitivity (a proxy for vulnerability).</p>
 <p>While SVInsight is capable of rapidly producing tailor made estimates of relative vulnerability of a given region for researchers and/or practitioners, it does not replace the in-depth investigation required to definitively define what makes someone more or less vulnerable. Indices created with SVInsight can be used as a starting point for understanding the complex relationship between socio-demographic variables and community characteristics including vulnerability, sensitivity, and adaptive capacity by highlighting prominent geographic disparities. It is further important to note that vulnerability estimates are relative, and calculated scores should be taken in the context of the study area being examined.</p>
 <p>This package was specifically written in conjunction with past and ongoing projects at the University of Texas at Austin <a class="footnote-reference brackets" href="#id8" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a> <a class="footnote-reference brackets" href="#id9" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a> <a class="footnote-reference brackets" href="#id10" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a>. More detailed information regarding funding sources can be found in the <a class="reference internal" href="../Acknowledgements/acknowledgements.html"><span class="doc">Acknowledgements section</span></a>.</p>
 </section>
 <section id="methodology">
-<h2>Methodology<a class="headerlink" href="#methodology" title="Link to this heading">#</a></h2>
+<h2>Methodology<a class="headerlink" href="#methodology" title="Link to this heading">¶</a></h2>
 <section id="data-source">
-<h3>Data Source<a class="headerlink" href="#data-source" title="Link to this heading">#</a></h3>
+<h3>Data Source<a class="headerlink" href="#data-source" title="Link to this heading">¶</a></h3>
 <p>All data comes from the American Community Survey 5-Year Estimates because they contain data at the Census block group and tract level. More information on data quality can be found on their <a class="reference external" href="https://www.census.gov/data/developers/data-sets/acs-5year.html">website</a>.</p>
 </section>
 <section id="iterative-factor-analysis">
-<h3>Iterative Factor Analysis<a class="headerlink" href="#iterative-factor-analysis" title="Link to this heading">#</a></h3>
+<h3>Iterative Factor Analysis<a class="headerlink" href="#iterative-factor-analysis" title="Link to this heading">¶</a></h3>
 <p>This methodology is heavily influenced by the original SoVI® <a class="footnote-reference brackets" href="#id7" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> developed by Dr. Susan Cutter. By utilizing a data reduction methodology, a large subset of American Community Survey 5-Year Estimate variables can be dimensionally reduced and combined into a single index. Both principal component analyses and factor analyses are data reduction techniques that have been utilized to create vulnerability indices. A principal component analysis (PCA) reduces data by creating one or more index variables, or ‘components,’ by using a linear combination (i.e., a weighted average) from a larger set of measured variables. The purpose of a PCA is to determine the optimal number of components, the optimal choice of measured variables for each component, and the optimal weights. A factor analysis (FA) is a model of latent variables. A ‘latent variable’ cannot be directly measured with a single variable. A common example used to describe this is we cannot directly measure something like social anxiety, but we can measure whether someone has a high or low social anxiety based on a set of questions like “I am uncomfortable in large groups” or “ I get nervous talking to strangers.” We utilize a factor analysis approach because it is the data reduction methodology most often associated with creating composite indices, which is our end goal.</p>
 <p>The follow are the steps in the iterative factor analysis approach:</p>
 <ol class="arabic simple">
@@ -299,12 +302,12 @@
 <p>The purpose of the factor analysis and composite score index in the scope of social vulnerability is to determine which variables are most distinguishable across the study area. The variables with the highest variability are likely to influence the index the most and therefore they must be taken into context of the study area. For example, in Austin, TX a variable that is highly variant across the city is the percent of population that identifies as Hispanic. If this trait contributes to social vulnerability, then our index is working properly to identify areas of higher vulnerability. However, if we discovered that this trait does not contribute to social vulnerability, we cannot include it in this workflow because we are unintentionally weighting the index incorrectly. That is why it is <em>imperative that indices are developed through collaborations with local experts</em> to identify which variables are likely contributing to vulnerability.</p>
 </section>
 <section id="rank-method">
-<h3>Rank Method<a class="headerlink" href="#rank-method" title="Link to this heading">#</a></h3>
+<h3>Rank Method<a class="headerlink" href="#rank-method" title="Link to this heading">¶</a></h3>
 <p>Another commonly employed method to estimate social vulnerability is a ranking method, which was popularized by the <a class="reference external" href="https://www.atsdr.cdc.gov/placeandhealth/svi/index.html">Center for Disease Control’s Social Vulnerability Index</a> <a class="footnote-reference brackets" href="#id11" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>5<span class="fn-bracket">]</span></a>. This method is a more simplified way to produce an index for a given area. Each variable of interest is sorted from high to low and ranked. For each location within the study area, the ranks are summed so that locations with a higher overall rank have a greater vulnerability score. In our method, the final summed ranks are also minmax scaled so that the most vulnerable block group has a composite index of 1 and the least as a composite index of 0.</p>
 </section>
 </section>
 <section id="variables">
-<span id="id6"></span><h2>Variables<a class="headerlink" href="#variables" title="Link to this heading">#</a></h2>
+<span id="id6"></span><h2>Variables<a class="headerlink" href="#variables" title="Link to this heading">¶</a></h2>
 <p>SVInsight comes with a standard set of 27 variables which come from the original principal component analysis method, SoVI®. We omit two variables from the original list of 29 due to data availability issues for all of the years and geographic boundaries of interest (the percentage of the population living in nursing facilities, and the number of hospitals per capita). It is important to note that the CDC SVI uses a list of 16 variables that are similar to those from the SoVI® method. Determining which or how many variables to use depends completely on the study area and objectives of the researcher/practitioner and can greatly influence the estimates. Special consideration must be taken to determine the most appropriate set of variables to use.</p>
 <p>The variables, there definitions, and the American Community Survey 5-Year Estimate sources can be found below:</p>
 <ul class="simple">
@@ -500,7 +503,7 @@
 </ul>
 </section>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">¶</a></h2>
 <aside class="footnote-list brackets">
 <aside class="footnote brackets" id="id7" role="note">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">1</a><span class="fn-bracket">]</span></span>
@@ -603,8 +606,9 @@
     </aside>
   </div>
 </div><script src="../_static/documentation_options.js?v=5929fcd5"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=32e29ea5"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     </body>
 </html>

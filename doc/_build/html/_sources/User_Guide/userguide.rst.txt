@@ -29,7 +29,7 @@ The first step to the project is importing :obj:`SVInsight` and setting the proj
 
 .. doctest::
 
-   >>> from SVInsight import SVInsight as svi 
+   >>> from svinsight import SVInsight as svi 
    >>> project_name = 'Travis_County'
    >>> file_path = "/User/Documents"
    >>> api_key = os.environ.get('API_KEY')
@@ -84,7 +84,7 @@ With the boundary and year set, we can extract the necessary raw census data. In
 4. Extract Raw Data and Filling Holes
 -------------------------------------
 
-The next step is to extract the raw census data using the :meth:`SVInsight.census_data` method. :obj:`SVInsight` starts has a default set of 27 social and economic variables of interest, which are detailed in the :ref:`variables` section. This method specifically pulls the raw data, and the variables themselves are calculated later. In this example, we are continuing to us the same boundary and year as the boundaries we just extracted, in order to produce a geopackaged version of raw data. Furthermore we have two additional parameters: ``interpolate`` and ``verbose``. 
+The next step is to extract the raw census data using the :meth:`SVInsight.census_data` method. :obj:`SVInsight` starts has a default set of 27 social and economic variables of interest, which are detailed in the :ref:`variables` section. This method specifically pulls the raw data, and the variables themselves are calculated later. In this example, we are continuing to us the same boundary and year as the boundaries we just extracted, in order to produce a geopackaged version of raw data. Furthermore we have two additional parameters: ``interpolate`` and ``verbose``. **It is important to note** that the Census API will sometimes time out, and if Census data isn't being pulled, waiting a few seconds/minutes and re-running usually solves the problem.
 
 .. doctest::
 

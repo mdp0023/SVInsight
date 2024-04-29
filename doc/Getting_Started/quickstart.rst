@@ -10,7 +10,7 @@ First we load the SVInsight package, set the necessary variables, and create the
 
 .. doctest::
 
-    >>> from SVInsight import SVInsight as svi
+    >>> from svinsight import SVInsight as svi
     >>> project_name = 'YOUR PROJECT NAME HERE'
     >>> file_path = "YOUR PARENT FOLDER HERE"
     >>> api_key = 'YOUR CENSUS API KEY HERE'

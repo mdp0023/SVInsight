@@ -1,4 +1,12 @@
 Examples
 ========
 
-Examples will go here.
+Bellow you will find a Jupyter Notebook that computes an SVI for the Southeast Texas region.
+
+
+Example Notebooks
+#################
+.. toctree::
+   :maxdepth: 2
+    
+   SVInsight_example_SETx.ipynb
