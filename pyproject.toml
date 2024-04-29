@@ -1,35 +1,30 @@
 [build-system]
-requires = ["setuptools >= 61.0"]
-build-backend = "setuptools.build_meta"
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
 
-[project]
+[tool.poetry]
 name = "SVInsight"
 version = "0.3.4"
 description = "Create social vulnerabilty index"
-readme = "long_desc.md"
+authors = ["Matthew Preisser <mattpreisser@gmail.com>"]
 license = { file = "LICENSE.txt" }
-requires-python = ">=3.9"
+readme = "long_desc.md"
 
+[tool.poetry.dependencies]
+python = "^3.9"
+census = "*"
+factor_analyzer = "*"
+geopandas = "*"
+numpy = "*"
+pandas = "*"
+PyYAML = "*"
+scikit_learn = "*"
+openpyxl = "*"
+matplotlib = "*"
 
-[options]
-python_requires = ">=3.9"
-install_requires = [
-    "census",
-    "factor_analyzer",
-    "geopandas",
-    "numpy",
-    "pandas",
-    "PyYAML",
-    "scikit_learn",
-    "openpyxl",
-    "matplotlib"
-]
+[tool.poetry.dev-dependencies]
+# Add your development dependencies here
 
-[tool.setuptools]
-packages = ["SVInsight"]
-
-[options.extras_require]
-docs = ["sphinx"]
-
-[metadata.urls]
-Documentation = "https://mdp0023.github.io/SVInsight/"
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
