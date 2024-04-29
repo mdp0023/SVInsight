@@ -196,7 +196,7 @@ years = [2017]
 config='config'
 
 @pytest.mark.parametrize("boundary, year", [(b, y) for b in boundaries for y in years])
-def test_single_county_economic_project(project, boundary, year, overwrite=True):
+def test_single_county_economic_project(project, boundary, year, overwrite=False):
     """test creating and running a multiple states project for different years and boundaries"""
     run_svi_workflow(project, boundary, year, overwrite=overwrite, varchange=True)
 ##############################################################################################
