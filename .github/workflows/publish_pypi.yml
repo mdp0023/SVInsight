@@ -13,14 +13,18 @@ jobs:
       uses: actions/setup-python@v4
       with:
         python-version: "3.x"
-    - name: Install pypa/build
-      run: >-
-        python3 -m
-        pip install
-        build
-        --user
+    - name: Install Poetry
+      run: |
+        curl -sSL https://install.python-poetry.org | python3 -
+    - name: Configure Poetry
+      run: |
+        poetry config virtualenvs.create false
+    - name: Install dependencies
+      run: |
+        poetry install
     - name: Build a binary wheel and a source tarball
-      run: python3 -m build
+      run: |
+        poetry build
     - name: Store the distribution packages
       uses: actions/upload-artifact@v3
       with:
@@ -46,11 +50,16 @@ jobs:
       with:
         name: python-package-distributions
         path: dist/
+    - name: Install Poetry
+      run: |
+        curl -sSL https://install.python-poetry.org | python3 -
+    - name: Configure Poetry
+      run: |
+        poetry config virtualenvs.create false
+        poetry config pypi-token.pypi ${{ secrets.PYPI_API_TOKEN }}
     - name: Publish distribution 📦 to PyPI
-      uses: pypa/gh-action-pypi-publish@release/v1
-      with:
-        user: __token__
-        password: ${{ secrets.PYPI_API_TOKEN }}
+      run: |
+        poetry publish --build
 
         
   # github-release:
