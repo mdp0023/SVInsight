@@ -354,7 +354,7 @@ class SVInsight:
             # convert data_df to geopandas
             data_df = gpd.GeoDataFrame(data_df, geometry=data_df['geometry'])
             # reset index of geodataframe
-            data_df['index'] = data_df['GEOID'].astype(int)
+            data_df['index'] = data_df['GEOID'].astype(np.int64)
             data_df = data_df.set_index('index')
 
             # Fill in missing holes
@@ -464,7 +464,7 @@ class SVInsight:
             # convert data_df to geopandas
             data_df = gpd.GeoDataFrame(data_df, geometry=data_df['geometry'])
             # reset index of geodataframe
-            data_df['index'] = data_df['GEOID'].astype(int)
+            data_df['index'] = data_df['GEOID'].astype(np.int64)
             data_df = data_df.set_index('index')
             # Fill in missing holes
             data_df = self._fill_holes(data_df, boundary, self.geoids, self.api_key, year, interpolate=True, verbose=False)
@@ -1332,7 +1332,7 @@ class SVInsight:
 
         """
         # Fill in missing holes
-        miss_vals = data_df.where(data_df.map(lambda x: isinstance(x, (int, float)) and x < 0)).stack().index
+        miss_vals = data_df.where(data_df.map(lambda x: isinstance(x, (np.int64, float)) and x < 0)).stack().index
         # Find the unique missing_vars
         unique_missing_vals = []
         for miss_val in miss_vals:
