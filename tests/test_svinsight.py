@@ -3,7 +3,7 @@ import sys
 sys.path.insert(0, '/Users/matthewpreisser/Documents/Research/Codes/SVInsight')
 
 # import package
-from SVInsight import svinsight as svi 
+from svinsight import svinsight as svi 
 import os
 import pytest
 import geopandas as gpd
