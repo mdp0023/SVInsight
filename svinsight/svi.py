@@ -299,7 +299,7 @@ class SVInsight:
     # Method to pull census data and fill holes
     def census_data(self, boundary: str = 'bg', year: int = 2019, interpolate: bool = True, verbose: bool = False, overwrite: bool = False):
         """
-        Pulls Census data for a specific boundary and year.
+        Pulls Census data for a specific boundary and year. The Census API can sometimes error out. Waiting a few seconds/minutes and re-running should solve the issue. 
 
         :param boundary: The boundary type to retrieve data for. Valid options are 'bg' (block group) and 'tract' (census tract).
         :type boundary: str
@@ -1078,6 +1078,18 @@ class SVInsight:
             else:
                 data_pre = c.acs5.state_county(var, state, county, year=year)
             return data_pre
+        
+           # TODO: Add retry attempt
+            # import time
+            # for i in range(5):
+            #     try:
+            #         data_pre = c.acs5.state_county_blockgroup(var, state, county, Census.ALL, year=year)
+            #         break
+            #     except Exception as e:
+            #         print(f"Attempt {i+1} failed with error: {e}")
+            #         if i < 4:  # Don't sleep after the last attempt
+            #             time.sleep(5)
+
         
         for geoid in geoids:
             if len(geoid) == 2:

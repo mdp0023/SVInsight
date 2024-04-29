@@ -12,7 +12,7 @@ root_directory = os.path.dirname(os.path.dirname(this_directory))
 sys.path.insert(0, root_directory)
 
 # import package
-from svinsight import SVInsight as svi 
+from SVInsight import SVInsight as svi 
 import os
 import pytest
 import geopandas as gpd
