@@ -1,9 +1,17 @@
 
 import sys
-sys.path.insert(0, '/Users/matthewpreisser/Documents/Research/Codes/SVInsight')
+s
+# Get the directory that contains this file
+this_directory = os.path.dirname(os.path.abspath(__file__))
+
+# Get the root directory of your project (two levels up from this file)
+root_directory = os.path.dirname(os.path.dirname(this_directory))
+
+# Add the root directory to sys.path
+sys.path.insert(0, root_directory)
 
 # import package
-from SVInsight import SVInsight as svi 
+from svinsight import SVInsight as svi 
 import os
 import pytest
 import geopandas as gpd

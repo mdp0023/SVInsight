@@ -4,20 +4,20 @@ sys.path.insert(0, '/Users/matthewpreisser/Documents/Research/Codes/SVInsight')
 
 
 # import package
-from SVInsight import SVInsight as svi 
+from svinsight import SVInsight as svi 
 import matplotlib.pyplot as plt
 
-# # set variables
-# project_name = 'Travis_County'
-# file_path = "/Users/matthewpreisser/Documents/Research/Codes/SVInsight"
-# api_key = os.environ.get('API_KEY')
-# geoids = ['48453']
+# set variables
+project_name = 'Travis_County'
+file_path = "/Users/matthewpreisser/Documents/Research/Codes/SVInsight"
+api_key = os.environ.get('API_KEY')
+geoids = ['48453']
 
-# # create instance
-# test = svi(project_name = project_name, 
-#     file_path = file_path, 
-#     api_key = api_key,
-#     geoids=geoids)
+# create instance
+test = svi(project_name = project_name, 
+    file_path = file_path, 
+    api_key = api_key,
+    geoids=geoids)
 
 # # set the boundary and year variables
 # boundary='bg'
