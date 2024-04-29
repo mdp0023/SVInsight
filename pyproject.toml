@@ -24,7 +24,3 @@ matplotlib = "*"
 
 [tool.poetry.dev-dependencies]
 # Add your development dependencies here
-
-[build-system]
-requires = ["poetry>=0.12"]
-build-backend = "poetry.masonry.api"
