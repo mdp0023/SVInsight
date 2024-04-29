@@ -1,3 +1,3 @@
 __version__= "0.3.4"
 
-from SVInsight.svi import SVInsight
+from svinsight.svi import svinsight
