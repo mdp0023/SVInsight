@@ -7,7 +7,7 @@ name = "SVInsight"
 version = "0.3.4"
 description = "Create social vulnerabilty index"
 authors = ["Matthew Preisser <mattpreisser@gmail.com>"]
-license = { file = "LICENSE.txt" }
+license = "MIT"
 readme = "long_desc.md"
 
 [tool.poetry.dependencies]
