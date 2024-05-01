@@ -17,7 +17,7 @@ To *pip*-install this package use the following command:
 
 .. doctest::
 
-    >>> from SVInsight import SVInsight as svi
+    >>> from svinsight import SVInsight as svi
 
 
 Installation via *conda*

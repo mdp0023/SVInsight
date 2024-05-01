@@ -21,7 +21,7 @@ To quickly install the package, use `pip` to install via PyPI:
 
 SVInsight can then be imported into python:
 
-    >>> from SVInsight import SVInsight as svi
+    >>> from svinsight import SVInsight as svi
 
 
 ## Contributing
