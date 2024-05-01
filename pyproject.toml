@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "svinsight"
-version = "0.3.6"
+version = "0.3.61"
 description = "Create social vulnerability index"
 authors = ["Matthew Preisser <mattpreisser@gmail.com>"]
 license = "MIT"
