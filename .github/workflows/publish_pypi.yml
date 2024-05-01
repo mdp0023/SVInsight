@@ -49,6 +49,11 @@ jobs:
       with:
         name: python-package-distributions
         path: dist/
+    - name: Download pyproject.toml
+      uses: actions/download-artifact@v3
+      with:
+        name: pyproject-toml
+        path: .
     - name: Install Poetry
       run: |
         curl -sSL https://install.python-poetry.org | python3 -
