@@ -241,11 +241,13 @@
 </section>
 <section id="all-refactor-variances">
 <h2>All Refactor Variances<a class="headerlink" href="#all-refactor-variances" title="Link to this heading">¶</a></h2>
-<p>This shows the four main variance statistics associated with a factor analysis for each iteration.
-- SS Loadings: The sum of the squared loadings for the factor. If a factor’s SS loading is greater than 1 it is worth keeping.
-- Proportion Variance: The proportion of the variance that a factor accounts for. The first factor will have the highest proportion, due to our rotation earlier, and subsequent factors will have a decreasing proportion of explained variance. <strong>When calculating the final index, each factor is multiplied by its proportion of variance to weight the variables.</strong>
-- Cumulative Variance: The cumulative sum of the variance that is explained with each factor. The overall cumulative variance is how much of the original system’s variables are explained with this new reduced dimensionality. <strong>This is important because it shows us how much of the original data’s variance we are losing.</strong> If we are losing too much, then we need to reconsider how many factors we have reduced down to. If it is too close to 100% then we can theoretically reduce down more.
-- Ratio Variance: Ratio of proportion of variance to cumulative variance.</p>
+<p>This shows the four main variance statistics associated with a factor analysis for each iteration.</p>
+<ul class="simple">
+<li><p>SS Loadings: The sum of the squared loadings for the factor. If a factor’s SS loading is greater than 1 it is worth keeping.</p></li>
+<li><p>Proportion Variance: The proportion of the variance that a factor accounts for. The first factor will have the highest proportion, due to our rotation earlier, and subsequent factors will have a decreasing proportion of explained variance. <strong>When calculating the final index, each factor is multiplied by its proportion of variance to weight the variables.</strong></p></li>
+<li><p>Cumulative Variance: The cumulative sum of the variance that is explained with each factor. The overall cumulative variance is how much of the original system’s variables are explained with this new reduced dimensionality. <strong>This is important because it shows us how much of the original data’s variance we are losing.</strong> If we are losing too much, then we need to reconsider how many factors we have reduced down to. If it is too close to 100% then we can theoretically reduce down more.</p></li>
+<li><p>Ratio Variance: Ratio of proportion of variance to cumulative variance.</p></li>
+</ul>
 <p>For most studies, especially exploratory analyses, it is acceptable to have a cumulative variance as low as 60%, and sometimes as low as 50% <a class="footnote-reference brackets" href="#id4" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> <a class="footnote-reference brackets" href="#id5" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a> <a class="footnote-reference brackets" href="#id6" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a> .</p>
 </section>
 <section id="final-variances">

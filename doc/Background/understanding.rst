@@ -34,6 +34,7 @@ Based on the variables within the final index, each has a loading factor associa
 All Refactor Variances
 ----------------------
 This shows the four main variance statistics associated with a factor analysis for each iteration.
+
 - SS Loadings: The sum of the squared loadings for the factor. If a factor’s SS loading is greater than 1 it is worth keeping.
 - Proportion Variance: The proportion of the variance that a factor accounts for. The first factor will have the highest proportion, due to our rotation earlier, and subsequent factors will have a decreasing proportion of explained variance. **When calculating the final index, each factor is multiplied by its proportion of variance to weight the variables.**
 - Cumulative Variance: The cumulative sum of the variance that is explained with each factor. The overall cumulative variance is how much of the original system’s variables are explained with this new reduced dimensionality. **This is important because it shows us how much of the original data’s variance we are losing.** If we are losing too much, then we need to reconsider how many factors we have reduced down to. If it is too close to 100% then we can theoretically reduce down more.
