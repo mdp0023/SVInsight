@@ -1,9 +1,10 @@
 name: Publish Python distribution to PyPI
 
-on: push
-#  push: 
-#    tags:
-#      - "v*.*.*"
+#on: push
+on:
+ push: 
+   tags:
+     - "v*.*.*"
 jobs:
   build:
     runs-on: ubuntu-latest
