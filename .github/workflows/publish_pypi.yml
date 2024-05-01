@@ -58,9 +58,10 @@ jobs:
         poetry config pypi-token.pypi ${{ secrets.PYPI_API_TOKEN }}
     - name: Publish distribution 📦 to PyPI
       run: |
+        cd dist
         pwd
         ls -al
-        poetry publish dist/*
+        poetry publish 
 #        poetry publish --build
 
         
