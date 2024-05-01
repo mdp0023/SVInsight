@@ -60,10 +60,7 @@ jobs:
       run: |
         pwd
         ls -al
-        cd ..
-        pwd
-        ls -al
-        poetry publish
+        poetry publish dist/*
 #        poetry publish --build
 
         
