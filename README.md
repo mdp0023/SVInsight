@@ -23,6 +23,28 @@ SVInsight can then be imported into python:
 
     >>> from svinsight import SVInsight as svi
 
+## Quick Guide:
+
+In its simplest form the SVInsight workflow takes 5 lines of code:
+
+    >>> project = svi(project_name, file_path, api_key, geoids)
+    >>> project.boundaries_data(boundary, year)
+    >>> project.census_data(boundary, year)
+    >>> project.configure_variables(config_file)
+    >>> project.calculate_svi(config_file, boundary, year)
+
+Some typical compute times that can be expected to run the workflow for various locations at the Block Group level can be found below:
+
+| Location              | Compute Time (seconds) |
+| --------------------- | ---------------------- | 
+| Texas                 | 125.75                 | 
+| New York              | 120.10                 | 
+| Connecticut           | 42.25                  |
+| Los Angeles, CA       | 65.60                  |
+| Providence County, RI | 27.22                  |
+| Travis County, TX     | 26.34                  |
+
+
 
 ## Contributing
 We welcome contributions to SVInsight. Please open an issue or a pull request if there is functionality you would like to see or propose. Refer to our [contributing guide](https://mdp0023.github.io/SVInsight/Contributions/contributions.htmll) for more information.
