@@ -14,7 +14,7 @@ sys.path.insert(0, this_directory)
 sys.path.insert(0, dir1)
 sys.path.insert(0, dir2)
 # import package
-from SVInsight import SVInsight as svi 
+from svinsight import SVInsight as svi 
 
 # set variables
 project_name = 'Harris_County'
