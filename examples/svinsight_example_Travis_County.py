@@ -1,6 +1,5 @@
 import sys
 import os
-#sys.path.insert(0, '/Users/matthewpreisser/Documents/Research/Codes/SVInsight')
 
 # Get the directory that contains this file
 this_directory = os.path.dirname(os.path.abspath(__file__))
