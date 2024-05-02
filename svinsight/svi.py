@@ -1096,8 +1096,10 @@ class SVInsight:
                 county = Census.ALL
                 state = geoid
             else:
-                county = int(geoid[2:])
-                state = int(geoid[:2])
+                # county = int(geoid[2:])
+                # state = int(geoid[:2])
+                county = geoid[2:]
+                state = geoid[:2]
 
             with ThreadPoolExecutor() as executor:
                 futures = {executor.submit(fetch_data, var, state, county) for var in vars}
