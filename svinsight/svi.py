@@ -1114,11 +1114,11 @@ class SVInsight:
             data_df['index'] = data_df['state'] + data_df['county'] + data_df['tract'] + data_df['block group']
             data_df['bg_fips'] = data_df['state'] + data_df['county'] + data_df['tract'] + data_df['block group']
             data_df['tract_fips'] = data_df['state'] + data_df['county'] + data_df['tract']
-            data_df['country_fips'] = data_df['state'] + data_df['county']
+            data_df['county_fips'] = data_df['state'] + data_df['county']
         elif boundary == 'tract':
             data_df['index'] = data_df['state'] + data_df['county'] + data_df['tract']
             data_df['tract_fips'] = data_df['state'] + data_df['county'] + data_df['tract']
-            data_df['country_fips'] = data_df['state'] + data_df['county']
+            data_df['county_fips'] = data_df['state'] + data_df['county']
         else:
             data_df['index'] = data_df['state'] + data_df['county']
             data_df['county_fips'] = data_df['state'] + data_df['county']
