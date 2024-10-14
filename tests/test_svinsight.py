@@ -24,7 +24,7 @@ import geopandas as gpd
 # set some initial value
 project_name='test_proj'
 file_path=os.getcwd()
-api_key='test_api_key'
+api_key=os.environ.get('API_KEY')
 geoids=['48453']
 
 def test_svi():

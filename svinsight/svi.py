@@ -166,12 +166,12 @@ class SVInsight:
         :return: The boundary data as a GeoDataFrame.
         :rtype: gpd.GeoDataFrame
 
-        :raises ValueError: If the boundary type is invalid, the year is not between 2013 and 2021, or geoids not properly formatted.
+        :raises ValueError: If the boundary type is invalid, the year is not between 2013 and 2022, or geoids not properly formatted.
         """
         
         # Validate Variables
         self._validate_value(boundary, ['bg', 'tract'], 'boundary')
-        self._validate_value(year, [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021], 'year')
+        self._validate_value(year, [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022], 'year')
         self._validate_format(boundary, str, 'boundary')
         self._validate_format(year, int, 'year')
 
@@ -312,7 +312,7 @@ class SVInsight:
         :param overwrite: Whether to overwrite existing data. Defaults to False.
         :type overwrite: bool, optional
 
-        :raises ValueError: If the boundary type is invalid or the year is not between 2013 and 2021.
+        :raises ValueError: If the boundary type is invalid or the year is not between 2013 and 2022.
         :raises FileNotFoundError: If the shapefile for the specified boundary and year does not exist.
 
         :return: None
@@ -320,7 +320,7 @@ class SVInsight:
         """
         # Validate Variables
         self._validate_value(boundary, ['bg', 'tract'], 'boundary')
-        self._validate_value(year, [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021], 'year')
+        self._validate_value(year, [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022], 'year')
         self._validate_format(boundary, str, 'boundary')
         self._validate_format(year, int, 'year')
 
@@ -409,7 +409,7 @@ class SVInsight:
         :type description: str, optional
         
         :raises ValueError: If the variable name already exists.
-        :raises ValueError: If the boundary type is invalid or the year is not between 2013 and 2021.
+        :raises ValueError: If the boundary type is invalid or the year is not between 2013 and 2022.
         :raises FileNotFoundError: If the raw data file doesn't exist. Run the census_data method first.
         
         :return: None
@@ -418,7 +418,7 @@ class SVInsight:
         
         # Validate Variables
         self._validate_value(boundary, ['bg', 'tract'], 'boundary')
-        self._validate_value(year, [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021], 'year')
+        self._validate_value(year, [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022], 'year')
         
         # if name of variable already exists, raise error
         if name in self.all_vars_eqs:
@@ -530,7 +530,7 @@ class SVInsight:
         :type year: int
 
         :returns: None
-        :raises ValueError: If the boundary type is invalid or the year is not between 2013 and 2021,
+        :raises ValueError: If the boundary type is invalid or the year is not between 2013 and 2022,
 
         This method reads a configuration file in YAML format, loads the raw data as a dataframe,
         calculates the SVI using two different methods, and saves the results to output files.
@@ -556,7 +556,7 @@ class SVInsight:
         """
         # validate inputs
         self._validate_value(boundary, ['bg', 'tract'], 'boundary')
-        self._validate_value(year, [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021], 'year')
+        self._validate_value(year, [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022], 'year')
 
         # open the configuration file
         with open(os.path.join(self.variables, f"{config_file}.yaml")) as stream:
@@ -773,7 +773,7 @@ class SVInsight:
 
 
         :returns: matplotlib figure object
-        :raises ValueError: If the boundary type is invalid or the year is not between 2013 and 2021,
+        :raises ValueError: If the boundary type is invalid or the year is not between 2013 and 2022,
 
         
         This method quickly creates an example SVI plot either by itself or in a comparative format. The plot options and their required information can be found below.
@@ -1114,11 +1114,11 @@ class SVInsight:
             data_df['index'] = data_df['state'] + data_df['county'] + data_df['tract'] + data_df['block group']
             data_df['bg_fips'] = data_df['state'] + data_df['county'] + data_df['tract'] + data_df['block group']
             data_df['tract_fips'] = data_df['state'] + data_df['county'] + data_df['tract']
-            data_df['country_fips'] = data_df['state'] + data_df['county']
+            data_df['county_fips'] = data_df['state'] + data_df['county']
         elif boundary == 'tract':
             data_df['index'] = data_df['state'] + data_df['county'] + data_df['tract']
             data_df['tract_fips'] = data_df['state'] + data_df['county'] + data_df['tract']
-            data_df['country_fips'] = data_df['state'] + data_df['county']
+            data_df['county_fips'] = data_df['state'] + data_df['county']
         else:
             data_df['index'] = data_df['state'] + data_df['county']
             data_df['county_fips'] = data_df['state'] + data_df['county']
