@@ -25,11 +25,11 @@ authors:
     equal-contrib: true # (This is how you can denote equal contributions between multiple authors)
     affiliation: "3"
 affiliations:
- - name: Maseeh Department of Civil, Architectural and Environmental Engineering
+ - name: Maseeh Department of Civil, Architectural and Environmental Engineering, University of Texas at Austin
    index: 1
- - name: Department of Earth and Planetary Sciences
+ - name: Department of Earth and Planetary Sciences, University of Texas at Austin
    index: 2
- - name: LBJ School of Public Affairs
+ - name: LBJ School of Public Affairs, University of Texas at Austin
    index: 3
 
 date: 24 Arpil 2024
