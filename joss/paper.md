@@ -75,4 +75,8 @@ In addition, there are methods to include/exclude additional variables to test d
 This work was supported in part by the National Science Foundation Graduate Research Fellowship (grant no. DGE-1610403), Future Investigators in NASA Earth and Space Science and Technology (NASA FINESST, grant no. 21-EARTH21-0264), Planet Texas 2050, a research grand challenge at the University of Texas at Austin, and the U.S. Department of Energy, Office of Science, Biological and Environmental Research Program’s South-East Texas Urban Integrated Field Laboratory under Award Number DE-SC0023216.
 
 
+# Author Contributions
+Matthew Preisser: Conceptulization (equal), Methodology (equal), Software (lead), Visualization (lead), Writing - original draft (lead), Writing - review & editing (lead); Paola Passalacqua: Conceptulization (equal), Methodology (equal), Software (supporting) Writing - review & editing (supporting), Supervision (lead); R. Patrick Bixler: Conceptulization (equal), Methodology (equal), Writing – review and editing (supporting), Supervision (supporting).
+
+
 # References
