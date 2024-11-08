@@ -65,7 +65,7 @@ Some typical compute times that can be expected to run the workflow for various 
 
 
 ## Contributing
-We welcome contributions to SVInsight. Please open an issue or a pull request if there is functionality you would like to see or propose. Refer to our [contributing guide](https://mdp0023.github.io/SVInsight/Contributions/contributions.htmll) for more information.
+We welcome contributions to SVInsight. Please open an issue or a pull request if there is functionality you would like to see or propose. Refer to our [contributing guide](https://mdp0023.github.io/SVInsight/Contributions/contributions.html) for more information.
 
 
 ## Citing
