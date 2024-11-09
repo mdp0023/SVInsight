@@ -1,6 +1,11 @@
 import sys
 import os
 
+# This package comes with initial Census boundaries and data for Harris County, TX
+# With overwrite=False, the package will not download the data again 
+# Therefore, an empty api_key will work for this example
+# However, to download the data, you will need to get an API key from the US Census Bureau
+
 # Get the directory that contains this file
 this_directory = os.path.dirname(os.path.abspath(__file__))
 
@@ -18,8 +23,9 @@ from svinsight import SVInsight as svi
 
 # set variables
 project_name = 'Harris_County'
-file_path = "/Users/matthewpreisser/Documents/Research/Codes/SVInsight"
-api_key = os.environ.get('API_KEY')
+file_path = dir1
+# api_key = os.environ.get('API_KEY')
+api_key = ''
 geoids = ['48201']
 
 # create instance
@@ -34,7 +40,7 @@ year=2018
 config_file = 'config'
 
 # extract shapefile
-export = test.boundaries_data(boundary, year)
+export = test.boundaries_data(boundary, year, overwrite=False)
 
 # extract raw census data
 test.census_data(boundary, 
