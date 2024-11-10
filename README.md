@@ -23,6 +23,24 @@ SVInsight can then be imported into python:
 
     >>> from svinsight import SVInsight as svi
 
+SVInsight has dependencies that rely on gdal, which may require it's own prior installation based on your operating system and coding environment. 
+
+For example:
+
+* On macOS:
+ 
+      brew install gdal
+
+* On Ubuntu:
+ 
+      sudo apt-get install gdal-bin libgdal-dev
+
+* On Windows:
+
+        pip install gdal==<version> --find-links https://www.lfd.uci.edu/~gohlke/pythonlibs/
+
+
+
 ## Quick Guide:
 
 In its simplest form the SVInsight workflow takes 5 lines of code:
@@ -47,7 +65,7 @@ Some typical compute times that can be expected to run the workflow for various 
 
 
 ## Contributing
-We welcome contributions to SVInsight. Please open an issue or a pull request if there is functionality you would like to see or propose. Refer to our [contributing guide](https://mdp0023.github.io/SVInsight/Contributions/contributions.htmll) for more information.
+We welcome contributions to SVInsight. Please open an issue or a pull request if there is functionality you would like to see or propose. Refer to our [contributing guide](https://mdp0023.github.io/SVInsight/Contributions/contributions.html) for more information.
 
 
 ## Citing

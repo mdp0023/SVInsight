@@ -5,20 +5,37 @@ Install
 Installation via *pip*
 ----------------------
 
-
 To *pip*-install this package use the following command:
 
 .. code-block:: console
 
    $ pip install SVInsight
 
-
 `SVInsight` can then be imported into python:
 
-.. doctest::
+.. code-block:: python
 
     >>> from svinsight import SVInsight as svi
 
+SVInsight has dependencies that rely on gdal, which may require its own prior installation based on your operating system and coding environment. For example:
+
+* On macOS:
+ 
+  .. code-block:: console
+
+      brew install gdal
+
+* On Ubuntu:
+ 
+  .. code-block:: console
+
+      sudo apt-get install gdal-bin libgdal-dev
+
+* On Windows:
+
+  .. code-block:: console
+
+      pip install gdal==<version> --find-links https://www.lfd.uci.edu/~gohlke/pythonlibs/
 
 Installation via *conda*
 ------------------------
