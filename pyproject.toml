@@ -11,7 +11,7 @@ license = "MIT"
 readme = "long_desc.md"
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.10"
 census = ">=0.8.22"
 factor_analyzer = ">=0.5.1"
 geopandas = ">=1.0.1"
