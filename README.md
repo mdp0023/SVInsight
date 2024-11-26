@@ -23,7 +23,7 @@ SVInsight can then be imported into python:
 
     >>> from svinsight import SVInsight as svi
 
-SVInsight has dependencies that rely on gdal, which may require it's own prior installation based on your operating system and coding environment. 
+SVInsight has dependencies that rely on gdal, which may require its own prior installation based on your operating system and coding environment. 
 
 For example:
 
@@ -39,6 +39,7 @@ For example:
 
         pip install gdal==<version> --find-links https://www.lfd.uci.edu/~gohlke/pythonlibs/
 
+Please refer to the docs website for more detailed installation guides if any problems persist. 
 
 
 ## Quick Guide:

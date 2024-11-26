@@ -37,6 +37,10 @@ SVInsight has dependencies that rely on gdal, which may require its own prior in
 
       pip install gdal==<version> --find-links https://www.lfd.uci.edu/~gohlke/pythonlibs/
 
+
+An alternative work around that has been known to work is to pip install the package in a conda environment after first installing the `geopandas` package, which will install the necessary dependencies for `gdal`.
+
+
 Installation via *conda*
 ------------------------
 
